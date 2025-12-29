@@ -5,28 +5,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ADROOS | Store Oficial</title>
     <style>
-        /* Estilos Base */
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
-        body { background-color: #050505; color: white; line-height: 1.6; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+        body { background-color: #050505; color: white; line-height: 1.6; scroll-behavior: smooth; }
         
-        /* Cabecera con Logo */
-        header { background: #000; padding: 40px 20px; text-align: center; border-bottom: 3px solid #d4af37; } /* Color dorado como el logo */
-        .logo-img { width: 150px; height: 150px; border-radius: 50%; border: 2px solid #d4af37; margin-bottom: 15px; }
+        header { background: #000; padding: 40px 20px; text-align: center; border-bottom: 3px solid #d4af37; }
+        .logo-img { width: 140px; height: 140px; border-radius: 50%; border: 2px solid #d4af37; margin-bottom: 15px; }
         .brand-name { font-size: 2.5rem; font-weight: 900; letter-spacing: 5px; color: #fff; }
         .brand-name span { color: #d4af37; }
 
-        /* Contenedor Principal */
-        .main-container { max-width: 1000px; margin: 0 auto; padding: 40px 20px; text-align: center; }
-        
-        /* Sección de Enlaces Estratégicos */
-        .links-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-top: 30px; }
-        .action-card { background: #111; padding: 30px; border-radius: 15px; border: 1px solid #222; transition: 0.3s; text-decoration: none; color: white; }
-        .action-card:hover { border-color: #d4af37; transform: translateY(-5px); }
-        .action-card h3 { color: #d4af37; margin-bottom: 10px; font-size: 1.4rem; }
-        .action-card p { font-size: 0.9rem; color: #aaa; }
+        .main-container { max-width: 1100px; margin: 0 auto; padding: 40px 20px; text-align: center; }
 
-        /* Botón Flotante de Chat Directo */
-        .btn-chat { background: #25d366; color: white; padding: 15px 30px; text-decoration: none; border-radius: 50px; font-weight: bold; display: inline-block; margin-top: 40px; box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3); }
+        /* Cuadrícula de Productos */
+        .products-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-top: 40px; }
+        .product-card { background: #111; padding: 20px; border-radius: 15px; border: 1px solid #222; transition: 0.3s; text-decoration: none; color: white; display: flex; flex-direction: column; align-items: center; }
+        .product-card:hover { border-color: #d4af37; transform: translateY(-10px); }
+        .product-card img { width: 100%; border-radius: 10px; margin-bottom: 15px; }
+        .product-card h3 { font-size: 1.2rem; color: #d4af37; margin-bottom: 10px; }
+        .btn-buy { background: #25d366; color: white; padding: 10px 20px; border-radius: 5px; text-decoration: none; font-weight: bold; margin-top: auto; width: 100%; }
+
+        /* Testimonios */
+        .testimonials { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin: 60px 0; }
+        .testi-card { background: #111; padding: 25px; border-radius: 10px; border-left: 4px solid #d4af37; text-align: left; }
+        .testi-name { display: block; margin-top: 10px; color: #d4af37; font-weight: bold; }
+
+        footer { padding: 40px 20px; background: #000; text-align: center; border-top: 1px solid #222; }
+        .insta-link { color: #d4af37; text-decoration: none; font-size: 1.2rem; font-weight: bold; }
     </style>
 </head>
 <body>
@@ -38,28 +41,72 @@
     </header>
 
     <div class="main-container">
-        <h2>Impulsa tu rendimiento con ADROOS</h2>
-        <p>Selecciona una opción para comenzar tu transformación:</p>
+        
+        <h2>Nuestros Productos Destacados</h2>
+        <p>Haz clic en cualquier imagen para comprar directamente por WhatsApp</p>
 
-        <div class="links-grid">
-            <a href="https://wa.me/c/573242606513" target="_blank" class="action-card">
-                <h3>Ver Catálogo</h3>
-                <p>Explora nuestra línea completa de suplementos y ropa deportiva.</p>
+        <div class="products-grid">
+            <a href="https://wa.me/p/30114224388225062/573242606513" target="_blank" class="product-card">
+                <img src="ON60.jpg" alt="ON 60 Servings">
+                <h3>Optimum Nutrition 60 Serv</h3>
+                <div class="btn-buy">Comprar ahora</div>
             </a>
 
-            <a href="https://adroos.lovable.app" target="_blank" class="action-card">
-                <h3>Asesoría Personalizada</h3>
-                <p>Recibe guía experta para alcanzar tus objetivos físicos.</p>
+            <a href="https://wa.me/p/24573418475599253/573242606513" target="_blank" class="product-card">
+                <img src="ON120.jpg" alt="ON 120 Servings">
+                <h3>Optimum Nutrition 120 Serv</h3>
+                <div class="btn-buy">Comprar ahora</div>
+            </a>
+
+            <a href="https://wa.me/p/24329943086611680/573242606513" target="_blank" class="product-card">
+                <img src="Platinum.jpg" alt="Platinum Creatine">
+                <h3>Platinum Creatine</h3>
+                <div class="btn-buy">Comprar ahora</div>
+            </a>
+
+            <a href="https://wa.me/p/24400451672872301/573242606513" target="_blank" class="product-card">
+                <img src="IMN133.jpg" alt="Creatina IMN">
+                <h3>Creatina IMN 133 Serv</h3>
+                <div class="btn-buy">Comprar ahora</div>
+            </a>
+
+            <a href="https://wa.me/p/10068590003226336/573242606513" target="_blank" class="product-card">
+                <img src="HS.jpg" alt="Creatina HS">
+                <h3>Creatine Healthy Sports</h3>
+                <div class="btn-buy">Comprar ahora</div>
+            </a>
+
+            <a href="https://wa.me/p/30852624011002730/573242606513" target="_blank" class="product-card">
+                <img src="Pbipro120.jpg" alt="Proteína Bi-Pro">
+                <h3>Proteína Bi-Pro Classic</h3>
+                <div class="btn-buy">Comprar ahora</div>
+            </a>
+
+            <a href="https://wa.me/p/30726142463650955/573242606513" target="_blank" class="product-card">
+                <img src="MagnesioHA.jpg" alt="Magnesio">
+                <h3>Super Magnesium HA</h3>
+                <div class="btn-buy">Comprar ahora</div>
+            </a>
+
+            <a href="https://wa.me/p/10022612957792610/573242606513" target="_blank" class="product-card">
+                <img src="OmegaH200.jpg" alt="Omega 3">
+                <h3>Fish Oil Omega-3</h3>
+                <div class="btn-buy">Comprar ahora</div>
             </a>
         </div>
 
-        <a href="https://wa.me/message/V6B2ILOA3XSSI1" target="_blank" class="btn-chat">
-            Chatear con un Asesor por WhatsApp
-        </a>
+        <div style="margin-top: 60px;">
+            <a href="https://adroos.lovable.app" target="_blank" class="btn-buy" style="background:#d4af37; padding: 20px; display:inline-block; width:auto; margin-bottom: 20px;">Recibir Asesoría Personalizada</a>
+            <br>
+            <a href="https://wa.me/message/V6B2ILOA3XSSI1" target="_blank" style="color:#25d366; text-decoration:none; font-weight:bold;">Chatear con un Asesor Directo</a>
+        </div>
+
     </div>
 
-    <footer style="margin-top: 50px; padding: 20px; color: #444; font-size: 0.8rem; text-align: center;">
-        &copy; 2025 ADROOS STORE. Todos los derechos reservados.
+    <footer>
+        <p>Síguenos en Instagram</p>
+        <a href="https://www.instagram.com/adro.ss?igsh=MXE1emUzNTd6cDB6eg==" target="_blank" class="insta-link">@adro.ss</a>
+        <p style="margin-top: 20px; color: #444;">&copy; 2025 ADROOS STORE. Manizales, Colombia.</p>
     </footer>
 
 </body>
