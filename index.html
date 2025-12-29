@@ -1,4 +1,79 @@
-<section id="creatinas" class="product-section">
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ADROOS | Elite Store</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+        body { background-color: #050505; color: white; line-height: 1.6; scroll-behavior: smooth; }
+        
+        header { background: #000; padding: 40px 20px; text-align: center; border-bottom: 3px solid #d4af37; }
+        .logo-img { width: 100px; height: 100px; border-radius: 50%; border: 2px solid #d4af37; margin-bottom: 10px; }
+        .brand-name { font-size: 2.2rem; font-weight: 900; letter-spacing: 5px; color: #fff; text-transform: uppercase; }
+        .brand-name span { color: #d4af37; }
+
+        .main-container { max-width: 1200px; margin: 0 auto; padding: 20px; text-align: center; }
+
+        /* CATEGORÍAS PRINCIPALES (LA FACHADA) */
+        .categories-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin: 40px 0; }
+        .cat-card { position: relative; border-radius: 15px; overflow: hidden; border: 1px solid #d4af37; transition: 0.3s; cursor: pointer; height: 350px; }
+        .cat-card:hover { transform: scale(1.02); box-shadow: 0 0 25px rgba(212, 175, 55, 0.4); }
+        .cat-card img { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.5); }
+        .cat-card h3 { position: absolute; bottom: 20px; width: 100%; color: white; font-size: 2rem; font-weight: 900; text-shadow: 2px 2px 10px #000; }
+
+        /* SECCIONES DE PRODUCTOS (OCULTAS POR DEFECTO) */
+        .product-section { display: none; animation: fadeIn 0.5s ease forwards; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+        .products-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 25px; margin-top: 30px; }
+        .product-card { background: #111; padding: 15px; border-radius: 15px; border: 1px solid #222; text-decoration: none; color: white; transition: 0.3s; display: flex; flex-direction: column; }
+        .product-card:hover { border-color: #d4af37; }
+        .product-card img { width: 100%; border-radius: 10px; margin-bottom: 10px; background: white; aspect-ratio: 1/1; object-fit: contain; }
+        .btn-buy { background: #25d366; color: white; padding: 12px; border-radius: 8px; text-decoration: none; font-weight: bold; margin-top: auto; }
+
+        .btn-back { display: inline-block; margin: 20px 0; padding: 10px 20px; background: #333; color: #d4af37; border-radius: 5px; cursor: pointer; font-weight: bold; }
+
+        h2.section-title { color: #d4af37; margin: 40px 0 20px; text-transform: uppercase; letter-spacing: 3px; border-bottom: 2px solid #d4af37; display: inline-block; padding-bottom: 5px; }
+
+        /* FAQ */
+        .faq-section { max-width: 800px; margin: 60px auto; text-align: left; }
+        details { background: #111; border: 1px solid #333; border-radius: 10px; margin-bottom: 10px; padding: 15px; cursor: pointer; }
+        summary { font-weight: bold; color: #d4af37; list-style: none; display: flex; justify-content: space-between; }
+        details p { margin-top: 10px; font-size: 0.9rem; color: #ccc; border-top: 1px solid #222; padding-top: 10px; }
+
+        .footer { padding: 40px; background: #000; border-top: 1px solid #222; text-align: center; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <img src="logo-adroos.jpg" alt="Logo ADROOS" class="logo-img">
+        <div class="brand-name">ADR<span>OOS</span></div>
+        <p style="font-size: 0.8rem; letter-spacing: 2px;">ESTUDIANTE DE MEDICINA | ASESORÍA DEPORTIVA</p>
+    </header>
+
+    <div class="main-container" id="home">
+        
+        <div id="category-selector">
+            <h2 style="margin-top: 20px;">EXPLORA NUESTRO CATÁLOGO</h2>
+            <div class="categories-grid">
+                <div class="cat-card" onclick="showCategory('creatinas')">
+                    <img src="Logocreatina.jpg">
+                    <h3>CREATINAS</h3>
+                </div>
+                <div class="cat-card" onclick="showCategory('proteinas')">
+                    <img src="logoproteina.jpg">
+                    <h3>PROTEÍNAS</h3>
+                </div>
+                <div class="cat-card" onclick="showCategory('salud')">
+                    <img src="Logosalud.jpg">
+                    <h3>SALUD NATURAL</h3>
+                </div>
+            </div>
+        </div>
+
+        <section id="creatinas" class="product-section">
             <div class="btn-back" onclick="showHome()">← Volver a Categorías</div>
             <h2 class="section-title">Línea de Creatinas Elite</h2>
             <div class="products-grid">
@@ -31,3 +106,56 @@
                 </a>
             </div>
         </section>
+
+        <section id="proteinas" class="product-section">
+            <div class="btn-back" onclick="showHome()">← Volver</div>
+            <h2 class="section-title">Proteínas</h2>
+            <div class="products-grid">
+                <a href="https://wa.me/p/30852624011002730/573242606513" target="_blank" class="product-card">
+                    <img src="Pbipro120.jpg"><h3>Bi-Pro Classic</h3><div class="btn-buy">Comprar</div>
+                </a>
+            </div>
+        </section>
+
+        <section id="salud" class="product-section">
+            <div class="btn-back" onclick="showHome()">← Volver</div>
+            <h2 class="section-title">Salud y Bienestar</h2>
+            <div class="products-grid">
+                <a href="https://wa.me/p/30726142463650955/573242606513" target="_blank" class="product-card">
+                    <img src="MagnesioHA.jpg"><h3>Super Magnesium HA</h3><div class="btn-buy">Comprar</div>
+                </a>
+                <a href="https://wa.me/p/10022612957792610/573242606513" target="_blank" class="product-card">
+                    <img src="OmegaH200.jpg"><h3>Omega-3 Fish Oil</h3><div class="btn-buy">Comprar</div>
+                </a>
+            </div>
+        </section>
+
+        <h2 class="section-title">Dudas Frecuentes</h2>
+        <div class="faq-section">
+            <details><summary>¿Puedo mezclar proteína y creatina?</summary><p>Sí, es ideal para la recuperación post-entrenamiento.</p></details>
+            <details><summary>¿La proteína engorda?</summary><p>No, depende de tu balance calórico total.</p></details>
+        </div>
+
+        <div style="margin: 60px 0; display: flex; flex-direction: column; gap: 15px; align-items: center;">
+            <a href="https://adroos.lovable.app" target="_blank" style="background:#fff; color:#000; padding:15px 30px; border-radius:10px; text-decoration:none; font-weight:900; width:100%; max-width:350px; border:2px solid #d4af37;">🚀 ASESORÍA RÁPIDA (Lovable)</a>
+        </div>
+    </div>
+
+    <script>
+        function showCategory(id) {
+            document.getElementById('category-selector').style.display = 'none';
+            document.querySelectorAll('.product-section').forEach(sec => sec.style.display = 'none');
+            document.getElementById(id).style.display = 'block';
+            window.scrollTo(0, 0);
+        }
+        function showHome() {
+            document.querySelectorAll('.product-section').forEach(sec => sec.style.display = 'none');
+            document.getElementById('category-selector').style.display = 'block';
+        }
+    </script>
+
+    <footer class="footer">
+        <p>Instagram: <a href="https://www.instagram.com/adro.ss" target="_blank" style="color:#d4af37; text-decoration:none;">@adro.ss</a></p>
+    </footer>
+</body>
+</html>
