@@ -1,4 +1,96 @@
-<h2 id="salud" class="section-title">Salud y Bienestar</h2>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ADROOS | Elite Store</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+        body { background-color: #050505; color: white; line-height: 1.6; scroll-behavior: smooth; }
+        
+        header { background: #000; padding: 40px 20px; text-align: center; border-bottom: 3px solid #d4af37; }
+        .logo-img { width: 120px; height: 120px; border-radius: 50%; border: 2px solid #d4af37; margin-bottom: 15px; }
+        .brand-name { font-size: 2.5rem; font-weight: 900; letter-spacing: 5px; color: #fff; }
+        .brand-name span { color: #d4af37; }
+
+        .main-container { max-width: 1100px; margin: 0 auto; padding: 40px 20px; text-align: center; }
+
+        /* SECCIÓN CATEGORÍAS */
+        .categories-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin: 40px 0; }
+        .cat-card { position: relative; border-radius: 15px; overflow: hidden; border: 1px solid #d4af37; transition: 0.3s; text-decoration: none; display: block; height: 350px; }
+        .cat-card:hover { transform: scale(1.03); box-shadow: 0 0 25px rgba(212, 175, 55, 0.5); }
+        .cat-card img { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.6); }
+        .cat-card h3 { position: absolute; bottom: 30px; width: 100%; color: white; font-size: 2rem; text-shadow: 2px 2px 15px black; font-weight: 900; letter-spacing: 2px; }
+
+        /* Cuadrícula de Productos */
+        .products-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-top: 30px; margin-bottom: 60px; }
+        .product-card { background: #111; padding: 15px; border-radius: 15px; border: 1px solid #222; text-decoration: none; color: white; transition: 0.3s; display: flex; flex-direction: column; }
+        .product-card:hover { border-color: #d4af37; transform: translateY(-5px); }
+        .product-card img { width: 100%; border-radius: 10px; margin-bottom: 10px; aspect-ratio: 1/1; object-fit: contain; background: white; }
+        .btn-buy { background: #25d366; color: white; padding: 12px; border-radius: 8px; text-decoration: none; font-weight: bold; display: block; margin-top: auto; font-size: 0.9rem; }
+
+        h2.section-title { color: #d4af37; margin-top: 100px; text-transform: uppercase; letter-spacing: 4px; border-bottom: 2px solid #d4af37; display: inline-block; padding-bottom: 5px; margin-bottom: 30px; }
+
+        /* FAQ */
+        .faq-container { text-align: left; max-width: 800px; margin: 0 auto; background: #111; padding: 25px; border-radius: 15px; border: 1px solid #d4af37; }
+        .faq-item { margin-bottom: 20px; }
+        .faq-item h4 { color: #d4af37; margin-bottom: 5px; }
+        .faq-item p { font-size: 0.9rem; color: #ccc; }
+
+        .footer { padding: 60px 20px; background: #000; border-top: 1px solid #222; margin-top: 80px; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <img src="logo-adroos.jpg" alt="Logo ADROOS" class="logo-img">
+        <div class="brand-name">ADR<span>OOS</span></div>
+        <p>MAXIMIZA TU RENDIMIENTO</p>
+    </header>
+
+    <div class="main-container">
+        
+        <h2 style="margin-bottom: 20px; letter-spacing: 2px;">EXPLORA NUESTRAS LÍNEAS</h2>
+        
+        <div class="categories-grid">
+            <a href="#creatinas" class="cat-card">
+                <img src="Logocreatina.jpg" alt="Creatinas">
+                <h3>CREATINAS</h3>
+            </a>
+            <a href="#proteinas" class="cat-card">
+                <img src="logoproteina.jpg" alt="Proteínas">
+                <h3>PROTEÍNAS</h3>
+            </a>
+            <a href="#salud" class="cat-card">
+                <img src="Logosalud.jpg" alt="Salud">
+                <h3>SALUD NATURAL</h3>
+            </a>
+        </div>
+
+        <h2 id="creatinas" class="section-title">Creatinas Elite</h2>
+        <div class="products-grid">
+            <a href="https://wa.me/p/24329943086611680/573242606513" target="_blank" class="product-card">
+                <img src="platinum.jpg" alt="Platinum">
+                <h3>Platinum Creatine</h3>
+                <div class="btn-buy">Comprar en WhatsApp</div>
+            </a>
+            <a href="https://wa.me/p/24400451672872301/573242606513" target="_blank" class="product-card">
+                <img src="IMN133.jpg" alt="IMN">
+                <h3>Creatina IMN 133 Serv</h3>
+                <div class="btn-buy">Comprar en WhatsApp</div>
+            </a>
+        </div>
+
+        <h2 id="proteinas" class="section-title">Proteínas</h2>
+        <div class="products-grid">
+            <a href="https://wa.me/p/30852624011002730/573242606513" target="_blank" class="product-card">
+                <img src="Pbipro120.jpg" alt="Bi-Pro">
+                <h3>Proteína Bi-Pro Classic</h3>
+                <div class="btn-buy">Comprar en WhatsApp</div>
+            </a>
+        </div>
+
+        <h2 id="salud" class="section-title">Salud y Bienestar</h2>
         <div class="products-grid">
             <a href="https://wa.me/p/30726142463650955/573242606513" target="_blank" class="product-card">
                 <img src="MagnesioHA.jpg" alt="Magnesio">
@@ -12,34 +104,36 @@
             </a>
         </div>
 
-        <h2 class="section-title">FAQ | Evidencia y Rendimiento</h2>
-        <div style="text-align: left; max-width: 800px; margin: 0 auto; background: #111; padding: 25px; border-radius: 15px; border: 1px solid #d4af37;">
-            
-            <div style="margin-bottom: 20px;">
-                <h4 style="color: #d4af37;">¿La creatina afecta la función renal en individuos sanos?</h4>
-                <p style="font-size: 0.9rem; color: #ccc;">No hay evidencia clínica que demuestre daño renal en sujetos sanos con dosis estándar (3-5g/día). Como estudiante de salud, recomiendo mantener una tasa de filtración glomerular óptima mediante una hidratación adecuada.</p>
+        <h2 class="section-title">FAQ | Evidencia Científica</h2>
+        <div class="faq-container">
+            <div class="faq-item">
+                <h4>¿La creatina afecta la función renal?</h4>
+                <p>Clínicamente, no hay evidencia de daño renal en sujetos sanos con dosis de 3-5g/día. Priorizamos la hidratación para mantener una tasa de filtración glomerular óptima.</p>
             </div>
-
-            <div style="margin-bottom: 20px;">
-                <h4 style="color: #d4af37;">¿Cuál es el timing ideal para la síntesis de proteína muscular?</h4>
-                <p style="font-size: 0.9rem; color: #ccc;">Más que la "ventana anabólica" inmediata, priorizamos el balance de nitrógeno positivo a lo largo del día. Sin embargo, el consumo post-entrenamiento facilita la resíntesis de glucógeno y reparación tisular.</p>
-            </div>
-
-            <div style="margin-bottom: 10px;">
-                <h4 style="color: #d4af37;">¿Por qué suplementar con Magnesio y Omega-3?</h4>
-                <p style="font-size: 0.9rem; color: #ccc;">Buscamos modular la inflamación sistémica post-esfuerzo y optimizar la función neuromuscular y cardiovascular, pilares fundamentales tanto en la clínica como en el alto rendimiento.</p>
+            <div class="faq-item">
+                <h4>¿Timing de proteína para síntesis muscular?</h4>
+                <p>Más allá de la ventana anabólica, lo vital es el balance de nitrógeno positivo diario. El post-entreno optimiza la resíntesis de glucógeno.</p>
             </div>
         </div>
 
         <div style="margin-top: 60px; display: flex; flex-direction: column; gap: 20px; align-items: center;">
-            
             <a href="https://adroos.lovable.app" target="_blank" 
                style="background: #fff; color: #000; padding: 18px 35px; border-radius: 10px; text-decoration: none; font-weight: 900; font-size: 1.1rem; width: 100%; max-width: 400px; border: 2px solid #d4af37;">
                🚀 ASESORÍA RÁPIDA (Web App)
             </a>
-
-            <a href="https://wa.me/573242606513?text=Hola%20ADROOS,%20soy%20estudiante%20de%20medicina%20y%20busco%20asesoría" target="_blank" 
+            <a href="https://wa.me/573242606513?text=Hola%20ADROOS,%20busco%20asesoría%20médica-deportiva" target="_blank" 
                style="background: #d4af37; color: black; padding: 18px 35px; border-radius: 10px; text-decoration: none; font-weight: 900; font-size: 1.1rem; width: 100%; max-width: 400px;">
-               💬 CONTACTO DIRECTO WHATSAPP
+               💬 CONTACTO WHATSAPP
             </a>
         </div>
+
+    </div>
+
+    <footer class="footer" style="text-align: center;">
+        <p style="margin-bottom: 10px;">Comunidad ADROOS en Instagram</p>
+        <a href="https://www.instagram.com/adro.ss" target="_blank" style="color:#d4af37; text-decoration:none; font-weight:bold;">@adro.ss</a>
+        <p style="margin-top: 30px; color: #555; font-size: 0.8rem;">&copy; 2025 ADROOS STORE | Manizales</p>
+    </footer>
+
+</body>
+</html>
