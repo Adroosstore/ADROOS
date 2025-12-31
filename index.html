@@ -92,6 +92,22 @@
         .whatsapp-float:hover { transform: scale(1.1); background-color: #128c7e; }
 
         .footer { padding: 50px; background: #fafafa; border-top: 1px solid #eee; text-align: center; }
+
+        .btn-filter {
+    background: white;
+    border: 2px solid #d4af37;
+    color: #1a1a1a;
+    padding: 8px 18px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.btn-filter:hover {
+    background: #d4af37;
+    color: white;
+}
     </style>
 </head>
 <body>
@@ -160,14 +176,29 @@
         </section>
 
         <section id="proteinas" class="product-section">
-            <div class="btn-back" onclick="showHome()">← Volver</div>
-            <h2 class="section-title">Proteínas</h2>
-            <div class="products-grid">
-                <a href="https://wa.me/p/30852624011002730/573242606513" target="_blank" class="product-card">
-                    <img src="Pbipro120.jpg"><h3>Bi-Pro Classic</h3><div class="btn-buy">Comprar</div>
-                </a>
-            </div>
-        </section>
+    <div class="btn-back" onclick="showHome()">← Volver a Categorías</div>
+    <h2 class="section-title">Línea de Proteínas</h2>
+    
+    <div style="margin: 20px 0; display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;">
+        <button onclick="filterProteins('all')" class="btn-filter">Todas</button>
+        <button onclick="filterProteins('hiper')" class="btn-filter">Hipercalóricas</button>
+        <button onclick="filterProteins('hipo')" class="btn-filter">Hipocalóricas</button>
+    </div>
+
+    <div class="products-grid">
+        <a href="https://wa.me/p/30852624011002730/573242606513" target="_blank" class="product-card protein-item hiper">
+            <img src="Pbipro120.jpg">
+            <h3>Bi-Pro Classic (Hiper)</h3>
+            <div class="btn-buy">Comprar</div>
+        </a>
+
+        <a href="https://wa.me/573242606513" target="_blank" class="product-card protein-item hipo">
+            <img src="logo-adroos.jpg">
+            <h3>Proteína de Definición (Hipo)</h3>
+            <div class="btn-buy">Comprar</div>
+        </a>
+    </div>
+</section>
 
         <section id="salud" class="product-section">
             <div class="btn-back" onclick="showHome()">← Volver</div>
