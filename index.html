@@ -182,7 +182,10 @@
             </div>
         </section>
 
-        <h2 class="section-title">Dudas Frecuentes</h2>
+        <div class="faq-section" id="faq">
+    <h2 class="section-title">Dudas Frecuentes</h2>
+    ...
+</div>
         <div class="faq-section">
             <details>
                 <summary>¿Tomando creatina aumentaré el porcentaje de grasa corporal?</summary>
@@ -222,24 +225,39 @@
         }
 
         function searchProducts() {
-            let input = document.getElementById('productSearch').value.toLowerCase();
-            let cards = document.getElementsByClassName('product-card');
-            let selector = document.getElementById('category-selector');
-            let sections = document.querySelectorAll('.product-section');
+    let input = document.getElementById('productSearch').value.toLowerCase();
+    let sections = document.querySelectorAll('.product-section');
+    let selector = document.getElementById('category-selector');
 
-            if (input.length > 0) {
-                selector.style.display = 'none';
-                sections.forEach(sec => sec.style.display = 'block');
-            } else {
-                showHome();
-                return;
-            }
+    if (input.length > 0) {
+        selector.style.display = 'none'; // Oculta las 3 tarjetas principales
+        
+        sections.forEach(section => {
+            let cards = section.getElementsByClassName('product-card');
+            let hasResults = false;
 
+            // Revisar cada producto en esta sección
             for (let i = 0; i < cards.length; i++) {
                 let title = cards[i].getElementsByTagName('h3')[0].innerText.toLowerCase();
-                cards[i].style.display = title.includes(input) ? "flex" : "none";
+                if (title.includes(input)) {
+                    cards[i].style.display = "flex";
+                    hasResults = true; // Encontramos al menos uno
+                } else {
+                    cards[i].style.display = "none";
+                }
             }
-        }
+
+            // Si la sección no tiene resultados, la ocultamos por completo (título y botón incluidos)
+            if (hasResults) {
+                section.style.display = 'block';
+            } else {
+                section.style.display = 'none';
+            }
+        });
+    } else {
+        showHome(); // Si el buscador está vacío, vuelve a la normalidad
+    }
+}
     </script>
 
     <footer class="footer">
