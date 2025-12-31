@@ -141,7 +141,7 @@
     </a>
 
     <script>
-        function showCategory(id) {
+       function showCategory(id) {
             document.getElementById('category-selector').style.display = 'none';
             document.querySelectorAll('.product-section').forEach(sec => sec.style.display = 'none');
             document.getElementById(id).style.display = 'block';
@@ -157,23 +157,20 @@
         }
 
         function filterProteins(type) {
-    // 1. Aseguramos que la sección de proteínas esté visible
-    document.getElementById('proteinas').style.display = 'block';
-    
-    // 2. Seleccionamos todas las tarjetas de proteínas
-    let items = document.querySelectorAll('.protein-item');
-    
-    items.forEach(item => {
-        if (type === 'all') {
-            item.style.display = 'flex';
-        } else {
-            // Si la tarjeta tiene la clase 'hiper' o 'hipo', la mostramos
-            if (item.classList.contains(type)) {
-                item.style.display = 'flex';
-            } else {
-                item.style.display = 'none';
-            }
-        }
+            document.getElementById('proteinas').style.display = 'block';
+            let items = document.querySelectorAll('.protein-item');
+            items.forEach(item => {
+                if (type === 'all') {
+                    item.style.display = 'flex';
+                } else {
+                    if (item.classList.contains(type)) {
+                        item.style.display = 'flex';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                }
+            });
+        } // <--- ESTA LLAVE ES LA QUE FALTABA
 
         function searchProducts() {
             let input = document.getElementById('productSearch').value.toLowerCase();
@@ -189,12 +186,18 @@
                     let hasResults = false;
                     for (let i = 0; i < cards.length; i++) {
                         let title = cards[i].getElementsByTagName('h3')[0].innerText.toLowerCase();
-                        if (title.includes(input)) { cards[i].style.display = "flex"; hasResults = true; } 
-                        else { cards[i].style.display = "none"; }
+                        if (title.includes(input)) { 
+                            cards[i].style.display = "flex"; 
+                            hasResults = true; 
+                        } else { 
+                            cards[i].style.display = "none"; 
+                        }
                     }
                     section.style.display = hasResults ? 'block' : 'none';
                 });
-            } else { showHome(); }
+            } else { 
+                showHome(); 
+            }
         }
     </script>
 
