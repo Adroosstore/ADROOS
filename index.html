@@ -157,11 +157,22 @@
         }
 
         function filterProteins(type) {
-            let items = document.querySelectorAll('.protein-item');
-            items.forEach(item => {
-                if (type === 'all') item.style.display = 'flex';
-                else item.style.display = item.classList.contains(type) ? 'flex' : 'none';
-            });
+    // 1. Aseguramos que la sección de proteínas esté visible
+    document.getElementById('proteinas').style.display = 'block';
+    
+    // 2. Seleccionamos todas las tarjetas de proteínas
+    let items = document.querySelectorAll('.protein-item');
+    
+    items.forEach(item => {
+        if (type === 'all') {
+            item.style.display = 'flex';
+        } else {
+            // Si la tarjeta tiene la clase 'hiper' o 'hipo', la mostramos
+            if (item.classList.contains(type)) {
+                item.style.display = 'flex';
+            } else {
+                item.style.display = 'none';
+            }
         }
 
         function searchProducts() {
