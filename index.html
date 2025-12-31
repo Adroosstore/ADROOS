@@ -35,6 +35,28 @@
         color: #fff; text-transform: uppercase;
         text-shadow: 2px 2px 15px rgba(0,0,0,0.9);
     }
+    /* DISEÑO DEL BUSCADOR DINÁMICO */
+.search-container {
+    margin: 20px auto 40px;
+    max-width: 600px;
+    padding: 0 20px;
+}
+
+#productSearch {
+    width: 100%;
+    padding: 15px 25px;
+    border-radius: 30px;
+    border: 2px solid #ddd;
+    font-size: 1rem;
+    outline: none;
+    transition: 0.3s;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+
+#productSearch:focus {
+    border-color: #d4af37;
+    box-shadow: 0 4px 20px rgba(212, 175, 55, 0.15);
+}
 
     .main-container { max-width: 1200px; margin: 0 auto; padding: 20px; text-align: center; }
 
@@ -97,7 +119,9 @@
     </header>
 
     <div class="main-container" id="home">
-        
+        <div class="search-container">
+    <input type="text" id="productSearch" placeholder="🔍 Buscar suplemento (ej: Dymatize, ON, Bi-Pro)..." onkeyup="searchProducts()">
+</div>
         <div id="category-selector">
             <h2 style="margin-top: 20px;">EXPLORA NUESTRO CATÁLOGO</h2>
             <div class="categories-grid">
@@ -210,6 +234,33 @@
             document.querySelectorAll('.product-section').forEach(sec => sec.style.display = 'none');
             document.getElementById('category-selector').style.display = 'block';
         }
+        // --- FUNCIÓN DE BÚSQUEDA DINÁMICA ---
+function searchProducts() {
+    let input = document.getElementById('productSearch').value.toLowerCase();
+    let cards = document.getElementsByClassName('product-card');
+    let categorySelector = document.getElementById('category-selector');
+    let sections = document.querySelectorAll('.product-section');
+
+    // Si el usuario escribe, mostramos las secciones para filtrar
+    if (input.length > 0) {
+        categorySelector.style.display = 'none';
+        sections.forEach(sec => sec.style.display = 'block');
+    } else {
+        // Si borra la búsqueda, vuelve a la vista de categorías
+        showHome();
+        return;
+    }
+
+    // Filtra cada tarjeta comparando el título con la búsqueda
+    for (let i = 0; i < cards.length; i++) {
+        let title = cards[i].getElementsByTagName('h3')[0].innerText.toLowerCase();
+        if (title.includes(input)) {
+            cards[i].style.display = "flex";
+        } else {
+            cards[i].style.display = "none";
+        }
+    }
+}
     </script>
 
     <footer class="footer">
