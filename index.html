@@ -6,108 +6,92 @@
     <title>ADROOS | Elite Store</title>
     <link rel="icon" href="logo-adroos.jpg" type="image/x-icon">
     <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
-    
-    body { background-color: #ffffff; color: #1a1a1a; line-height: 1.6; scroll-behavior: smooth; }
-    
-    /* HEADER CON IMAGEN Y OPACIDAD AJUSTADA */
-    header { 
-        background: linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.75)), url('header-bg.jpg');
-        background-size: cover;
-        background-position: center;
-        padding: 60px 20px; 
-        text-align: center; 
-        border-bottom: 3px solid #d4af37; 
-        color: white; 
-    }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+        
+        body { background-color: #ffffff; color: #1a1a1a; line-height: 1.6; scroll-behavior: smooth; }
+        
+        /* HEADER CON IMAGEN Y OPACIDAD */
+        header { 
+            background: linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.75)), url('header-bg.jpg');
+            background-size: cover;
+            background-position: center;
+            padding: 60px 20px; 
+            text-align: center; 
+            border-bottom: 3px solid #d4af37; 
+            color: white; 
+        }
 
-    .logo-img { 
-        width: 115px; height: 115px; 
-        border-radius: 50%; 
-        border: 3px solid #d4af37; 
-        margin-bottom: 15px;
-        box-shadow: 0 0 25px rgba(212, 175, 55, 0.5);
-        background-color: #000;
-    }
+        .logo-img { 
+            width: 115px; height: 115px; 
+            border-radius: 50%; 
+            border: 3px solid #d4af37; 
+            margin-bottom: 15px;
+            box-shadow: 0 0 25px rgba(212, 175, 55, 0.5);
+            background-color: #000;
+        }
 
-    .brand-name { 
-        font-size: 2.6rem; font-weight: 900; letter-spacing: 5px; 
-        color: #fff; text-transform: uppercase;
-        text-shadow: 2px 2px 15px rgba(0,0,0,0.9);
-    }
-    /* DISEÑO DEL BUSCADOR DINÁMICO */
-.search-container {
-    margin: 20px auto 40px;
-    max-width: 600px;
-    padding: 0 20px;
-}
+        .brand-name { 
+            font-size: 2.6rem; font-weight: 900; letter-spacing: 5px; 
+            color: #fff; text-transform: uppercase;
+            text-shadow: 2px 2px 15px rgba(0,0,0,0.9);
+        }
 
-#productSearch {
-    width: 100%;
-    padding: 15px 25px;
-    border-radius: 30px;
-    border: 2px solid #ddd;
-    font-size: 1rem;
-    outline: none;
-    transition: 0.3s;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-}
+        /* BUSCADOR DINÁMICO */
+        .search-container { margin: 20px auto 40px; max-width: 600px; padding: 0 20px; }
+        #productSearch {
+            width: 100%; padding: 15px 25px; border-radius: 30px;
+            border: 2px solid #ddd; font-size: 1rem; outline: none;
+            transition: 0.3s; box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+        #productSearch:focus { border-color: #d4af37; box-shadow: 0 4px 20px rgba(212, 175, 55, 0.15); }
 
-#productSearch:focus {
-    border-color: #d4af37;
-    box-shadow: 0 4px 20px rgba(212, 175, 55, 0.15);
-}
+        .main-container { max-width: 1200px; margin: 0 auto; padding: 20px; text-align: center; }
 
-    .main-container { max-width: 1200px; margin: 0 auto; padding: 20px; text-align: center; }
+        /* EFECTO VIDRIO EN CATEGORÍAS */
+        .categories-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; margin: 40px 0; }
+        .cat-card { 
+            position: relative; border-radius: 20px; overflow: hidden; 
+            border: 1px solid rgba(212, 175, 55, 0.3); transition: 0.4s; 
+            cursor: pointer; height: 350px; box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1);
+        }
+        .cat-card:hover { transform: translateY(-10px); border-color: #d4af37; box-shadow: 0 15px 30px rgba(212, 175, 55, 0.2); }
+        .cat-card img { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.6); }
+        .cat-card h3 { 
+            position: absolute; bottom: 0; width: 100%; padding: 25px 0;
+            background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px); color: white; font-size: 1.8rem; 
+            font-weight: 900; border-top: 1px solid rgba(255, 255, 255, 0.2);
+        }
 
-    /* EFECTO VIDRIO ESMERILADO EN CATEGORÍAS */
-    .categories-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; margin: 40px 0; }
-    
-    .cat-card { 
-        position: relative; border-radius: 20px; overflow: hidden; 
-        border: 1px solid rgba(212, 175, 55, 0.3); 
-        transition: 0.4s; cursor: pointer; height: 350px; 
-        box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1);
-    }
+        /* PRODUCTOS */
+        .product-section { display: none; animation: fadeIn 0.5s ease forwards; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        .products-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 25px; margin-top: 30px; }
+        .product-card { 
+            background: #fdfdfd; padding: 18px; border-radius: 18px; border: 1px solid #eee; 
+            text-decoration: none; color: #1a1a1a; transition: 0.3s; display: flex; flex-direction: column;
+        }
+        .product-card:hover { border-color: #d4af37; box-shadow: 0 10px 25px rgba(0,0,0,0.08); }
+        .product-card img { width: 100%; border-radius: 12px; margin-bottom: 12px; background: white; aspect-ratio: 1/1; object-fit: contain; border: 1px solid #f5f5f5; }
+        .btn-buy { background: #25d366; color: white; padding: 12px; border-radius: 10px; font-weight: bold; margin-top: auto; }
+        .btn-back { display: inline-block; margin: 20px 0; padding: 10px 20px; background: #f0f0f0; color: #333; border-radius: 5px; cursor: pointer; font-weight: bold; border: 1px solid #ddd; }
 
-    .cat-card:hover { transform: translateY(-10px); border-color: #d4af37; box-shadow: 0 15px 30px rgba(212, 175, 55, 0.2); }
-    .cat-card img { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.6); }
+        /* FAQ */
+        .faq-section { max-width: 850px; margin: 60px auto; text-align: left; }
+        details { background: #f8f8f8; border: 1px solid #e0e0e0; border-radius: 12px; margin-bottom: 12px; padding: 18px; cursor: pointer; }
+        summary { font-weight: bold; color: #b08d1a; display: flex; justify-content: space-between; }
 
-    /* TEXTO SOBRE EL VIDRIO */
-    .cat-card h3 { 
-        position: absolute; bottom: 0; width: 100%; 
-        padding: 25px 0;
-        background: rgba(255, 255, 255, 0.1); /* Transparencia */
-        backdrop-filter: blur(10px); /* Efecto Borroso */
-        -webkit-backdrop-filter: blur(10px);
-        color: white; font-size: 1.8rem; font-weight: 900; 
-        border-top: 1px solid rgba(255, 255, 255, 0.2);
-    }
+        /* BOTÓN FLOTANTE WHATSAPP */
+        .whatsapp-float {
+            position: fixed; width: 60px; height: 60px; bottom: 40px; right: 40px;
+            background-color: #25d366; color: #FFF; border-radius: 50px; text-align: center;
+            font-size: 30px; box-shadow: 2px 2px 15px rgba(0,0,0,0.3); z-index: 100;
+            display: flex; align-items: center; justify-content: center; text-decoration: none;
+            transition: 0.3s;
+        }
+        .whatsapp-float:hover { transform: scale(1.1); background-color: #128c7e; }
 
-    /* SECCIONES DE PRODUCTOS */
-    .product-section { display: none; animation: fadeIn 0.5s ease forwards; }
-    .products-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 25px; margin-top: 30px; }
-    
-    .product-card { 
-        background: #fdfdfd; padding: 18px; border-radius: 18px; 
-        border: 1px solid #eee; text-decoration: none; color: #1a1a1a; 
-        transition: 0.3s; display: flex; flex-direction: column;
-    }
-    .product-card:hover { border-color: #d4af37; box-shadow: 0 10px 25px rgba(0,0,0,0.08); }
-    .product-card img { 
-        width: 100%; border-radius: 12px; margin-bottom: 12px; 
-        background: white; aspect-ratio: 1/1; object-fit: contain; 
-        border: 1px solid #f5f5f5; 
-    }
-
-    .btn-buy { background: #25d366; color: white; padding: 12px; border-radius: 10px; font-weight: bold; margin-top: auto; }
-
-    .faq-section { max-width: 850px; margin: 60px auto; text-align: left; }
-    details { background: #f8f8f8; border: 1px solid #e0e0e0; border-radius: 12px; margin-bottom: 12px; padding: 18px; cursor: pointer; }
-    summary { font-weight: bold; color: #b08d1a; display: flex; justify-content: space-between; }
-
-    .footer { padding: 50px; background: #fafafa; border-top: 1px solid #eee; text-align: center; }
-</style>
+        .footer { padding: 50px; background: #fafafa; border-top: 1px solid #eee; text-align: center; }
     </style>
 </head>
 <body>
@@ -120,8 +104,9 @@
 
     <div class="main-container" id="home">
         <div class="search-container">
-    <input type="text" id="productSearch" placeholder="🔍 Buscar suplemento (ej: Dymatize, ON, Bi-Pro)..." onkeyup="searchProducts()">
-</div>
+            <input type="text" id="productSearch" placeholder="🔍 Buscar suplemento (ej: Dymatize, ON, Bi-Pro)..." onkeyup="searchProducts()">
+        </div>
+
         <div id="category-selector">
             <h2 style="margin-top: 20px;">EXPLORA NUESTRO CATÁLOGO</h2>
             <div class="categories-grid">
@@ -209,19 +194,18 @@
             </details>
             <details>
                 <summary>¿La proteína engorda?</summary>
-                <p>No, la proteína aumenta la saciedad y ayuda en procesos de pérdida de grasa. El peso depende del balance calórico total.</p>
-            </details>
-            <details>
-                <summary>¿Por qué tomar Magnesio antes de dormir?</summary>
-                <p>El Magnesium ayuda a relajar el sistema nervioso y los músculos. Mejora la calidad del sueño profundo y la recuperación.</p>
+                <p>No, la proteína aumenta la saciedad. El peso depende del balance calórico total.</p>
             </details>
         </div>
 
         <div style="margin: 60px 0; display: flex; flex-direction: column; gap: 15px; align-items: center;">
             <a href="https://adroos.lovable.app" target="_blank" style="background:#000; color:#fff; padding:15px 30px; border-radius:10px; text-decoration:none; font-weight:900; width:100%; max-width:350px; border:2px solid #d4af37;">🚀 ASESORÍA RÁPIDA (Web App)</a>
-            <a href="https://wa.me/573242606513" target="_blank" style="background:#d4af37; color:#000; padding:15px 30px; border-radius:10px; text-decoration:none; font-weight:900; width:100%; max-width:350px;">💬 WHATSAPP DIRECTO</a>
         </div>
     </div>
+
+    <a href="https://wa.me/573242606513" class="whatsapp-float" target="_blank">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" width="35" alt="WhatsApp">
+    </a>
 
     <script>
         function showCategory(id) {
@@ -230,41 +214,36 @@
             document.getElementById(id).style.display = 'block';
             window.scrollTo(0, 0);
         }
+
         function showHome() {
             document.querySelectorAll('.product-section').forEach(sec => sec.style.display = 'none');
             document.getElementById('category-selector').style.display = 'block';
+            document.getElementById('productSearch').value = "";
         }
-        // --- FUNCIÓN DE BÚSQUEDA DINÁMICA ---
-function searchProducts() {
-    let input = document.getElementById('productSearch').value.toLowerCase();
-    let cards = document.getElementsByClassName('product-card');
-    let categorySelector = document.getElementById('category-selector');
-    let sections = document.querySelectorAll('.product-section');
 
-    // Si el usuario escribe, mostramos las secciones para filtrar
-    if (input.length > 0) {
-        categorySelector.style.display = 'none';
-        sections.forEach(sec => sec.style.display = 'block');
-    } else {
-        // Si borra la búsqueda, vuelve a la vista de categorías
-        showHome();
-        return;
-    }
+        function searchProducts() {
+            let input = document.getElementById('productSearch').value.toLowerCase();
+            let cards = document.getElementsByClassName('product-card');
+            let selector = document.getElementById('category-selector');
+            let sections = document.querySelectorAll('.product-section');
 
-    // Filtra cada tarjeta comparando el título con la búsqueda
-    for (let i = 0; i < cards.length; i++) {
-        let title = cards[i].getElementsByTagName('h3')[0].innerText.toLowerCase();
-        if (title.includes(input)) {
-            cards[i].style.display = "flex";
-        } else {
-            cards[i].style.display = "none";
+            if (input.length > 0) {
+                selector.style.display = 'none';
+                sections.forEach(sec => sec.style.display = 'block');
+            } else {
+                showHome();
+                return;
+            }
+
+            for (let i = 0; i < cards.length; i++) {
+                let title = cards[i].getElementsByTagName('h3')[0].innerText.toLowerCase();
+                cards[i].style.display = title.includes(input) ? "flex" : "none";
+            }
         }
-    }
-}
     </script>
 
     <footer class="footer">
-        <p>Instagram: <a href="https://www.instagram.com/adro.ss" target="_blank">@adro.ss</a></p>
+        <p>Instagram: <a href="https://www.instagram.com/adro.ss" target="_blank" style="color:#d4af37; text-decoration:none;">@adro.ss</a></p>
         <p style="font-size: 0.7rem; margin-top: 10px;">&copy; 2025 ADROOS STORE</p>
     </footer>
 
