@@ -1,3 +1,5 @@
+corrección 06/01
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -6,165 +8,181 @@
     <title>ADROOS | Elite Store</title>
     <link rel="icon" href="logo-adroos.jpg" type="image/x-icon">
     <style>
-        :root {
-            --gold: #d4af37;
-            --dark: #1a1a1a;
-            --light-bg: #fdfdfd;
-            --whatsapp: #25d366;
-        }
-
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Roboto, sans-serif; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+        body { background-color: #ffffff; color: #1a1a1a; line-height: 1.6; scroll-behavior: smooth; }
         
-        body { background-color: #ffffff; color: var(--dark); line-height: 1.6; scroll-behavior: smooth; }
-        
-        /* Header con mejor contraste */
         header { 
-            background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('header-bg.jpg');
-            background-size: cover; background-position: center; 
-            padding: 50px 20px; text-align: center; 
-            border-bottom: 4px solid var(--gold); color: white; 
+            background: linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.75)), url('header-bg.jpg');
+            background-size: cover; background-position: center; padding: 60px 20px; 
+            text-align: center; border-bottom: 3px solid #d4af37; color: white; 
         }
 
         .logo-img { 
-            width: 120px; height: 120px; border-radius: 50%; 
-            border: 3px solid var(--gold); margin-bottom: 15px; 
-            box-shadow: 0 0 30px rgba(212, 175, 55, 0.4); background-color: #000;
-            cursor: pointer; transition: 0.3s;
-        }
-        .logo-img:hover { transform: scale(1.05); }
-
-        .brand-name { font-size: 2.8rem; font-weight: 900; letter-spacing: 6px; color: #fff; text-transform: uppercase; }
-        .brand-name span { color: var(--gold); }
-
-        /* Buscador Moderno */
-        .search-container { margin: -30px auto 40px; max-width: 600px; padding: 0 20px; position: relative; z-index: 10; }
-        #productSearch { 
-            width: 100%; padding: 18px 30px; border-radius: 50px; 
-            border: none; font-size: 1rem; box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-            outline: none; transition: 0.3s; 
-        }
-        #productSearch:focus { box-shadow: 0 10px 30px rgba(212, 175, 55, 0.3); }
-
-        .main-container { max-width: 1200px; margin: 0 auto; padding: 20px; }
-
-        /* Categorías con mejor Grid */
-        .categories-grid { 
-            display: grid; 
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); 
-            gap: 15px; margin: 30px 0; 
-        }
-        
-        .cat-card { 
-            position: relative; border-radius: 15px; overflow: hidden; 
-            height: 200px; cursor: pointer; transition: 0.4s ease;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        }
-        .cat-card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(212, 175, 55, 0.3); }
-        .cat-card img { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.7); }
-        .cat-card h3 { 
-            position: absolute; bottom: 0; width: 100%; padding: 15px 5px; 
-            background: rgba(0,0,0,0.6); backdrop-filter: blur(5px);
-            color: white; font-size: 1.1rem; text-align: center; text-transform: uppercase;
+            width: 115px; height: 115px; border-radius: 50%; border: 3px solid #d4af37; 
+            margin-bottom: 15px; box-shadow: 0 0 25px rgba(212, 175, 55, 0.5); background-color: #000;
         }
 
-        /* Productos */
-        .product-section { display: none; animation: fadeIn 0.4s ease-out; }
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        .brand-name { font-size: 2.6rem; font-weight: 900; letter-spacing: 5px; color: #fff; text-transform: uppercase; text-shadow: 2px 2px 15px rgba(0,0,0,0.9); }
+        .search-container { margin: 20px auto 40px; max-width: 600px; padding: 0 20px; }
+        #productSearch { width: 100%; padding: 15px 25px; border-radius: 30px; border: 2px solid #ddd; font-size: 1rem; outline: none; transition: 0.3s; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
+        #productSearch:focus { border-color: #d4af37; box-shadow: 0 4px 20px rgba(212, 175, 55, 0.15); }
+        .main-container { max-width: 1200px; margin: 0 auto; padding: 20px; text-align: center; }
 
-        .products-grid { 
-            display: grid; 
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); 
-            gap: 20px; margin-top: 20px; 
-        }
-        
-        .product-card { 
-            background: #fff; padding: 15px; border-radius: 15px; 
-            border: 1px solid #eee; text-decoration: none; color: var(--dark); 
-            transition: 0.3s; display: flex; flex-direction: column; text-align: center;
-        }
-        .product-card:hover { border-color: var(--gold); transform: translateY(-3px); }
-        .product-card img { width: 100%; border-radius: 10px; margin-bottom: 10px; aspect-ratio: 1/1; object-fit: contain; }
-        .product-card h3 { font-size: 1rem; margin-bottom: 10px; height: 40px; overflow: hidden; }
+        .categories-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin: 40px 0; }
+        .cat-card { position: relative; border-radius: 20px; overflow: hidden; border: 1px solid rgba(212, 175, 55, 0.3); transition: 0.4s; cursor: pointer; height: 250px; box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1); }
+        .cat-card:hover { transform: translateY(-10px); border-color: #d4af37; box-shadow: 0 15px 30px rgba(212, 175, 55, 0.2); }
+        .cat-card img { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.6); }
+        .cat-card h3 { position: absolute; bottom: 0; width: 100%; padding: 20px 0; background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); color: white; font-size: 1.4rem; font-weight: 900; border-top: 1px solid rgba(255, 255, 255, 0.2); text-transform: uppercase; }
 
-        .btn-buy { background: var(--whatsapp); color: white; padding: 10px; border-radius: 8px; font-weight: bold; }
-        .btn-back { 
-            display: inline-block; margin-bottom: 20px; padding: 10px 20px; 
-            background: #f0f0f0; border-radius: 30px; cursor: pointer; font-weight: bold; 
-        }
+        .product-section { display: none; animation: fadeIn 0.5s ease forwards; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        .products-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 25px; margin-top: 30px; }
+        .product-card { background: #fdfdfd; padding: 18px; border-radius: 18px; border: 1px solid #eee; text-decoration: none; color: #1a1a1a; transition: 0.3s; display: flex; flex-direction: column; }
+        .product-card:hover { border-color: #d4af37; box-shadow: 0 10px 25px rgba(0,0,0,0.08); }
+        .product-card img { width: 100%; border-radius: 12px; margin-bottom: 12px; background: white; aspect-ratio: 1/1; object-fit: contain; border: 1px solid #f5f5f5; }
+        .btn-buy { background: #25d366; color: white; padding: 12px; border-radius: 10px; font-weight: bold; margin-top: auto; }
+        .btn-back { display: inline-block; margin: 20px 0; padding: 10px 20px; background: #f0f0f0; color: #333; border-radius: 5px; cursor: pointer; font-weight: bold; border: 1px solid #ddd; }
 
-        /* Filtros */
-        .filter-group { margin: 20px 0; display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
-        .btn-filter { 
-            background: white; border: 1px solid var(--gold); padding: 8px 15px; 
-            border-radius: 20px; cursor: pointer; transition: 0.3s; 
-        }
-        .btn-filter.active, .btn-filter:hover { background: var(--gold); color: white; }
+        .faq-section { max-width: 850px; margin: 60px auto; text-align: left; }
+        details { background: #f8f8f8; border: 1px solid #e0e0e0; border-radius: 12px; margin-bottom: 12px; padding: 18px; cursor: pointer; }
+        summary { font-weight: bold; color: #b08d1a; display: flex; justify-content: space-between; }
 
-        /* Floating WhatsApp */
-        .whatsapp-float { 
-            position: fixed; width: 60px; height: 60px; bottom: 30px; right: 30px; 
-            background: var(--whatsapp); border-radius: 50%; display: flex; 
-            align-items: center; justify-content: center; box-shadow: 0 5px 20px rgba(0,0,0,0.3); 
-            z-index: 100; transition: 0.3s; 
-        }
-        .whatsapp-float:hover { transform: scale(1.1); }
+        .whatsapp-float { position: fixed; width: 60px; height: 60px; bottom: 40px; right: 40px; background-color: #25d366; color: #FFF; border-radius: 50px; text-align: center; font-size: 30px; box-shadow: 2px 2px 15px rgba(0,0,0,0.3); z-index: 100; display: flex; align-items: center; justify-content: center; text-decoration: none; transition: 0.3s; }
+        .whatsapp-float:hover { transform: scale(1.1); background-color: #128c7e; }
+        .footer { padding: 50px; background: #fafafa; border-top: 1px solid #eee; text-align: center; }
 
-        @media (max-width: 600px) {
-            .brand-name { font-size: 2rem; }
-            .categories-grid { grid-template-columns: repeat(2, 1fr); }
-        }
+        .btn-filter { background: white; border: 2px solid #d4af37; color: #1a1a1a; padding: 8px 18px; border-radius: 20px; cursor: pointer; font-weight: bold; transition: 0.3s; margin: 5px; }
+        .btn-filter:hover { background: #d4af37; color: white; }
     </style>
 </head>
 <body>
 
     <header>
-        <img src="logo-adroos.jpg" alt="Logo ADROOS" class="logo-img" onclick="showHome()">
+        <img src="logo-adroos.jpg" alt="Logo ADROOS" class="logo-img">
         <div class="brand-name">ADR<span>OOS</span></div>
-        <p style="font-size: 0.75rem; letter-spacing: 3px; opacity: 0.9;">ELITE SPORT SUPPLEMENTS</p>
+        <p style="font-size: 0.8rem; letter-spacing: 2px;">SUPLEMENTOS • NATURISTA • ROPA DEPORTIVA • ACCESORIOS</p>
     </header>
 
-    <div class="main-container">
+    <div class="main-container" id="home">
         <div class="search-container">
-            <input type="text" id="productSearch" placeholder="¿Qué estás buscando hoy?..." onkeyup="searchProducts()">
+            <input type="text" id="productSearch" placeholder="🔍 Buscar productos (ej: ON, Bi-Pro, Camiseta)..." onkeyup="searchProducts()">
         </div>
 
         <div id="category-selector">
-            <h2 style="margin: 20px 0; font-weight: 800;">CATÁLOGO OFICIAL</h2>
-            <div class="categories-grid">
-                <div class="cat-card" onclick="showCategory('creatinas')"><img src="Logocreatina.jpg"><h3>Creatinas</h3></div>
-                <div class="cat-card" onclick="showCategory('proteinas')"><img src="logoproteina.jpg"><h3>Proteínas</h3></div>
-                <div class="cat-card" onclick="showCategory('salud')"><img src="Logosalud.jpg"><h3>Salud Natural</h3></div>
-                <div class="cat-card" onclick="showCategory('ropa')"><img src="Logoropa.jpg"><h3>Ropa</h3></div>
-                <div class="cat-card" onclick="showCategory('accesorios')"><img src="Logoaccesorios.jpg"><h3>Accesorios</h3></div>
-            </div>
-        </div>
+    <h2 style="margin-top: 20px; margin-bottom: 20px;">EXPLORA NUESTRO CATÁLOGO</h2>
+    
+    <div class="categories-grid" style="grid-template-columns: repeat(3, 1fr); gap: 15px; margin-bottom: 15px;">
+        <div class="cat-card" onclick="showCategory('creatinas')"><img src="Logocreatina.jpg"><h3>Creatinas</h3></div>
+        <div class="cat-card" onclick="showCategory('proteinas')"><img src="logoproteina.jpg"><h3>Proteínas</h3></div>
+        <div class="cat-card" onclick="showCategory('salud')"><img src="Logosalud.jpg"><h3>Salud Natural</h3></div>
+    </div>
+
+    <div class="categories-grid" style="grid-template-columns: repeat(2, 1fr); gap: 15px; max-width: 800px; margin: 0 auto;">
+        <div class="cat-card" onclick="showCategory('ropa')"><img src="Logoropa.jpg"><h3>Ropa</h3></div>
+        <div class="cat-card" onclick="showCategory('accesorios')"><img src="Logoaccesorios.jpg"><h3>Accesorios</h3></div>
+    </div>
+</div>
 
         <section id="creatinas" class="product-section">
-            <div class="btn-back" onclick="showHome()">← Volver</div>
+            <div class="btn-back" onclick="showHome()">← Volver a Categorías</div>
+            <h2 class="section-title">Línea de Creatinas Elite</h2>
             <div class="products-grid">
-                <a href="https://wa.me/p/30114224388225062/573242606513" target="_blank" class="product-card"><img src="ON60.jpg"><h3>ON Creatine 60 Serv</h3><div class="btn-buy">Pedir por WhatsApp</div></a>
-                <a href="https://wa.me/p/24573418475599253/573242606513" target="_blank" class="product-card"><img src="ON120.jpg"><h3>ON Creatine 120 Serv</h3><div class="btn-buy">Pedir por WhatsApp</div></a>
-                <a href="https://wa.me/p/10068590003226336/573242606513" target="_blank" class="product-card"><img src="HS.jpg"><h3>Healthy Sports 100 Serv</h3><div class="btn-buy">Pedir por WhatsApp</div></a>
-                <a href="https://wa.me/p/24329943086611680/573242606513" target="_blank" class="product-card"><img src="platinum.jpg"><h3>Platinum MuscleTech</h3><div class="btn-buy">Pedir por WhatsApp</div></a>
+                <a href="https://wa.me/p/30114224388225062/573242606513" target="_blank" class="product-card"><img src="ON60.jpg"><h3>ON Creatine 60 Serv</h3><div class="btn-buy">WhatsApp</div></a>
+                <a href="https://wa.me/p/24573418475599253/573242606513" target="_blank" class="product-card"><img src="ON120.jpg"><h3>ON Creatine 120 Serv</h3><div class="btn-buy">WhatsApp</div></a>
+                <a href="https://wa.me/p/10068590003226336/573242606513" target="_blank" class="product-card"><img src="HS.jpg"><h3>Healthy Sports 100 Serv</h3><div class="btn-buy">WhatsApp</div></a>
+                <a href="https://wa.me/p/24408065855463940/573242606513" target="_blank" class="product-card"><img src="HS80.jpg"><h3>Healthy Sports 50 Serv</h3><div class="btn-buy">WhatsApp</div></a>
+                <a href="https://wa.me/p/24400451672872301/573242606513" target="_blank" class="product-card"><img src="IMN133.jpg"><h3>IMN 133 Serv</h3><div class="btn-buy">WhatsApp</div></a>
+                <a href="https://wa.me/p/24052428174393614/573242606513" target="_blank" class="product-card"><img src="IMN50.jpg"><h3>IMN 50 Serv</h3><div class="btn-buy">WhatsApp</div></a>
+                <a href="https://wa.me/p/30181896938122185/573242606513" target="_blank" class="product-card"><img src="IN80.jpg"><h3>Iron Nutrition 100 Serv</h3><div class="btn-buy">WhatsApp</div></a>
+                <a href="https://wa.me/p/24230499279887716/573242606513" target="_blank" class="product-card"><img src="Dimatize88.jpg"><h3>Dymatize 88 Serv</h3><div class="btn-buy">WhatsApp</div></a>
+                <a href="https://wa.me/p/24329943086611680/573242606513" target="_blank" class="product-card"><img src="platinum.jpg"><h3>Platinum MuscleTech</h3><div class="btn-buy">WhatsApp</div></a>
             </div>
         </section>
 
         <section id="proteinas" class="product-section">
-            <div class="btn-back" onclick="showHome()">← Volver</div>
-            <div class="filter-group">
-                <button onclick="filterItems('protein-item', 'all')" class="btn-filter active">Todas</button>
+            <div class="btn-back" onclick="showHome()">← Volver a Categorías</div>
+            <h2 class="section-title">Línea de Proteínas</h2>
+            <div style="margin: 20px 0; display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;">
+                <button onclick="filterItems('protein-item', 'all')" class="btn-filter">Todas</button>
                 <button onclick="filterItems('protein-item', 'hiper')" class="btn-filter">Hipercalóricas</button>
                 <button onclick="filterItems('protein-item', 'hipo')" class="btn-filter">Hipocalóricas</button>
             </div>
             <div class="products-grid">
                 <a href="https://wa.me/p/30852624011002730/573242606513" target="_blank" class="product-card protein-item hipo"><img src="Pbipro120.jpg"><h3>Bi-Pro Classic 2 Lbs</h3><div class="btn-buy">WhatsApp</div></a>
+                <a href="https://wa.me/p/24328728220082582/573242606513" target="_blank" class="product-card protein-item hipo"><img src="Pbipro130.jpg"><h3>Bi-Pro Classic 3 Lbs</h3><div class="btn-buy">WhatsApp</div></a>
+                <a href="https://wa.me/p/9983544765026553/573242606513" target="_blank" class="product-card protein-item hipo"><img src="Pripeed.jpg"><h3>Bi-Pro Ripped</h3><div class="btn-buy">WhatsApp</div></a>
+                <a href="https://wa.me/p/32987260517586889/573242606513" target="_blank" class="product-card protein-item hipo"><img src="Pbest2lbs.jpg"><h3>ProScience Best Protein</h3><div class="btn-buy">WhatsApp</div></a>
+                <a href="https://wa.me/p/23905475465783063/573242606513" target="_blank" class="product-card protein-item hipo"><img src="Pon2lbs.jpg"><h3>ON Whey Gold 2 Lbs</h3><div class="btn-buy">WhatsApp</div></a>
+                <a href="https://wa.me/p/24261128060148910/573242606513" target="_blank" class="product-card protein-item hipo"><img src="Pon5 libras.jpg"><h3>ON Whey Gold 5 Lbs</h3><div class="btn-buy">WhatsApp</div></a>
+                <a href="https://wa.me/p/24463007063285491/573242606513" target="_blank" class="product-card protein-item hipo"><img src="Pm2lbs.jpg"><h3>MuscleTech NitroTech 2 Lbs</h3><div class="btn-buy">WhatsApp</div></a>
+                <a href="https://wa.me/p/24494955860088777/573242606513" target="_blank" class="product-card protein-item hipo"><img src="Pm4lbs.jpg"><h3>MuscleTech NitroTech 4 Lbs</h3><div class="btn-buy">WhatsApp</div></a>
+                <a href="https://wa.me/p/25430473939942439/573242606513" target="_blank" class="product-card protein-item hipo"><img src="Pvit5lbs.jpg"><h3>Vitanas Whey Elite 5 Lbs</h3><div class="btn-buy">WhatsApp</div></a>
+                <a href="https://wa.me/p/25563321256653728/573242606513" target="_blank" class="product-card protein-item hipo"><img src="Pvit10lbs.jpg"><h3>Vitanas Whey Elite 10 Lbs</h3><div class="btn-buy">WhatsApp</div></a>
+                <a href="https://wa.me/p/23870086602620203/573242606513" target="_blank" class="product-card protein-item hiper"><img src="Pmass3lbs.jpg"><h3>Bi-Pro Mass</h3><div class="btn-buy">WhatsApp</div></a>
                 <a href="https://wa.me/p/9905458082896352/573242606513" target="_blank" class="product-card protein-item hiper"><img src="Psmart.jpg"><h3>ProScience Smart Gainer</h3><div class="btn-buy">WhatsApp</div></a>
-                </div>
+            </div>
         </section>
 
+        <section id="salud" class="product-section">
+            <div class="btn-back" onclick="showHome()">← Volver a Categorías</div>
+            <h2 class="section-title">Salud y Bienestar Natural</h2>
+            <div class="products-grid">
+                <a href="https://wa.me/p/30726142463650955/573242606513" target="_blank" class="product-card"><img src="MagnesioHA.jpg"><h3>Super Magnesium HA</h3><div class="btn-buy">WhatsApp</div></a>
+                <a href="https://wa.me/p/30830197233238022/573242606513" target="_blank" class="product-card"><img src="ColagenoNA.jpg"><h3>Colágeno Hidrolizado</h3><div class="btn-buy">WhatsApp</div></a>
+                <a href="https://wa.me/p/24027863493499374/573242606513" target="_blank" class="product-card"><img src="VitaminaIMN.jpg"><h3>Vitamina IMN</h3><div class="btn-buy">WhatsApp</div></a>
+                <a href="https://wa.me/p/24190992310539250/573242606513" target="_blank" class="product-card"><img src="Multivitaminicom.jpg"><h3>Multivitamínico Completo</h3><div class="btn-buy">WhatsApp</div></a>
+                <a href="https://wa.me/p/24285597814386029/573242606513" target="_blank" class="product-card"><img src="Nootropico.jpg"><h3>Nootrópico (Enfoque)</h3><div class="btn-buy">WhatsApp</div></a>
+                <a href="https://wa.me/p/25177261168636022/573242606513" target="_blank" class="product-card"><img src="Nac100.jpg"><h3>NAC 100 Serv</h3><div class="btn-buy">WhatsApp</div></a>
+                <a href="https://wa.me/p/25901962499395504/573242606513" target="_blank" class="product-card"><img src="Liv.52.jpg"><h3>Liv.52 (Hígado)</h3><div class="btn-buy">WhatsApp</div></a>
+                <a href="https://wa.me/p/25653175470978904/573242606513" target="_blank" class="product-card"><img src="Biotin.jpg"><h3>Biotina Cabello/Piel</h3><div class="btn-buy">WhatsApp</div></a>
+                <a href="https://wa.me/p/25611944968470565/573242606513" target="_blank" class="product-card"><img src="Cascara.jpg"><h3>Cáscara Sagrada</h3><div class="btn-buy">WhatsApp</div></a>
+                <a href="https://wa.me/p/26321323314122208/573242606513" target="_blank" class="product-card"><img src="Melatonina.jpg"><h3>Melatonina (Sueño)</h3><div class="btn-buy">WhatsApp</div></a>
+                <a href="https://wa.me/p/33871378905810991/573242606513" target="_blank" class="product-card"><img src="Calcio.jpg"><h3>Calcio + Vitamina D</h3><div class="btn-buy">WhatsApp</div></a>
+                <a href="https://wa.me/p/26307386022196190/573242606513" target="_blank" class="product-card"><img src="Potasio.jpg"><h3>Citrato de Potasio</h3><div class="btn-buy">WhatsApp</div></a>
+                <a href="https://wa.me/p/25426883876961068/573242606513" target="_blank" class="product-card"><img src="Wellflex.jpg"><h3>Wellflex (Articulaciones)</h3><div class="btn-buy">WhatsApp</div></a>
+                <a href="https://wa.me/p/25290632443912081/573242606513" target="_blank" class="product-card"><img src="Vitc.jpg"><h3>Vitamina C</h3><div class="btn-buy">WhatsApp</div></a>
+                <a href="https://wa.me/p/25442935501993623/573242606513" target="_blank" class="product-card"><img src="Vite.jpg"><h3>Vitamina E</h3><div class="btn-buy">WhatsApp</div></a>
+                <a href="https://wa.me/573242606513" target="_blank" class="product-card"><img src="Ashva60serv.jpg"><h3>Ashwagandha</h3><div class="btn-buy">WhatsApp</div></a>
+                <a href="https://wa.me/573242606513" target="_blank" class="product-card"><img src="CartilagoTiburon.jpg"><h3>Cartílago de Tiburón</h3><div class="btn-buy">WhatsApp</div></a>
+            </div>
+        </section>
+
+        <section id="ropa" class="product-section">
+            <div class="btn-back" onclick="showHome()">← Volver a Categorías</div>
+            <h2 class="section-title">Ropa Deportiva Elite</h2>
+            <div style="margin: 20px 0; display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;">
+                <button onclick="filterItems('clothing-item', 'all')" class="btn-filter">Todas</button>
+                <button onclick="filterItems('clothing-item', 'hombre')" class="btn-filter">Hombre</button>
+                <button onclick="filterItems('clothing-item', 'mujer')" class="btn-filter">Mujer</button>
+            </div>
+            <div class="products-grid">
+                <a href="https://wa.me/573242606513" target="_blank" class="product-card clothing-item hombre"><img src="CamisetaNegra.jpg"><h3>Camiseta Dry-Fit Negra</h3><div class="btn-buy">WhatsApp</div></a>
+                <a href="https://wa.me/573242606513" target="_blank" class="product-card clothing-item mujer"><img src="LicraPro.jpg"><h3>Licra Deportiva Mujer</h3><div class="btn-buy">WhatsApp</div></a>
+            </div>
+        </section>
+
+        <section id="accesorios" class="product-section">
+            <div class="btn-back" onclick="showHome()">← Volver a Categorías</div>
+            <h2 class="section-title">Accesorios Deportivos</h2>
+            <div class="products-grid">
+                <a href="https://wa.me/573242606513" target="_blank" class="product-card"><img src="logo-adroos.jpg"><h3>Shaker ADROOS Pro</h3><div class="btn-buy">WhatsApp</div></a>
+                <a href="https://wa.me/573242606513" target="_blank" class="product-card"><img src="logo-adroos.jpg"><h3>Correas de Levantamiento</h3><div class="btn-buy">WhatsApp</div></a>
+            </div>
+        </section>
+
+        <div class="faq-section" id="faq">
+            <h2 class="section-title">Dudas Frecuentes</h2>
+            <details><summary>¿Tomando creatina aumentaré grasa corporal?</summary><p>No ganarás grasa. La creatina mejora la hidratación y el tono muscular.</p></details>
+            <details><summary>¿Puedo mezclar la proteína con la creatina?</summary><p>Sí, es una excelente combinación post-entrenamiento.</p></details>
+            <details><summary>¿La proteína engorda?</summary><p>No, la proteína aumenta la saciedad. El peso depende del balance calórico total.</p></details>
         </div>
 
-    <a href="https://wa.me/573242606513?text=Hola%20ADROOS..." class="whatsapp-float" target="_blank">
+        <div style="margin: 60px 0; display: flex; flex-direction: column; gap: 15px; align-items: center;">
+            <a href="https://adroos.lovable.app" target="_blank" style="background:#000; color:#fff; padding:15px 30px; border-radius:10px; text-decoration:none; font-weight:900; width:100%; max-width:350px; border:2px solid #d4af37;">🚀 ASESORÍA RÁPIDA (Web App)</a>
+        </div>
+    </div>
+
+    <a href="https://wa.me/573242606513?text=Hola%20ADROOS%20👋%2C%20vengo%20de%20tu%20catálogo%20web%20y%20me%20gustaría%20recibir%20asesoría." class="whatsapp-float" target="_blank">
         <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" width="35" alt="WhatsApp">
     </a>
 
@@ -173,23 +191,19 @@
             document.getElementById('category-selector').style.display = 'none';
             document.querySelectorAll('.product-section').forEach(sec => sec.style.display = 'none');
             document.getElementById(id).style.display = 'block';
-            window.scrollTo({top: 0, behavior: 'smooth'});
+            if(document.getElementById('faq')) document.getElementById('faq').style.display = 'block';
+            window.scrollTo(0, 0);
         }
 
         function showHome() {
             document.querySelectorAll('.product-section').forEach(sec => sec.style.display = 'none');
             document.getElementById('category-selector').style.display = 'block';
             document.getElementById('productSearch').value = "";
-            // Reset de filtros
-            document.querySelectorAll('.product-card').forEach(card => card.style.display = "flex");
+            if(document.getElementById('faq')) document.getElementById('faq').style.display = 'block';
         }
 
         function filterItems(className, type) {
             let items = document.querySelectorAll('.' + className);
-            // Actualizar estado de botones
-            document.querySelectorAll('.btn-filter').forEach(btn => btn.classList.remove('active'));
-            event.target.classList.add('active');
-
             items.forEach(item => {
                 if (type === 'all') item.style.display = 'flex';
                 else item.style.display = item.classList.contains(type) ? 'flex' : 'none';
@@ -200,27 +214,28 @@
             let input = document.getElementById('productSearch').value.toLowerCase();
             let sections = document.querySelectorAll('.product-section');
             let selector = document.getElementById('category-selector');
+            let faq = document.getElementById('faq');
 
             if (input.length > 0) {
                 selector.style.display = 'none';
+                if(faq) faq.style.display = 'none';
                 sections.forEach(section => {
                     let cards = section.getElementsByClassName('product-card');
                     let hasResults = false;
-                    for (let card of cards) {
-                        let title = card.querySelector('h3').innerText.toLowerCase();
-                        if (title.includes(input)) {
-                            card.style.display = "flex";
-                            hasResults = true;
-                        } else {
-                            card.style.display = "none";
-                        }
+                    for (let i = 0; i < cards.length; i++) {
+                        let title = cards[i].getElementsByTagName('h3')[0].innerText.toLowerCase();
+                        if (title.includes(input)) { cards[i].style.display = "flex"; hasResults = true; } 
+                        else { cards[i].style.display = "none"; }
                     }
                     section.style.display = hasResults ? 'block' : 'none';
                 });
-            } else {
-                showHome();
-            }
+            } else { showHome(); }
         }
     </script>
+
+    <footer class="footer">
+        <p>Instagram: <a href="https://www.instagram.com/adro.ss" target="_blank" style="color:#d4af37; text-decoration:none;">@adro.ss</a></p>
+        <p style="font-size: 0.7rem; margin-top: 10px;">&copy; 2025 ADROOS STORE</p>
+    </footer>
 </body>
 </html>
