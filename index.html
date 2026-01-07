@@ -15,65 +15,54 @@
 
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
         body { background-color: #ffffff; color: var(--dark); line-height: 1.6; scroll-behavior: smooth; }
-        <div class="cart-float" onclick="toggleCart()">
-    <span style="font-size: 1.5rem;">🛒</span>
-    <div class="cart-count" id="cart-count">0</div>
-</div>
-
-<div id="cart-modal">
-    <div class="cart-content">
-        <span class="close-cart" onclick="toggleCart()">×</span>
-        <h2>MI PEDIDO ELITE</h2>
-        <div id="cart-items-list">
-            <p style="color: #888; text-align: center; padding: 20px;">Tu cesta está vacía...</p>
-        </div>
-        <button class="btn-send-cart" onclick="sendOrder()">PEDIR POR WHATSAPP</button>
-    </div>
-</div>
         
         header { 
-    background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('header-bg.jpg');
-    background-size: cover; 
-    background-position: center; 
-    padding: 40px 20px; 
-    text-align: center; 
-    border-bottom: 4px solid var(--gold); 
-    color: white; 
-    /* Nuevas líneas para centrar todo */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
+            background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('header-bg.jpg');
+            background-size: cover; 
+            background-position: center; 
+            padding: 40px 20px; 
+            text-align: center; 
+            border-bottom: 4px solid var(--gold); 
+            color: white; 
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
 
-.logo-img { 
-    width: 100px; /* Tamaño optimizado */
-    height: 100px; 
-    border-radius: 50%; 
-    border: 3px solid var(--gold); 
-    margin-bottom: 10px; 
-    box-shadow: 0 0 20px rgba(212, 175, 55, 0.4); 
-    background-color: #000;
-    cursor: pointer;
-}
+        .logo-img { 
+            width: 100px; 
+            height: 100px; 
+            border-radius: 50%; 
+            border: 3px solid var(--gold); 
+            margin-bottom: 10px; 
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.4); 
+            background-color: #000;
+            cursor: pointer;
+        }
 
-.brand-name { 
-    font-size: 2.5rem; 
-    font-weight: 900; 
-    letter-spacing: 5px; 
-    color: #fff; 
-    text-transform: uppercase;
-    margin: 0; 
-    line-height: 1.2;
-}
+        .brand-name { 
+            font-size: 2.5rem; 
+            font-weight: 900; 
+            letter-spacing: 5px; 
+            color: #fff; 
+            text-transform: uppercase;
+            margin: 0; 
+            line-height: 1.2;
+        }
         .brand-name span { color: var(--gold); }
 
         .search-container { 
-    margin: -20px auto 30px; /* Margen suavizado */
-    max-width: 600px; 
-    padding: 0 20px; 
-    position: relative; 
-    z-index: 5; 
+            margin: -20px auto 30px; 
+            max-width: 600px; 
+            padding: 0 20px; 
+            position: relative; 
+            z-index: 5; 
+        }
+
+        #productSearch { 
+            width: 100%; padding: 15px 25px; border-radius: 30px; border: none; 
+            font-size: 1rem; box-shadow: 0 10px 25px rgba(0,0,0,0.1); outline: none; 
         }
 
         .main-container { max-width: 1200px; margin: 0 auto; padding: 20px; text-align: center; }
@@ -104,7 +93,6 @@
             gap: 20px; margin-top: 25px; 
         }
         
-        /* TU ANIMACIÓN DE HOVER PREFERIDA */
         .product-card { 
             background: #fff; padding: 15px; border-radius: 15px; border: 1px solid #eee; 
             text-decoration: none; color: var(--dark); transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
@@ -125,16 +113,19 @@
         .btn-buy { background: var(--whatsapp); color: white; padding: 10px; border-radius: 8px; font-weight: bold; margin-top: auto; border: none; cursor: pointer; width: 100%; }
         .btn-back { display: inline-block; margin: 20px 0; padding: 10px 25px; background: #f4f4f4; border-radius: 20px; cursor: pointer; font-weight: bold; }
 
-        /* ESTILOS DE LA CESTA */
-        .cart-float { position: fixed; width: 60px; height: 60px; bottom: 30px; left: 30px; background: var(--dark); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 5px 15px rgba(0,0,0,0.3); z-index: 100; cursor: pointer; border: 2px solid var(--gold); }
-        .cart-count { position: absolute; top: -5px; right: -5px; background: var(--gold); color: black; font-weight: bold; font-size: 0.8rem; width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
-        
-        /* MODAL DE LA CESTA */
-        #cart-modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 200; align-items: center; justify-content: center; padding: 20px; }
-        .cart-content { background: white; width: 100%; max-width: 500px; border-radius: 20px; padding: 25px; position: relative; max-height: 80vh; overflow-y: auto; }
-        .cart-item { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid #eee; }
-        .btn-send-cart { background: var(--whatsapp); color: white; width: 100%; padding: 15px; border-radius: 10px; border: none; font-weight: bold; font-size: 1rem; margin-top: 20px; cursor: pointer; }
-        .close-cart { position: absolute; top: 15px; right: 15px; font-size: 1.5rem; cursor: pointer; font-weight: bold; }
+        /* CESTA Y MODAL */
+        .cart-float { position: fixed; width: 65px; height: 65px; bottom: 30px; left: 30px; background: var(--dark); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 8px 25px rgba(0,0,0,0.4); z-index: 100; cursor: pointer; border: 2px solid var(--gold); transition: 0.3s; }
+        .cart-float:hover { transform: scale(1.1); }
+        .cart-count { position: absolute; top: -2px; right: -2px; background: var(--gold); color: black; font-weight: 900; font-size: 0.85rem; width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 2px solid var(--dark); }
+
+        #cart-modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); backdrop-filter: blur(8px); z-index: 200; align-items: center; justify-content: center; padding: 20px; }
+        .cart-content { background: #1a1a1a; width: 100%; max-width: 450px; border-radius: 25px; padding: 30px; position: relative; max-height: 80vh; overflow-y: auto; border: 1px solid var(--gold); box-shadow: 0 0 50px rgba(212, 175, 55, 0.2); }
+        .cart-content h2 { color: var(--gold); text-align: center; font-weight: 900; letter-spacing: 2px; margin-bottom: 25px; border-bottom: 1px solid rgba(212,175,55,0.3); padding-bottom: 15px; }
+
+        .cart-item { display: flex; justify-content: space-between; align-items: center; padding: 15px 0; border-bottom: 1px solid rgba(255,255,255,0.05); color: white; }
+        .remove-item { background: rgba(255, 0, 0, 0.1); color: #ff4444; border: 1px solid #ff4444; padding: 5px 12px; border-radius: 8px; cursor: pointer; font-size: 0.75rem; }
+        .btn-send-cart { background: var(--premium-grad); color: #000; width: 100%; padding: 18px; border-radius: 12px; border: none; font-weight: 900; font-size: 1.1rem; margin-top: 25px; cursor: pointer; box-shadow: 0 5px 15px rgba(212,175,55,0.3); }
+        .close-cart { position: absolute; top: 15px; right: 20px; font-size: 2rem; cursor: pointer; color: var(--gold); }
 
         .faq-section { max-width: 800px; margin: 50px auto; text-align: left; }
         details { background: #f9f9f9; padding: 15px; border-radius: 10px; margin-bottom: 10px; cursor: pointer; border: 1px solid #eee; }
@@ -145,21 +136,6 @@
         footer { padding: 40px; background: #fcfcfc; border-top: 1px solid #eee; margin-top: 50px; }
         .btn-filter { background: white; border: 1px solid var(--gold); padding: 8px 18px; border-radius: 20px; cursor: pointer; margin: 5px; transition: 0.3s; }
         .btn-filter.active { background: var(--gold); color: white; }
-
-        /* Estilos de la Cesta Flotante y Modal */
-.cart-float { position: fixed; width: 65px; height: 65px; bottom: 30px; left: 30px; background: var(--dark); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 8px 25px rgba(0,0,0,0.4); z-index: 100; cursor: pointer; border: 2px solid var(--gold); transition: 0.3s; }
-.cart-float:hover { transform: scale(1.1); }
-.cart-count { position: absolute; top: -2px; right: -2px; background: var(--gold); color: black; font-weight: 900; font-size: 0.85rem; width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 2px solid var(--dark); }
-
-#cart-modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); backdrop-filter: blur(8px); z-index: 200; align-items: center; justify-content: center; padding: 20px; }
-.cart-content { background: #1a1a1a; width: 100%; max-width: 450px; border-radius: 25px; padding: 30px; position: relative; max-height: 80vh; overflow-y: auto; border: 1px solid var(--gold); box-shadow: 0 0 50px rgba(212, 175, 55, 0.2); }
-.cart-content h2 { color: var(--gold); text-align: center; font-weight: 900; letter-spacing: 2px; margin-bottom: 25px; border-bottom: 1px solid rgba(212,175,55,0.3); padding-bottom: 15px; }
-
-.cart-item { display: flex; justify-content: space-between; align-items: center; padding: 15px 0; border-bottom: 1px solid rgba(255,255,255,0.05); color: white; }
-.remove-item { background: rgba(255, 0, 0, 0.1); color: #ff4444; border: 1px solid #ff4444; padding: 5px 12px; border-radius: 8px; cursor: pointer; font-size: 0.75rem; }
-.btn-send-cart { background: var(--premium-grad); color: #000; width: 100%; padding: 18px; border-radius: 12px; border: none; font-weight: 900; font-size: 1.1rem; margin-top: 25px; cursor: pointer; box-shadow: 0 5px 15px rgba(212,175,55,0.3); }
-.close-cart { position: absolute; top: 15px; right: 20px; font-size: 2rem; cursor: pointer; color: var(--gold); }
-
     </style>
 </head>
 <body>
@@ -167,22 +143,22 @@
     <header>
         <img src="logo-adroos.jpg" alt="Logo ADROOS" class="logo-img" onclick="showHome()">
         <div class="brand-name">ADR<span>OOS</span></div>
-        <p style="font-size: 0.75rem; letter-spacing: 2px;">SUPLEMENTACIÓN ELITE & BIENESTAR</p>
+        <p style="font-size: 0.75rem; letter-spacing: 2px; margin-top: 5px;">SUPLEMENTACIÓN ELITE & BIENESTAR</p>
     </header>
 
     <div class="cart-float" onclick="toggleCart()">
-        <span>🛒</span>
+        <span style="font-size: 1.5rem;">🛒</span>
         <div class="cart-count" id="cart-count">0</div>
     </div>
 
     <div id="cart-modal">
         <div class="cart-content">
             <span class="close-cart" onclick="toggleCart()">×</span>
-            <h2 style="margin-bottom: 20px; color: var(--dark);">Tu Pedido</h2>
+            <h2>MI PEDIDO ELITE</h2>
             <div id="cart-items-list">
-                <p style="color: #666; text-align: center;">La cesta está vacía</p>
+                <p style="color: #888; text-align: center; padding: 20px;">Tu cesta está vacía...</p>
             </div>
-            <button class="btn-send-cart" onclick="sendOrder()">Enviar Pedido a WhatsApp</button>
+            <button class="btn-send-cart" onclick="sendOrder()">PEDIR POR WHATSAPP</button>
         </div>
     </div>
 
@@ -294,57 +270,55 @@
     </a>
 
     <script>
-        // LÓGICA DE LA CESTA
         let cart = [];
 
-function addToCart(productName) {
-    const index = cart.findIndex(item => item.name === productName);
-    if (index > -1) {
-        cart[index].qty += 1;
-    } else {
-        cart.push({ name: productName, qty: 1 });
-    }
-    updateCartUI();
-    const cartIcon = document.querySelector('.cart-float');
-    cartIcon.style.transform = 'scale(1.3)';
-    setTimeout(() => cartIcon.style.transform = 'scale(1)', 300);
-}
+        function addToCart(productName) {
+            const index = cart.findIndex(item => item.name === productName);
+            if (index > -1) {
+                cart[index].qty += 1;
+            } else {
+                cart.push({ name: productName, qty: 1 });
+            }
+            updateCartUI();
+            const cartIcon = document.querySelector('.cart-float');
+            cartIcon.style.transform = 'scale(1.3)';
+            setTimeout(() => cartIcon.style.transform = 'scale(1)', 300);
+        }
 
-function updateCartUI() {
-    const count = cart.reduce((acc, item) => acc + item.qty, 0);
-    document.getElementById('cart-count').innerText = count;
-    const list = document.getElementById('cart-items-list');
-    if (cart.length === 0) {
-        list.innerHTML = '<p style="color: #888; text-align: center; padding: 20px;">Tu cesta está vacía...</p>';
-        return;
-    }
-    list.innerHTML = cart.map((item, i) => `
-        <div class="cart-item">
-            <span><b>${item.qty}x</b> ${item.name}</span>
-            <button class="remove-item" onclick="removeFromCart(${i})">Borrar</button>
-        </div>
-    `).join('');
-}
+        function updateCartUI() {
+            const count = cart.reduce((acc, item) => acc + item.qty, 0);
+            document.getElementById('cart-count').innerText = count;
+            const list = document.getElementById('cart-items-list');
+            if (cart.length === 0) {
+                list.innerHTML = '<p style="color: #888; text-align: center; padding: 20px;">Tu cesta está vacía...</p>';
+                return;
+            }
+            list.innerHTML = cart.map((item, i) => `
+                <div class="cart-item">
+                    <span><b>${item.qty}x</b> ${item.name}</span>
+                    <button class="remove-item" onclick="removeFromCart(${i})">Borrar</button>
+                </div>
+            `).join('');
+        }
 
-function removeFromCart(index) {
-    cart.splice(index, 1);
-    updateCartUI();
-}
+        function removeFromCart(index) {
+            cart.splice(index, 1);
+            updateCartUI();
+        }
 
-function toggleCart() {
-    const modal = document.getElementById('cart-modal');
-    modal.style.display = (modal.style.display === 'flex') ? 'none' : 'flex';
-}
+        function toggleCart() {
+            const modal = document.getElementById('cart-modal');
+            modal.style.display = (modal.style.display === 'flex') ? 'none' : 'flex';
+        }
 
-function sendOrder() {
-    if (cart.length === 0) return alert("Cesta vacía");
-    let message = "Hola ADROOS 👋, quiero realizar este pedido:\n\n";
-    cart.forEach(item => message += `✅ ${item.qty}x ${item.name}\n`);
-    const url = `https://wa.me/573242606513?text=${encodeURIComponent(message)}`;
-    window.open(url, '_blank');
-}
+        function sendOrder() {
+            if (cart.length === 0) return alert("Cesta vacía");
+            let message = "Hola ADROOS 👋, quiero realizar este pedido:\n\n";
+            cart.forEach(item => message += `✅ ${item.qty}x ${item.name}\n`);
+            const url = `https://wa.me/573242606513?text=${encodeURIComponent(message)}`;
+            window.open(url, '_blank');
+        }
 
-        // NAVEGACIÓN ORIGINAL
         function showCategory(id) {
             document.getElementById('category-selector').style.display = 'none';
             document.querySelectorAll('.product-section').forEach(sec => sec.style.display = 'none');
