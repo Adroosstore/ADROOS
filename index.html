@@ -69,9 +69,13 @@
         
         .product-card { 
             background: #fff; padding: 15px; border-radius: 15px; border: 1px solid #eee; 
-            text-decoration: none; color: var(--dark); transition: 0.3s; display: flex; flex-direction: column; 
+            text-decoration: none; color: var(--dark); transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
         }
-        .product-card:hover { border-color: var(--gold); box-shadow: 0 8px 20px rgba(0,0,0,0.06); }
+        .product-card:hover { 
+    border-color: var(--gold); 
+    transform: translateY(-12px); 
+    box-shadow: 0 15px 30px rgba(212, 175, 55, 0.2); 
+}
         .product-card img { width: 100%; border-radius: 10px; aspect-ratio: 1/1; object-fit: contain; margin-bottom: 12px; }
         
         /* Estilo especial para Combos */
