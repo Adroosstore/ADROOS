@@ -32,24 +32,48 @@
 </div>
         
         header { 
-            background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('header-bg.jpg');
-            background-size: cover; background-position: center; padding: 50px 20px; 
-            text-align: center; border-bottom: 4px solid var(--gold); color: white; 
-        }
+    background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('header-bg.jpg');
+    background-size: cover; 
+    background-position: center; 
+    padding: 40px 20px; 
+    text-align: center; 
+    border-bottom: 4px solid var(--gold); 
+    color: white; 
+    /* Nuevas líneas para centrar todo */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
 
-        .logo-img { 
-            width: 110px; height: 110px; border-radius: 50%; border: 3px solid var(--gold); 
-            margin-bottom: 15px; box-shadow: 0 0 25px rgba(212, 175, 55, 0.4); background-color: #000;
-            cursor: pointer;
-        }
+.logo-img { 
+    width: 100px; /* Tamaño optimizado */
+    height: 100px; 
+    border-radius: 50%; 
+    border: 3px solid var(--gold); 
+    margin-bottom: 10px; 
+    box-shadow: 0 0 20px rgba(212, 175, 55, 0.4); 
+    background-color: #000;
+    cursor: pointer;
+}
 
-        .brand-name { font-size: 2.5rem; font-weight: 900; letter-spacing: 5px; color: #fff; text-transform: uppercase; }
+.brand-name { 
+    font-size: 2.5rem; 
+    font-weight: 900; 
+    letter-spacing: 5px; 
+    color: #fff; 
+    text-transform: uppercase;
+    margin: 0; 
+    line-height: 1.2;
+}
         .brand-name span { color: var(--gold); }
 
-        .search-container { margin: -25px auto 30px; max-width: 600px; padding: 0 20px; position: relative; z-index: 5; }
-        #productSearch { 
-            width: 100%; padding: 15px 25px; border-radius: 30px; border: none; 
-            font-size: 1rem; box-shadow: 0 10px 25px rgba(0,0,0,0.1); outline: none; 
+        .search-container { 
+    margin: -20px auto 30px; /* Margen suavizado */
+    max-width: 600px; 
+    padding: 0 20px; 
+    position: relative; 
+    z-index: 5; 
         }
 
         .main-container { max-width: 1200px; margin: 0 auto; padding: 20px; text-align: center; }
