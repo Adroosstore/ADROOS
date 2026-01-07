@@ -65,7 +65,6 @@
             gap: 20px; margin-top: 25px; 
         }
         
-        /* TU ANIMACIÓN DE HOVER PREFERIDA */
         .product-card { 
             background: #fff; padding: 15px; border-radius: 15px; border: 1px solid #eee; 
             text-decoration: none; color: var(--dark); transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
@@ -86,16 +85,25 @@
         .btn-buy { background: var(--whatsapp); color: white; padding: 10px; border-radius: 8px; font-weight: bold; margin-top: auto; border: none; cursor: pointer; width: 100%; }
         .btn-back { display: inline-block; margin: 20px 0; padding: 10px 25px; background: #f4f4f4; border-radius: 20px; cursor: pointer; font-weight: bold; }
 
-        /* ESTILOS DE LA CESTA */
-        .cart-float { position: fixed; width: 60px; height: 60px; bottom: 30px; left: 30px; background: var(--dark); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 5px 15px rgba(0,0,0,0.3); z-index: 100; cursor: pointer; border: 2px solid var(--gold); }
-        .cart-count { position: absolute; top: -5px; right: -5px; background: var(--gold); color: black; font-weight: bold; font-size: 0.8rem; width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+        /* --- NUEVO DISEÑO PREMIUM DE LA CESTA --- */
+        .cart-float { position: fixed; width: 65px; height: 65px; bottom: 30px; left: 30px; background: var(--dark); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 8px 25px rgba(0,0,0,0.4); z-index: 100; cursor: pointer; border: 2px solid var(--gold); transition: 0.3s; }
+        .cart-float:hover { transform: scale(1.1); }
+        .cart-count { position: absolute; top: -2px; right: -2px; background: var(--gold); color: black; font-weight: 900; font-size: 0.85rem; width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 2px solid var(--dark); }
         
-        /* MODAL DE LA CESTA */
-        #cart-modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 200; align-items: center; justify-content: center; padding: 20px; }
-        .cart-content { background: white; width: 100%; max-width: 500px; border-radius: 20px; padding: 25px; position: relative; max-height: 80vh; overflow-y: auto; }
-        .cart-item { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid #eee; }
-        .btn-send-cart { background: var(--whatsapp); color: white; width: 100%; padding: 15px; border-radius: 10px; border: none; font-weight: bold; font-size: 1rem; margin-top: 20px; cursor: pointer; }
-        .close-cart { position: absolute; top: 15px; right: 15px; font-size: 1.5rem; cursor: pointer; font-weight: bold; }
+        #cart-modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); backdrop-filter: blur(8px); z-index: 200; align-items: center; justify-content: center; padding: 20px; animation: fadeIn 0.3s ease; }
+        .cart-content { background: #1a1a1a; width: 100%; max-width: 450px; border-radius: 25px; padding: 30px; position: relative; max-height: 80vh; overflow-y: auto; border: 1px solid var(--gold); box-shadow: 0 0 50px rgba(212, 175, 55, 0.2); }
+        .cart-content h2 { color: var(--gold); text-align: center; font-weight: 900; letter-spacing: 2px; margin-bottom: 25px; border-bottom: 1px solid rgba(212,175,55,0.3); padding-bottom: 15px; }
+        
+        .cart-item { display: flex; justify-content: space-between; align-items: center; padding: 15px 0; border-bottom: 1px solid rgba(255,255,255,0.05); color: white; }
+        .cart-item span { font-size: 0.95rem; }
+        .cart-item b { color: var(--gold); margin-right: 10px; }
+        .remove-item { background: rgba(255, 0, 0, 0.1); color: #ff4444; border: 1px solid #ff4444; padding: 5px 12px; border-radius: 8px; cursor: pointer; font-size: 0.75rem; transition: 0.3s; }
+        .remove-item:hover { background: #ff4444; color: white; }
+
+        .btn-send-cart { background: var(--premium-grad); color: #000; width: 100%; padding: 18px; border-radius: 12px; border: none; font-weight: 900; font-size: 1.1rem; margin-top: 25px; cursor: pointer; transition: 0.3s; box-shadow: 0 5px 15px rgba(212,175,55,0.3); }
+        .btn-send-cart:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(212,175,55,0.5); }
+        .close-cart { position: absolute; top: 15px; right: 20px; font-size: 2rem; cursor: pointer; color: var(--gold); }
+        /* --------------------------------------- */
 
         .faq-section { max-width: 800px; margin: 50px auto; text-align: left; }
         details { background: #f9f9f9; padding: 15px; border-radius: 10px; margin-bottom: 10px; cursor: pointer; border: 1px solid #eee; }
@@ -117,24 +125,24 @@
     </header>
 
     <div class="cart-float" onclick="toggleCart()">
-        <span>🛒</span>
+        <span style="font-size: 1.5rem;">🛒</span>
         <div class="cart-count" id="cart-count">0</div>
     </div>
 
     <div id="cart-modal">
         <div class="cart-content">
             <span class="close-cart" onclick="toggleCart()">×</span>
-            <h2 style="margin-bottom: 20px; color: var(--dark);">Tu Pedido</h2>
+            <h2>MI PEDIDO ELITE</h2>
             <div id="cart-items-list">
-                <p style="color: #666; text-align: center;">La cesta está vacía</p>
+                <p style="color: #888; text-align: center; padding: 20px;">Tu cesta está esperando nuevos retos...</p>
             </div>
-            <button class="btn-send-cart" onclick="sendOrder()">Enviar Pedido a WhatsApp</button>
+            <button class="btn-send-cart" onclick="sendOrder()">PEDIR POR WHATSAPP</button>
         </div>
     </div>
 
     <div class="main-container">
         <div class="search-container">
-            <input type="text" id="productSearch" placeholder="🔍 Buscar (ej: Creatina, Combo, Proteína)..." onkeyup="searchProducts()">
+            <input type="text" id="productSearch" placeholder="🔍 Buscar suplementos, ropa o combos..." onkeyup="searchProducts()">
         </div>
 
         <div id="category-selector">
@@ -156,11 +164,6 @@
                 <div class="product-card" onclick="addToCart('ON Creatine 60 Serv')"><img src="ON60.jpg"><h3>ON Creatine 60 Serv</h3><button class="btn-buy">Añadir a Cesta</button></div>
                 <div class="product-card" onclick="addToCart('ON Creatine 120 Serv')"><img src="ON120.jpg"><h3>ON Creatine 120 Serv</h3><button class="btn-buy">Añadir a Cesta</button></div>
                 <div class="product-card" onclick="addToCart('Healthy Sports 100 Serv')"><img src="HS.jpg"><h3>Healthy Sports 100 Serv</h3><button class="btn-buy">Añadir a Cesta</button></div>
-                <div class="product-card" onclick="addToCart('Healthy Sports 50 Serv')"><img src="HS80.jpg"><h3>Healthy Sports 50 Serv</h3><button class="btn-buy">Añadir a Cesta</button></div>
-                <div class="product-card" onclick="addToCart('IMN 133 Serv')"><img src="IMN133.jpg"><h3>IMN 133 Serv</h3><button class="btn-buy">Añadir a Cesta</button></div>
-                <div class="product-card" onclick="addToCart('IMN 50 Serv')"><img src="IMN50.jpg"><h3>IMN 50 Serv</h3><button class="btn-buy">Añadir a Cesta</button></div>
-                <div class="product-card" onclick="addToCart('Iron Nutrition 100 Serv')"><img src="IN80.jpg"><h3>Iron Nutrition 100 Serv</h3><button class="btn-buy">Añadir a Cesta</button></div>
-                <div class="product-card" onclick="addToCart('Dymatize 88 Serv')"><img src="Dimatize88.jpg"><h3>Dymatize 88 Serv</h3><button class="btn-buy">Añadir a Cesta</button></div>
                 <div class="product-card" onclick="addToCart('Platinum MuscleTech')"><img src="platinum.jpg"><h3>Platinum MuscleTech</h3><button class="btn-buy">Añadir a Cesta</button></div>
             </div>
         </section>
@@ -168,47 +171,14 @@
         <section id="proteinas" class="product-section">
             <div class="btn-back" onclick="showHome()">← Volver a Categorías</div>
             <h2 class="section-title">Línea de Proteínas</h2>
-            <div style="margin: 20px 0; display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;">
-                <button onclick="filterItems('protein-item', 'all')" class="btn-filter">Todas</button>
+            <div class="filter-group" style="margin-bottom: 20px;">
+                <button onclick="filterItems('protein-item', 'all')" class="btn-filter active">Todas</button>
                 <button onclick="filterItems('protein-item', 'hiper')" class="btn-filter">Hipercalóricas</button>
                 <button onclick="filterItems('protein-item', 'hipo')" class="btn-filter">Hipocalóricas</button>
             </div>
             <div class="products-grid">
                 <div class="product-card protein-item hipo" onclick="addToCart('Bi-Pro Classic 2 Lbs')"><img src="Pbipro120.jpg"><h3>Bi-Pro Classic 2 Lbs</h3><button class="btn-buy">Añadir a Cesta</button></div>
-                <div class="product-card protein-item hipo" onclick="addToCart('Bi-Pro Classic 3 Lbs')"><img src="Pbipro130.jpg"><h3>Bi-Pro Classic 3 Lbs</h3><button class="btn-buy">Añadir a Cesta</button></div>
-                <div class="product-card protein-item hipo" onclick="addToCart('Bi-Pro Ripped')"><img src="Pripped.jpg"><h3>Bi-Pro Ripped</h3><button class="btn-buy">Añadir a Cesta</button></div>
-                <div class="product-card protein-item hipo" onclick="addToCart('ProScience Best Protein')"><img src="Pbest2lbs.jpg"><h3>ProScience Best Protein</h3><button class="btn-buy">Añadir a Cesta</button></div>
-                <div class="product-card protein-item hipo" onclick="addToCart('ON Whey Gold 2 Lbs')"><img src="Pon2lbs.jpg"><h3>ON Whey Gold 2 Lbs</h3><button class="btn-buy">Añadir a Cesta</button></div>
-                <div class="product-card protein-item hipo" onclick="addToCart('ON Whey Gold 5 Lbs')"><img src="Pon5lbs.jpg"><h3>ON Whey Gold 5 Lbs</h3><button class="btn-buy">Añadir a Cesta</button></div>
-                <div class="product-card protein-item hiper" onclick="addToCart('Bi-Pro Mass')"><img src="Pmass3lbs.jpg"><h3>Bi-Pro Mass</h3><button class="btn-buy">Añadir a Cesta</button></div>
                 <div class="product-card protein-item hiper" onclick="addToCart('ProScience Smart Gainer')"><img src="Psmart.jpg"><h3>ProScience Smart Gainer</h3><button class="btn-buy">Añadir a Cesta</button></div>
-            </div>
-        </section>
-
-        <section id="salud" class="product-section">
-            <div class="btn-back" onclick="showHome()">← Volver a Categorías</div>
-            <h2 class="section-title">Salud Natural</h2>
-            <div class="products-grid">
-                <div class="product-card" onclick="addToCart('Super Magnesium HA')"><img src="MagnesioHA.jpg"><h3>Super Magnesium HA</h3><button class="btn-buy">Añadir a Cesta</button></div>
-                <div class="product-card" onclick="addToCart('Colágeno Hidrolizado')"><img src="ColagenoNA.jpg"><h3>Colágeno Hidrolizado</h3><button class="btn-buy">Añadir a Cesta</button></div>
-                <div class="product-card" onclick="addToCart('Liv.52 (Hígado)')"><img src="Liv.52.jpg"><h3>Liv.52 (Hígado)</h3><button class="btn-buy">Añadir a Cesta</button></div>
-            </div>
-        </section>
-
-        <section id="ropa" class="product-section">
-            <div class="btn-back" onclick="showHome()">← Volver a Categorías</div>
-            <h2 class="section-title">Ropa Deportiva Elite</h2>
-            <div class="products-grid">
-                <div class="product-card clothing-item hombre" onclick="addToCart('Camiseta Dry-Fit Negra')"><img src="CamisetaNegra.jpg"><h3>Camiseta Dry-Fit Negra</h3><button class="btn-buy">Añadir a Cesta</button></div>
-                <div class="product-card clothing-item mujer" onclick="addToCart('Licra Deportiva Mujer')"><img src="LicraPro.jpg"><h3>Licra Deportiva Mujer</h3><button class="btn-buy">Añadir a Cesta</button></div>
-            </div>
-        </section>
-
-        <section id="accesorios" class="product-section">
-            <div class="btn-back" onclick="showHome()">← Volver a Categorías</div>
-            <h2 class="section-title">Accesorios Deportivos</h2>
-            <div class="products-grid">
-                <div class="product-card" onclick="addToCart('Shaker ADROOS Pro')"><img src="logo-adroos.jpg"><h3>Shaker ADROOS Pro</h3><button class="btn-buy">Añadir a Cesta</button></div>
             </div>
         </section>
 
@@ -223,24 +193,23 @@
                 </div>
             </div>
         </section>
-
+        
         <div class="faq-section" id="faq">
             <h2 class="section-title">Dudas Frecuentes</h2>
-            <details><summary>¿Tomando creatina aumentaré grasa corporal?</summary><p>No ganarás grasa. La creatina mejora la hidratación y el tono muscular.</p></details>
-            <details><summary>¿La proteína engorda?</summary><p>No, el peso depende del balance calórico total.</p></details>
+            <details><summary>¿Los envíos son seguros?</summary><p style="padding-top:10px; color:#666;">Sí, despachamos con guías de seguimiento a nivel nacional.</p></details>
         </div>
 
-        <div style="margin: 60px 0; display: flex; flex-direction: column; gap: 15px; align-items: center;">
-            <a href="https://adroos.lovable.app" target="_blank" style="background:#000; color:#fff; padding:15px 30px; border-radius:10px; text-decoration:none; font-weight:900; width:100%; max-width:350px; border:2px solid #d4af37;">🚀 ASESORÍA RÁPIDA (Web App)</a>
+        <div style="margin: 60px 0;">
+            <a href="https://adroos.lovable.app" target="_blank" style="background:#000; color:#fff; padding:15px 30px; border-radius:10px; text-decoration:none; font-weight:900; border:2px solid #d4af37;">🚀 ASESORÍA RÁPIDA (Web App)</a>
         </div>
     </div>
 
-    <a href="https://wa.me/573242606513?text=Hola%20ADROOS%20👋%2C%20necesito%20asesoría%20personalizada." class="whatsapp-float" target="_blank">
+    <a href="https://wa.me/573242606513?text=Hola%20ADROOS%20👋%2C%20necesito%20asesoría." class="whatsapp-float" target="_blank">
         <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" width="35" alt="WhatsApp">
     </a>
 
     <script>
-        // LÓGICA DE LA CESTA
+        // --- LÓGICA DE LA CESTA ---
         let cart = [];
 
         function addToCart(productName) {
@@ -252,10 +221,15 @@
             }
             updateCartUI();
             
-            // Efecto visual al añadir
+            // Animación del icono al añadir
             const cartIcon = document.querySelector('.cart-float');
-            cartIcon.style.transform = 'scale(1.2)';
-            setTimeout(() => cartIcon.style.transform = 'scale(1)', 200);
+            cartIcon.style.transform = 'scale(1.3) rotate(10deg)';
+            setTimeout(() => cartIcon.style.transform = 'scale(1) rotate(0deg)', 300);
+        }
+
+        function removeFromCart(index) {
+            cart.splice(index, 1);
+            updateCartUI();
         }
 
         function updateCartUI() {
@@ -264,21 +238,16 @@
             
             const list = document.getElementById('cart-items-list');
             if (cart.length === 0) {
-                list.innerHTML = '<p style="color: #666; text-align: center;">La cesta está vacía</p>';
+                list.innerHTML = '<p style="color: #888; text-align: center; padding: 20px;">Tu cesta está esperando nuevos retos...</p>';
                 return;
             }
             
             list.innerHTML = cart.map((item, i) => `
                 <div class="cart-item">
-                    <span><strong>${item.qty}x</strong> ${item.name}</span>
-                    <button onclick="removeFromCart(${i})" style="background:none; border:none; color:red; cursor:pointer; font-weight:bold;">Eliminar</button>
+                    <span><b>${item.qty}x</b> ${item.name}</span>
+                    <button class="remove-item" onclick="removeFromCart(${i})">Borrar</button>
                 </div>
             `).join('');
-        }
-
-        function removeFromCart(index) {
-            cart.splice(index, 1);
-            updateCartUI();
         }
 
         function toggleCart() {
@@ -288,26 +257,25 @@
 
         function sendOrder() {
             if (cart.length === 0) {
-                alert("La cesta está vacía");
+                alert("Primero añade algunos productos a tu cesta.");
                 return;
             }
             
-            let message = "Hola ADROOS 👋, vengo de tu catálogo web y estoy interesado en estos artículos:\n\n";
+            let message = "Hola ADROOS 👋, vengo de tu catálogo web y quiero realizar este pedido:\n\n";
             cart.forEach(item => {
-                message += `• ${item.qty}x ${item.name}\n`;
+                message += `✅ ${item.qty}x ${item.name}\n`;
             });
-            message += "\n¿Me podrías confirmar disponibilidad y precios?";
+            message += "\n¿Cuál es el siguiente paso para el pago?";
             
             const url = `https://wa.me/573242606513?text=${encodeURIComponent(message)}`;
             window.open(url, '_blank');
         }
 
-        // NAVEGACIÓN ORIGINAL
+        // --- NAVEGACIÓN Y BÚSQUEDA ---
         function showCategory(id) {
             document.getElementById('category-selector').style.display = 'none';
             document.querySelectorAll('.product-section').forEach(sec => sec.style.display = 'none');
             document.getElementById(id).style.display = 'block';
-            if(document.getElementById('faq')) document.getElementById('faq').style.display = 'block';
             window.scrollTo({top: 0, behavior: 'smooth'});
         }
 
@@ -330,18 +298,12 @@
                     let hasResults = false;
                     for (let card of cards) {
                         let title = card.querySelector('h3').innerText.toLowerCase();
-                        if (title.includes(input)) {
-                            card.style.display = "flex";
-                            hasResults = true;
-                        } else {
-                            card.style.display = "none";
-                        }
+                        card.style.display = title.includes(input) ? "flex" : "none";
+                        if (title.includes(input)) hasResults = true;
                     }
                     section.style.display = hasResults ? 'block' : 'none';
                 });
-            } else {
-                showHome();
-            }
+            } else { showHome(); }
         }
 
         function filterItems(className, type) {
@@ -355,8 +317,8 @@
     </script>
 
     <footer style="text-align: center;">
-        <p>Síguenos en <a href="https://www.instagram.com/adro.ss" target="_blank" style="color:var(--gold); font-weight:bold; text-decoration:none;">@adro.ss</a></p>
-        <p style="font-size: 0.7rem; margin-top: 15px; opacity: 0.6;">&copy; 2026 ADROOS STORE - Elite Sport Supplements</p>
+        <p>Instagram: <a href="https://www.instagram.com/adro.ss" target="_blank" style="color:var(--gold); font-weight:bold; text-decoration:none;">@adro.ss</a></p>
+        <p style="font-size: 0.7rem; margin-top: 15px; opacity: 0.5;">&copy; 2026 ADROOS STORE</p>
     </footer>
 
 </body>
