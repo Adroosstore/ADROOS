@@ -88,6 +88,22 @@
         <p style="font-size: 0.75rem; letter-spacing: 2px; margin-top: 5px;">SUPLEMENTACIÓN ELITE & BIENESTAR</p>
     </header>
 
+    <div class="cart-float" onclick="toggleCart()">
+        <span style="font-size: 1.5rem;">🛒</span>
+        <div class="cart-count" id="cart-count">0</div>
+    </div>
+
+    <div id="cart-modal">
+        <div class="cart-content">
+            <span class="close-cart" onclick="toggleCart()">×</span>
+            <h2>MI PEDIDO ELITE</h2>
+            <div id="cart-items-list">
+                <p style="color: #888; text-align: center; padding: 20px;">Tu cesta está vacía...</p>
+            </div>
+            <button class="btn-send-cart" onclick="sendOrder()">PEDIR POR WHATSAPP</button>
+        </div>
+    </div>
+
     <div class="main-container">
         <div class="search-container">
             <input type="text" id="productSearch" placeholder="🔍 Buscar (ej: Creatina, Combo, Proteína)..." onkeyup="searchProducts()">
