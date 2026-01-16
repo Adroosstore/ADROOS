@@ -112,16 +112,38 @@ PERFECTO
         </div>
 
         <div id="category-selector">
-            <h2 style="margin-bottom: 25px;">EXPLORA NUESTRAS LÍNEAS</h2>
-            <div class="categories-grid">
-                <div class="cat-card" onclick="showCategory('creatinas')"><img src="Logocreatina.jpg"><h3>Creatinas</h3></div>
-                <div class="cat-card" onclick="showCategory('proteinas')"><img src="logoproteina.jpg"><h3>Proteínas</h3></div>
-                <div class="cat-card" onclick="showCategory('salud')"><img src="Logosalud.jpg"><h3>Salud Natural</h3></div>
-                <div class="cat-card" onclick="showCategory('ropa')"><img src="Logoropa.jpg"><h3>Ropa Deportiva</h3></div>
-                <div class="cat-card" onclick="showCategory('accesorios')"><img src="Logoaccesorios.jpg"><h3>Accesorios</h3></div>
-                <div class="cat-card" onclick="showCategory('combos')"><img src="Logocombos.jpg"><h3>Combos Elite</h3></div>
-            </div>
-        </div>
+    <h2>EXPLORA NUESTRAS LÍNEAS</h2>
+    <div class="categories-grid">
+        <button class="cat-card" onclick="showCategory('creatinas')" aria-label="Ver creatinas">
+            <img src="Logocreatina.webp" alt="Creatinas" width="200" height="200" loading="lazy">
+            <span>Creatinas</span>
+        </button>
+
+        <button class="cat-card" onclick="showCategory('proteinas')" aria-label="Ver proteínas">
+            <img src="logoproteina.webp" alt="Proteínas" width="200" height="200" loading="lazy">
+            <span>Proteínas</span>
+        </button>
+
+        <button class="cat-card" onclick="showCategory('salud')" aria-label="Ver salud natural">
+            <img src="Logosalud.webp" alt="Salud Natural" width="200" height="200" loading="lazy">
+            <span>Salud Natural</span>
+        </button>
+
+        <button class="cat-card" onclick="showCategory('ropa')" aria-label="Ver ropa deportiva">
+            <img src="Logoropa.webp" alt="Ropa Deportiva" width="200" height="200" loading="lazy">
+            <span>Ropa Deportiva</span>
+        </button>
+
+        <button class="cat-card" onclick="showCategory('accesorios')" aria-label="Ver accesorios">
+            <img src="Logoaccesorios.webp" alt="Accesorios" width="200" height="200" loading="lazy">
+            <span>Accesorios</span>
+        </button>
+
+        <button class="cat-card" onclick="showCategory('combos')" aria-label="Ver combos elite">
+            <img src="Logocombos.webp" alt="Combos Elite" width="200" height="200" loading="lazy">
+            <span>Combos Elite</span>
+        </button>
+    </div>
 
         <section id="creatinas" class="product-section">
             <div class="btn-back" onclick="showHome()">← Volver a Categorías</div>
