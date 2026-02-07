@@ -1,1014 +1,232 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ADROOS | Elite Store</title>
-<link rel="icon" href="logo-adroos.jpg" type="image/x-icon">
-<style>
-:root {
---gold: #d4af37;
---dark: #1a1a1a;
---whatsapp: #25d366;
---premium-grad: linear-gradient(135deg, #d4af37 0%, #f2d06b 100%);
-}
-
-* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
-body { background-color: #ffffff; color: var(--dark); line-height: 1.6; scroll-behavior: smooth; }
-
-header { 
-background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('header-bg.jpg');
-background-size: cover; background-position: center; padding: 40px 20px; 
-text-align: center; border-bottom: 4px solid var(--gold); color: white;
-display: flex; flex-direction: column; align-items: center; justify-content: center;
-}
-
-.logo-img { 
-width: 100px; height: 100px; border-radius: 50%; border: 3px solid var(--gold); 
-margin-bottom: 10px; box-shadow: 0 0 20px rgba(212, 175, 55, 0.4); background-color: #000;
-cursor: pointer;
-}
-
-.brand-name { font-size: 2.5rem; font-weight: 900; letter-spacing: 5px; color: #fff; text-transform: uppercase; margin: 0; line-height: 1.2; }
-.brand-name span { color: var(--gold); }
-
-.search-container { margin: -20px auto 30px; max-width: 600px; padding: 0 20px; position: relative; z-index: 5; }
-#productSearch { width: 100%; padding: 15px 25px; border-radius: 30px; border: none; font-size: 1rem; box-shadow: 0 10px 25px rgba(0,0,0,0.1); outline: none; }
-
-.main-container { max-width: 1200px; margin: 0 auto; padding: 20px; text-align: center; }
-
-.categories-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 15px; margin: 30px 0; }
-.cat-card { position: relative; border-radius: 15px; overflow: hidden; height: 180px; cursor: pointer; transition: 0.3s; box-shadow: 0 5px 15px rgba(0,0,0,0.08); }
-.cat-card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(212, 175, 55, 0.2); }
-.cat-card img { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.7); }
-.cat-card h3 { position: absolute; bottom: 0; width: 100%; padding: 12px 5px; background: rgba(0,0,0,0.7); color: white; font-size: 0.9rem; text-transform: uppercase; }
-
-.product-section { display: none; animation: fadeIn 0.4s ease; }
-@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-
-.products-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 20px; margin-top: 25px; }
-
-.product-card { background: #fff; padding: 15px; border-radius: 15px; border: 1px solid #eee; color: var(--dark); transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); display: flex; flex-direction: column; position: relative; }
-.product-card:hover { border-color: var(--gold); transform: translateY(-12px); box-shadow: 0 15px 30px rgba(212, 175, 55, 0.2); }
-        .product-card img { width: 100%; border-radius: 10px; aspect-ratio: 1/1; object-fit: contain; margin-bottom: 12px; cursor: pointer; }
-        .product-card img { width: 100%; border-radius: 10px; aspect-ratio: 1/1; object-fit: contain; margin-bottom: 12px; cursor: pointer; }
-        .product-description { font-size: 0.85rem; color: #555; margin: 6px 0 12px; min-height: 44px; }
-        .btn-details { background: #fff; color: var(--dark); border: 1px solid var(--gold); padding: 8px; border-radius: 8px; font-weight: 700; margin-top: 10px; cursor: pointer; width: 100%; transition: 0.3s; }
-        .btn-details:hover { background: var(--gold); color: #fff; }
-
-.combo-badge { background: var(--premium-grad); color: #000; font-weight: 800; font-size: 0.7rem; padding: 4px 10px; border-radius: 5px; margin-bottom: 8px; align-self: center; }
-.btn-buy { background: var(--whatsapp); color: white; padding: 10px; border-radius: 8px; font-weight: bold; margin-top: auto; border: none; cursor: pointer; width: 100%; transition: 0.3s; }
-.btn-buy:active { transform: scale(0.95); }
-.btn-back { display: inline-block; margin: 20px 0; padding: 10px 25px; background: #f4f4f4; border-radius: 20px; cursor: pointer; font-weight: bold; }
-
-.cart-float { position: fixed; width: 65px; height: 65px; bottom: 30px; left: 30px; background: var(--dark); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 8px 25px rgba(0,0,0,0.4); z-index: 100; cursor: pointer; border: 2px solid var(--gold); transition: 0.3s; }
-.cart-count { position: absolute; top: -2px; right: -2px; background: var(--gold); color: black; font-weight: 900; font-size: 0.85rem; width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 2px solid var(--dark); }
-
-        #cart-modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); backdrop-filter: blur(8px); z-index: 200; align-items: center; justify-content: center; padding: 20px; }
-        #cart-modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); backdrop-filter: blur(8px); z-index: 200; align-items: center; justify-content: center; padding: 20px; }
-.cart-content { background: #1a1a1a; width: 100%; max-width: 450px; border-radius: 25px; padding: 30px; position: relative; max-height: 80vh; overflow-y: auto; border: 1px solid var(--gold); box-shadow: 0 0 50px rgba(212, 175, 55, 0.2); }
-.cart-content h2 { color: var(--gold); text-align: center; font-weight: 900; letter-spacing: 2px; margin-bottom: 25px; border-bottom: 1px solid rgba(212,175,55,0.3); padding-bottom: 15px; }
-
-.cart-item { display: flex; justify-content: space-between; align-items: center; padding: 15px 0; border-bottom: 1px solid rgba(255,255,255,0.05); color: white; }
-.remove-item { background: rgba(255, 0, 0, 0.1); color: #ff4444; border: 1px solid #ff4444; padding: 5px 12px; border-radius: 8px; cursor: pointer; font-size: 0.75rem; }
-.btn-send-cart { background: var(--premium-grad); color: #000; width: 100%; padding: 18px; border-radius: 12px; border: none; font-weight: 900; font-size: 1.1rem; margin-top: 25px; cursor: pointer; box-shadow: 0 5px 15px rgba(212,175,55,0.3); }
-        .close-cart { position: absolute; top: 15px; right: 20px; font-size: 2rem; cursor: pointer; color: var(--gold); }
-
-        .faq-section { max-width: 800px; margin: 50px auto; text-align: left; }
-        .close-cart { position: absolute; top: 15px; right: 20px; font-size: 2rem; cursor: pointer; color: var(--gold); }
-
-        #product-modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); backdrop-filter: blur(8px); z-index: 220; align-items: center; justify-content: center; padding: 20px; }
-        .product-modal-content { background: #fff; width: 100%; max-width: 560px; border-radius: 24px; padding: 28px; position: relative; max-height: 85vh; overflow-y: auto; box-shadow: 0 15px 40px rgba(0,0,0,0.3); }
-        .product-modal-content h2 { font-size: 1.6rem; margin-bottom: 10px; color: var(--dark); }
-        .modal-description { font-size: 0.95rem; color: #555; margin-bottom: 18px; }
-        .modal-block { background: #f8f8f8; padding: 14px; border-radius: 12px; margin-bottom: 12px; text-align: left; }
-        .modal-block h4 { margin-bottom: 6px; color: #8a6d10; font-size: 0.95rem; text-transform: uppercase; letter-spacing: 1px; }
-        .modal-block ul { padding-left: 18px; margin: 0; color: #444; }
-        .modal-actions { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 20px; }
-        .btn-modal { flex: 1; min-width: 180px; border: none; border-radius: 10px; padding: 12px; font-weight: 800; cursor: pointer; }
-        .btn-modal.whatsapp { background: var(--whatsapp); color: #fff; text-decoration: none; display: inline-flex; align-items: center; justify-content: center; }
-        .btn-modal.cart { background: var(--premium-grad); color: #000; }
-        .close-product { position: absolute; top: 12px; right: 18px; font-size: 2rem; cursor: pointer; color: var(--dark); background: none; border: none; }
-
-        .faq-section { max-width: 800px; margin: 50px auto; text-align: left; }
-details { background: #f9f9f9; padding: 15px; border-radius: 10px; margin-bottom: 10px; cursor: pointer; border: 1px solid #eee; }
-summary { font-weight: bold; color: #8a6d10; }
-
-.whatsapp-float { position: fixed; width: 60px; height: 60px; bottom: 30px; right: 30px; background: var(--whatsapp); border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 5px 15px rgba(0,0,0,0.2); z-index: 100; text-decoration: none; }
-
-footer { padding: 40px; background: #fcfcfc; border-top: 1px solid #eee; margin-top: 50px; }
-.btn-filter { background: white; border: 1px solid var(--gold); padding: 8px 18px; border-radius: 20px; cursor: pointer; margin: 5px; transition: 0.3s; }
-.btn-filter.active { background: var(--gold); color: white; }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ADROOS Store</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin:0; background:#f6f6f6; }
+        header { background:#111; color:#fff; padding:15px; display:flex; justify-content:space-between; align-items:center; }
+        .filters { display:flex; gap:10px; padding:15px; justify-content:center; flex-wrap:wrap; }
+        .btn-filter { padding:8px 14px; border:none; cursor:pointer; border-radius:6px; }
+        .btn-filter.active { background:#111; color:#fff; }
+        .container { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:15px; padding:20px; }
+        .product-card { background:#fff; padding:15px; border-radius:10px; box-shadow:0 2px 6px rgba(0,0,0,.1); text-align:center; }
+        .product-card img { width:100%; cursor:pointer; border-radius:8px; }
+        .btn-buy { margin-top:10px; padding:10px; width:100%; border:none; border-radius:6px; cursor:pointer; background:#111; color:#fff; }
+        .cart-btn { cursor:pointer; }
+        #cart-modal, #product-modal { display:none; position:fixed; inset:0; background:rgba(0,0,0,.6); justify-content:center; align-items:center; }
+        .modal-content { background:#fff; padding:20px; border-radius:12px; width:90%; max-width:400px; }
+        .cart-item { display:flex; justify-content:space-between; margin:8px 0; }
+        .remove-item { background:red; color:#fff; border:none; border-radius:4px; cursor:pointer; }
+    </style>
 </head>
 <body>
 
 <header>
-<img src="logo-adroos.jpg" alt="Logo ADROOS" class="logo-img" onclick="showHome()">
-<div class="brand-name">ADR<span>OOS</span></div>
-<p style="font-size: 0.75rem; letter-spacing: 2px; margin-top: 5px;">SUPLEMENTACIÓN ELITE & BIENESTAR</p>
+    <h2>ADROOS</h2>
+    <div class="cart-btn" onclick="toggleCart()">🛒 (<span id="cart-count">0</span>)</div>
 </header>
 
-<div class="cart-float" onclick="toggleCart()">
-<span style="font-size: 1.5rem;">🛒</span>
-<div class="cart-count" id="cart-count">0</div>
+<div class="filters">
+    <button class="btn-filter active" onclick="filterItems('all', this)">Todas</button>
+    <button class="btn-filter" onclick="filterItems('supplement', this)">Suplementos</button>
+    <button class="btn-filter" onclick="filterItems('clothes', this)">Ropa</button>
 </div>
 
-    <div id="cart-modal">
-        <div class="cart-content">
-            <span class="close-cart" onclick="toggleCart()">×</span>
-            <h2>MI PEDIDO ELITE</h2>
-            <div id="cart-items-list">
-                <p style="color: #888; text-align: center; padding: 20px;">Tu cesta está vacía...</p>
-            </div>
-            <button class="btn-send-cart" onclick="sendOrder()">PEDIR POR WHATSAPP</button>
-        </div>
+<div class="container">
+    <!-- CREATINAS -->
+    <div class="product-card supplement">
+        <img src="ON60.jpg" onclick="openProduct('ON Creatine 60 Serv')">
+        <h3>ON Creatine 60 Serv</h3>
+        <button class="btn-buy" onclick="addToCart('ON Creatine 60 Serv')">Añadir</button>
     </div>
 
-    <div class="main-container">
-    <div id="cart-modal">
-        <div class="cart-content">
-            <span class="close-cart" onclick="toggleCart()">×</span>
-            <h2>MI PEDIDO ELITE</h2>
-            <div id="cart-items-list">
-                <p style="color: #888; text-align: center; padding: 20px;">Tu cesta está vacía...</p>
-            </div>
-            <button class="btn-send-cart" onclick="sendOrder()">PEDIR POR WHATSAPP</button>
-        </div>
+    <div class="product-card supplement">
+        <img src="IMN133.jpg" onclick="openProduct('Creatina IMN 133')">
+        <h3>Creatina IMN 133</h3>
+        <button class="btn-buy" onclick="addToCart('Creatina IMN 133')">Añadir</button>
     </div>
 
-    <div id="product-modal">
-        <div class="product-modal-content">
-            <button class="close-product" onclick="toggleProductModal(false)">×</button>
-            <h2 id="product-modal-title">Producto</h2>
-            <p id="product-modal-description" class="modal-description"></p>
-            <div class="modal-block">
-                <h4>Modo de uso</h4>
-                <p id="product-modal-use"></p>
-            </div>
-            <div class="modal-block">
-                <h4>Servicios / Beneficios</h4>
-                <ul id="product-modal-benefits"></ul>
-            </div>
-            <div class="modal-actions">
-                <button class="btn-modal cart" id="product-modal-cart">Añadir a Cesta</button>
-                <a class="btn-modal whatsapp" id="product-modal-whatsapp" href="#" target="_blank">Abrir en WhatsApp</a>
-            </div>
-        </div>
+    <div class="product-card supplement">
+        <img src="MUSCLETECH.jpg" onclick="openProduct('Creatina Muscletech')">
+        <h3>Creatina Muscletech</h3>
+        <button class="btn-buy" onclick="addToCart('Creatina Muscletech')">Añadir</button>
     </div>
 
-    <div class="main-container">
-<div class="search-container">
-<input type="text" id="productSearch" placeholder="🔍 Buscar (ej: Creatina, Combo, Proteína)..." onkeyup="searchProducts()">
+    <!-- PROTEINAS -->
+    <div class="product-card supplement">
+        <img src="BIPRO.jpg" onclick="openProduct('Bi-Pro Classic 2 Lbs')">
+        <h3>Bi-Pro Classic 2 Lbs</h3>
+        <button class="btn-buy" onclick="addToCart('Bi-Pro Classic 2 Lbs')">Añadir</button>
+    </div>
+
+    <div class="product-card supplement">
+        <img src="ONWHEY.jpg" onclick="openProduct('ON Gold Standard Whey')">
+        <h3>ON Gold Standard Whey</h3>
+        <button class="btn-buy" onclick="addToCart('ON Gold Standard Whey')">Añadir</button>
+    </div>
+
+    <!-- SALUD -->
+    <div class="product-card supplement">
+        <img src="COLAGENO.jpg" onclick="openProduct('Colágeno Hidrolizado')">
+        <h3>Colágeno Hidrolizado</h3>
+        <button class="btn-buy" onclick="addToCart('Colágeno Hidrolizado')">Añadir</button>
+    </div>
+
+    <div class="product-card supplement">
+        <img src="CARTILAGO.jpg" onclick="openProduct('Cartílago de Tiburón')">
+        <h3>Cartílago de Tiburón</h3>
+        <button class="btn-buy" disabled style="opacity:0.5">AGOTADO</button>
+    </div>
+
+    <!-- ROPA -->
+    <div class="product-card clothes">
+        <img src="CAMISETA.jpg" onclick="openProduct('Camiseta ADROOS')">
+        <h3>Camiseta ADROOS</h3>
+        <button class="btn-buy" onclick="addToCart('Camiseta ADROOS')">Añadir</button>
+    </div>
+
+    <div class="product-card clothes">
+        <img src="GORRA.jpg" onclick="openProduct('Gorra ADROOS')">
+        <h3>Gorra ADROOS</h3>
+        <button class="btn-buy" onclick="addToCart('Gorra ADROOS')">Añadir</button>
+    </div>
 </div>
 
-<div id="category-selector">
-<h2 style="margin-bottom: 25px;">EXPLORA NUESTRAS LÍNEAS</h2>
-<div class="categories-grid">
-<div class="cat-card" onclick="showCategory('creatinas')"><img src="Logocreatina.jpg"><h3>Creatinas</h3></div>
-<div class="cat-card" onclick="showCategory('proteinas')"><img src="logoproteina.jpg"><h3>Proteínas</h3></div>
-<div class="cat-card" onclick="showCategory('salud')"><img src="Logosalud.jpg"><h3>Salud Natural</h3></div>
-<div class="cat-card" onclick="showCategory('ropa')"><img src="Logoropa.jpg"><h3>Ropa Deportiva</h3></div>
-<div class="cat-card" onclick="showCategory('accesorios')"><img src="Logoaccesorios.jpg"><h3>Accesorios</h3></div>
-<div class="cat-card" onclick="showCategory('combos')"><img src="Logocombos.jpg"><h3>Combos Elite</h3></div>
-</div>
+<!-- CARRITO -->
+<div id="cart-modal">
+    <div class="modal-content">
+        <h3>Tu cesta</h3>
+        <div id="cart-items-list"></div>
+        <button class="btn-buy" onclick="sendOrder()">Pedir por WhatsApp</button>
+        <button class="btn-buy" onclick="toggleCart()">Cerrar</button>
+    </div>
 </div>
 
-<section id="creatinas" class="product-section">
-<div class="btn-back" onclick="showHome()">← Volver a Categorías</div>
-<h2 class="section-title">Línea de Creatinas Elite</h2>
-<div class="products-grid">
-<div class="product-card">
-<img src="ON60.jpg" onclick="window.open('https://wa.me/p/30114224388225062/573242606513', '_blank')">
-<h3>ON Creatine 60 Serv</h3>
-<button class="btn-buy" onclick="addToCart('ON Creatine 60 Serv')">Añadir a Cesta</button>
-</div>
-<div class="product-card">
-<img src="ON120.jpg" onclick="window.open('https://wa.me/p/24573418475599253/573242606513', '_blank')">
-<h3>ON Creatine 120 Serv</h3>
-<button class="btn-buy" onclick="addToCart('ON Creatine 120 Serv')">Añadir a Cesta</button>
-</div>
-<div class="product-card">
-<img src="HS.jpg" onclick="window.open('https://wa.me/p/10068590003226336/573242606513', '_blank')">
-<h3>Healthy Sports 100 Serv</h3>
-<button class="btn-buy" onclick="addToCart('Healthy Sports 100 Serv')">Añadir a Cesta</button>
-</div>
-<div class="product-card">
-<img src="HS80.jpg" onclick="window.open('https://wa.me/p/24408065855463940/573242606513', '_blank')">
-<h3>Healthy Sports 50 Serv</h3>
-<button class="btn-buy" onclick="addToCart('Healthy Sports 50 Serv')">Añadir a Cesta</button>
-</div>
-<div class="product-card">
-<img src="IMN133.jpg" onclick="window.open('https://wa.me/p/24400451672872301/573242606513', '_blank')">
-<h3>IMN 133 Serv</h3>
-<button class="btn-buy" onclick="addToCart('IMN 133 Serv')">Añadir a Cesta</button>
-</div>
-<div class="product-card">
-<img src="IMN50.jpg" onclick="window.open('https://wa.me/p/24052428174393614/573242606513', '_blank')">
-<h3>IMN 50 Serv</h3>
-<button class="btn-buy" onclick="addToCart('IMN 50 Serv')">Añadir a Cesta</button>
-</div>
-<div class="product-card">
-<img src="IN80.jpg" onclick="window.open('https://wa.me/p/30181896938122185/573242606513', '_blank')">
-<h3>Iron Nutrition 100 Serv</h3>
-<button class="btn-buy" onclick="addToCart('Iron Nutrition 100 Serv')">Añadir a Cesta</button>
-</div>
-<div class="product-card">
-<img src="Dimatize88.jpg" onclick="window.open('https://wa.me/p/24230499279887716/573242606513', '_blank')">
-<h3>Dymatize 88 Serv</h3>
-<button class="btn-buy" onclick="addToCart('Dymatize 88 Serv')">Añadir a Cesta</button>
-</div>
-<div class="product-card">
-<img src="platinum.jpg" onclick="window.open('https://wa.me/p/24329943086611680/573242606513', '_blank')">
-<h3>Platinum MuscleTech</h3>
-<button class="btn-buy" onclick="addToCart('Platinum MuscleTech')">Añadir a Cesta</button>
-</div>
-</div>
-</section>
-
-<section id="proteinas" class="product-section">
-<div class="btn-back" onclick="showHome()">← Volver a Categorías</div>
-<h2 class="section-title">Línea de Proteínas</h2>
-<div style="margin: 20px 0; display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;">
-<button onclick="filterItems('protein-item', 'all')" class="btn-filter">Todas</button>
-<button onclick="filterItems('protein-item', 'hiper')" class="btn-filter">Hipercalóricas</button>
-<button onclick="filterItems('protein-item', 'hipo')" class="btn-filter">Hipocalóricas</button>
-</div>
-<div class="products-grid">
-<div class="product-card protein-item hipo">
-<img src="Pbipro120.jpg" onclick="window.open('https://wa.me/p/30852624011002730/573242606513', '_blank')">
-<h3>Bi-Pro Classic 2 Lbs</h3>
-<button class="btn-buy" onclick="addToCart('Bi-Pro Classic 2 Lbs')">Añadir a Cesta</button>
-</div>
-<div class="product-card protein-item hipo">
-<img src="Pbipro130.jpg" onclick="window.open('https://wa.me/p/24328728220082582/573242606513', '_blank')">
-<h3>Bi-Pro Classic 3 Lbs</h3>
-<button class="btn-buy" onclick="addToCart('Bi-Pro Classic 3 Lbs')">Añadir a Cesta</button>
-</div>
-<div class="product-card protein-item hipo">
-<img src="Pripped.jpg" onclick="window.open('https://wa.me/p/9983544765026553/573242606513', '_blank')">
-<h3>Bi-Pro Ripped</h3>
-<button class="btn-buy" onclick="addToCart('Bi-Pro Ripped')">Añadir a Cesta</button>
-</div>
-<div class="product-card protein-item hipo">
-<img src="Pbest2lbs.jpg" onclick="window.open('https://wa.me/p/32987260517586889/573242606513', '_blank')">
-<h3>ProScience Best Protein</h3>
-<button class="btn-buy" onclick="addToCart('ProScience Best Protein')">Añadir a Cesta</button>
-</div>
-<div class="product-card protein-item hipo">
-<img src="Pon2lbs.jpg" onclick="window.open('https://wa.me/p/23905475465783063/573242606513', '_blank')">
-<h3>ON Whey Gold 2 Lbs</h3>
-<button class="btn-buy" onclick="addToCart('ON Whey Gold 2 Lbs')">Añadir a Cesta</button>
-</div>
-<div class="product-card protein-item hipo">
-<img src="Pon5lbs.jpg" onclick="window.open('https://wa.me/p/24261128060148910/573242606513', '_blank')">
-<h3>ON Whey Gold 5 Lbs</h3>
-<button class="btn-buy" onclick="addToCart('ON Whey Gold 5 Lbs')">Añadir a Cesta</button>
-</div>
-<div class="product-card protein-item hipo">
-<img src="Pm2lbs.jpg" onclick="window.open('https://wa.me/p/24463007063285491/573242606513', '_blank')">
-<h3>MuscleTech NitroTech 2 Lbs</h3>
-<button class="btn-buy" onclick="addToCart('MuscleTech NitroTech 2 Lbs')">Añadir a Cesta</button>
-</div>
-<div class="product-card protein-item hipo">
-<img src="Pm4lbs.jpg" onclick="window.open('https://wa.me/p/24494955860088777/573242606513', '_blank')">
-<h3>MuscleTech NitroTech 4 Lbs</h3>
-<button class="btn-buy" onclick="addToCart('MuscleTech NitroTech 4 Lbs')">Añadir a Cesta</button>
-</div>
-<div class="product-card protein-item hipo">
-<img src="Pvit5lbs.jpg" onclick="window.open('https://wa.me/p/25430473939942439/573242606513', '_blank')">
-<h3>Vitanas Whey Elite 5 Lbs</h3>
-<button class="btn-buy" onclick="addToCart('Vitanas Whey Elite 5 Lbs')">Añadir a Cesta</button>
-</div>
-<div class="product-card protein-item hipo">
-<img src="Pvit10lbs.jpg" onclick="window.open('https://wa.me/p/25563321256653728/573242606513', '_blank')">
-<h3>Vitanas Whey Elite 10 Lbs</h3>
-<button class="btn-buy" onclick="addToCart('Vitanas Whey Elite 10 Lbs')">Añadir a Cesta</button>
-</div>
-<div class="product-card protein-item hiper">
-<img src="Pmass3lbs.jpg" onclick="window.open('https://wa.me/p/23870086602620203/573242606513', '_blank')">
-<h3>Bi-Pro Mass</h3>
-<button class="btn-buy" onclick="addToCart('Bi-Pro Mass')">Añadir a Cesta</button>
-</div>
-<div class="product-card protein-item hiper">
-<img src="Psmart.jpg" onclick="window.open('https://wa.me/p/9905458082896352/573242606513', '_blank')">
-<h3>ProScience Smart Gainer</h3>
-<button class="btn-buy" onclick="addToCart('ProScience Smart Gainer')">Añadir a Cesta</button>
-</div>
-</div>
-</section>
-
-<section id="salud" class="product-section">
-<div class="btn-back" onclick="showHome()">← Volver a Categorías</div>
-<h2 class="section-title">Salud y Bienestar Natural</h2>
-<div class="products-grid">
-<div class="product-card">
-<img src="MagnesioHA.jpg" onclick="window.open('https://wa.me/p/30726142463650955/573242606513', '_blank')">
-<h3>Super Magnesium HA</h3>
-<button class="btn-buy" onclick="addToCart('Super Magnesium HA')">Añadir a Cesta</button>
-</div>
-<div class="product-card">
-<img src="ColagenoNA.jpg" onclick="window.open('https://wa.me/p/30830197233238022/573242606513', '_blank')">
-<h3>Colágeno Hidrolizado</h3>
-<button class="btn-buy" onclick="addToCart('Colágeno Hidrolizado')">Añadir a Cesta</button>
-</div>
-<div class="product-card">
-<img src="VitaminaIMN.jpg" onclick="window.open('https://wa.me/p/24027863493499374/573242606513', '_blank')">
-<h3>Vitamina IMN</h3>
-<button class="btn-buy" onclick="addToCart('Vitamina IMN')">Añadir a Cesta</button>
-</div>
-<div class="product-card">
-<img src="Multivitaminicom.jpg" onclick="window.open('https://wa.me/p/24190992310539250/573242606513', '_blank')">
-<h3>Multivitamínico Completo</h3>
-<button class="btn-buy" onclick="addToCart('Multivitamínico Completo')">Añadir a Cesta</button>
-</div>
-<div class="product-card">
-<img src="Nootropico.jpg" onclick="window.open('https://wa.me/p/24285597814386029/573242606513', '_blank')">
-<h3>Nootrópico (Enfoque)</h3>
-<button class="btn-buy" onclick="addToCart('Nootrópico (Enfoque)')">Añadir a Cesta</button>
-</div>
-<div class="product-card">
-<img src="Nac100.jpg" onclick="window.open('https://wa.me/p/25177261168636022/573242606513', '_blank')">
-<h3>NAC 100 Serv</h3>
-<button class="btn-buy" onclick="addToCart('NAC 100 Serv')">Añadir a Cesta</button>
-</div>
-<div class="product-card">
-<img src="Liv.52.jpg" onclick="window.open('https://wa.me/p/25901962499395504/573242606513', '_blank')">
-<h3>Liv.52 (Hígado)</h3>
-<button class="btn-buy" onclick="addToCart('Liv.52 (Hígado)')">Añadir a Cesta</button>
-</div>
-<div class="product-card">
-<img src="Biotin.jpg" onclick="window.open('https://wa.me/p/25653175470978904/573242606513', '_blank')">
-<h3>Biotina Cabello/Piel</h3>
-<button class="btn-buy" onclick="addToCart('Biotina Cabello/Piel')">Añadir a Cesta</button>
-</div>
-<div class="product-card">
-<img src="Cascara.jpg" onclick="window.open('https://wa.me/p/25611944968470565/573242606513', '_blank')">
-<h3>Cáscara Sagrada</h3>
-<button class="btn-buy" onclick="addToCart('Cáscara Sagrada')">Añadir a Cesta</button>
-</div>
-<div class="product-card">
-<img src="Melatonina.jpg" onclick="window.open('https://wa.me/p/26321323314122208/573242606513', '_blank')">
-<h3>Melatonina (Sueño)</h3>
-<button class="btn-buy" onclick="addToCart('Melatonina (Sueño)')">Añadir a Cesta</button>
-</div>
-<div class="product-card">
-<img src="Calcio.jpg" onclick="window.open('https://wa.me/p/33871378905810991/573242606513', '_blank')">
-<h3>Calcio + Vitamina D</h3>
-<button class="btn-buy" onclick="addToCart('Calcio + Vitamina D')">Añadir a Cesta</button>
-</div>
-<div class="product-card">
-<img src="Potasio.jpg" onclick="window.open('https://wa.me/p/26307386022196190/573242606513', '_blank')">
-<h3>Citrato de Potasio</h3>
-<button class="btn-buy" onclick="addToCart('Citrato de Potasio')">Añadir a Cesta</button>
-</div>
-<div class="product-card">
-<img src="Wellflex.jpg" onclick="window.open('https://wa.me/p/25426883876961068/573242606513', '_blank')">
-<h3>Wellflex (Articulaciones)</h3>
-<button class="btn-buy" onclick="addToCart('Wellflex (Articulaciones)')">Añadir a Cesta</button>
-</div>
-<div class="product-card">
-<img src="Vitc.jpg" onclick="window.open('https://wa.me/p/25290632443912081/573242606513', '_blank')">
-<h3>Vitamina C</h3>
-<button class="btn-buy" onclick="addToCart('Vitamina C')">Añadir a Cesta</button>
-</div>
-<div class="product-card">
-<img src="Vite.jpg" onclick="window.open('https://wa.me/p/25442935501993623/573242606513', '_blank')">
-<h3>Vitamina E</h3>
-<button class="btn-buy" onclick="addToCart('Vitamina E')">Añadir a Cesta</button>
-</div>
-<div class="product-card">
-<img src="Ashva60serv.jpg" onclick="window.open('https://wa.me/p/25543397098654956/573242606513', '_blank')">
-<h3>Ashwagandha</h3>
-<button class="btn-buy" onclick="addToCart('Ashwagandha')">Añadir a Cesta</button>
-</div>
-<div class="product-card">
-<img src="CartilagoTiburon.jpg" onclick="window.open('https://wa.me/573242606513', '_blank')">
-<h3>Cartílago de Tiburón</h3>
-<button class="btn-buy" onclick="addToCart('Cartílago de Tiburón')">AGOTADO</button>
-</div>
-</div>
-</section>
-
-<section id="ropa" class="product-section">
-<div class="btn-back" onclick="showHome()">← Volver a Categorías</div>
-<h2 class="section-title">Ropa Deportiva Elite</h2>
-
-<div style="margin: 20px 0; display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;">
-<button onclick="filterItems('clothing-item', 'all')" class="btn-filter active">Todas</button>
-<button onclick="filterItems('clothing-item', 'hombre')" class="btn-filter">Hombre</button>
-<button onclick="filterItems('clothing-item', 'mujer')" class="btn-filter">Mujer</button>
+<!-- MODAL PRODUCTO -->
+<div id="product-modal">
+    <div class="modal-content">
+        <h3 id="product-modal-title"></h3>
+        <p id="product-modal-description"></p>
+        <p><strong>Uso:</strong> <span id="product-modal-use"></span></p>
+        <ul id="product-modal-benefits"></ul>
+        <a id="product-modal-whatsapp" target="_blank">Consultar por WhatsApp</a>
+        <button id="product-modal-cart" class="btn-buy">Añadir al carrito</button>
+        <button class="btn-buy" onclick="toggleProductModal(true)">Cerrar</button>
+    </div>
 </div>
 
-<div class="products-grid">
-<div class="product-card clothing-item hombre">
-<img src="Camisillas1.jpg" onclick="window.open('https://wa.me/p/33207499735561483/573242606513', '_blank')">
-<h3>Esqueleto Deportivo Adidas</h3>
-<button class="btn-buy" onclick="addToCart('Esqueleto Adidas')">Añadir a Cesta</button>
-</div>
+<script>
+let cart = [];
 
-<div class="product-card clothing-item hombre">
-<img src="Camisillas2.jpg" onclick="window.open('https://wa.me/p/33207499735561483/573242606513', '_blank')">
-<h3>Esqueleto Deportivo Nike</h3>
-<button class="btn-buy" onclick="addToCart('Esqueleto Nike')">Añadir a Cesta</button>
-</div>
+const productDetails = {
+  "ON Creatine 60 Serv": {
+    description: "Creatina monohidratada para fuerza y potencia.",
+    use: "1 scoop diario.",
+    benefits: ["Fuerza", "Potencia", "Recuperación"],
+    whatsapp: "https://wa.me/573242606513"
+  },
+  "Creatina IMN 133": {
+    description: "Creatina micronizada de alta pureza.",
+    use: "1 porción diaria con agua.",
+    benefits: ["Rendimiento", "Fuerza", "Volumen"],
+    whatsapp: "https://wa.me/573242606513"
+  },
+  "Creatina Muscletech": {
+    description: "Creatina premium para entrenamientos intensos.",
+    use: "Post-entreno.",
+    benefits: ["Explosividad", "Fuerza"],
+    whatsapp: "https://wa.me/573242606513"
+  },
+  "Bi-Pro Classic 2 Lbs": {
+    description: "Proteína whey para masa muscular.",
+    use: "1 scoop post-entreno.",
+    benefits: ["Músculo", "Recuperación", "Proteína"],
+    whatsapp: "https://wa.me/573242606513"
+  },
+  "ON Gold Standard Whey": {
+    description: "Proteína de referencia mundial.",
+    use: "1 scoop después del ejercicio.",
+    benefits: ["Calidad", "Recuperación"],
+    whatsapp: "https://wa.me/573242606513"
+  },
+  "Colágeno Hidrolizado": {
+    description: "Soporte para articulaciones, piel y uñas.",
+    use: "Diario en ayunas.",
+    benefits: ["Articulaciones", "Piel"],
+    whatsapp: "https://wa.me/573242606513"
+  },
+  "Cartílago de Tiburón": {
+    description: "Apoyo articular y óseo.",
+    use: "Según indicación.",
+    benefits: ["Articulaciones"],
+    whatsapp: "https://wa.me/573242606513"
+  },
+  "Camiseta ADROOS": {
+    description: "Camiseta deportiva cómoda.",
+    use: "Uso diario o entrenamiento.",
+    benefits: ["Comodidad", "Estilo"],
+    whatsapp: "https://wa.me/573242606513"
+  },
+  "Gorra ADROOS": {
+    description: "Gorra urbana deportiva.",
+    use: "Uso diario.",
+    benefits: ["Estilo", "Protección"],
+    whatsapp: "https://wa.me/573242606513"
+  }
+};
 
-<div class="product-card clothing-item hombre">
-<img src="PCR.jpg" onclick="window.open('https://wa.me/p/25783256487976410/573242606513', '_blank')">
-<h3>Pantaloneta Running ''Cortas''</h3>
-<button class="btn-buy" onclick="addToCart('Pantaloneta PCR')">Añadir a Cesta</button>
-</div>
+function filterItems(type, btn) {
+    document.querySelectorAll('.btn-filter').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
 
-<div class="product-card clothing-item hombre">
-<img src="PCR1.jpg" onclick="window.open('https://wa.me/p/25783256487976410/573242606513', '_blank')">
-<h3>Pantaloneta Running ''Cortas''</h3>
-<button class="btn-buy" onclick="addToCart('Pantaloneta PCR1')">Añadir a Cesta</button>
-</div>
-
-<div class="product-card clothing-item hombre">
-<img src="PCR2.jpg" onclick="window.open('https://wa.me/p/25783256487976410/573242606513', '_blank')">
-<h3>Pantaloneta Running ''Corta''</h3>
-<button class="btn-buy" onclick="addToCart('Pantaloneta PCR2')">Añadir a Cesta</button>
-</div>
-
-<div class="product-card clothing-item hombre">
-<img src="PCR3.jpg" onclick="window.open('https://wa.me/p/25783256487976410/573242606513', '_blank')">
-<h3>Pantaloneta Running ''Corta''</h3>
-<button class="btn-buy" onclick="addToCart('Pantaloneta PCR3')">Añadir a Cesta</button>
-</div>
-
-<div class="product-card clothing-item hombre">
-<img src="Seleccion.jpg" onclick="window.open('https://wa.me/p/25596448220023377/573242606513', '_blank')">
-<h3>Camiseta Selección Colombia</h3>
-<button class="btn-buy" onclick="addToCart('Camiseta Selección Colombia')">Añadir a Cesta</button>
-</div>
-
-<div class="product-card clothing-item hombre">
-<img src="Shorts1.jpg" onclick="window.open('https://wa.me/573242606513', '_blank')">
-<h3>Short Deportivo Adidas</h3>
-<button class="btn-buy" onclick="addToCart('Short Adidas')">Añadir a Cesta</button>
-</div>
-
-<div class="product-card clothing-item hombre">
-<img src="Shorts2.jpg" onclick="window.open('https://wa.me/573242606513', '_blank')">
-<h3>Short Deportivo Nike</h3>
-<button class="btn-buy" onclick="addToCart('Short Nike')">Añadir a Cesta</button>
-</div>
-
-<div class="product-card clothing-item hombre">
-<img src="Camisetas1.jpg" onclick="window.open('https://wa.me/p/25279770708360587/573242606513', '_blank')">
-<h3>Camisetas Dry-Fit</h3>
-<button class="btn-buy" onclick="addToCart('Camiseta Dry-Fit')">Añadir a Cesta</button>
-</div>
-
-<div class="product-card clothing-item hombre">
-<img src="Camiseta2.jpg" onclick="window.open('https://wa.me/p/25279770708360587/573242606513', '_blank')">
-<h3>Camisetas Dry-Fit</h3>
-<button class="btn-buy" onclick="addToCart('Camiseta Dry-Fit')">Añadir a Cesta</button>
-</div>
-
-<div class="product-card clothing-item mujer">
-<img src="LicraPro.jpg" onclick="window.open('https://wa.me/573242606513', '_blank')">
-<h3>Licra Deportiva Mujer</h3>
-<button class="btn-buy" onclick="addToCart('Licra Deportiva Mujer')">Añadir a Cesta</button>
-</div>
-</div>
-</section>
-
-<section id="accesorios" class="product-section">
-<div class="btn-back" onclick="showHome()">← Volver a Categorías</div>
-<h2 class="section-title">Accesorios Deportivos</h2>
-<div class="products-grid">
-<div class="product-card">
-<img src="Termos20.jpg" onclick="window.open('https://wa.me/573242606513', '_blank')">
-<h3>Termos 20k</h3>
-<button class="btn-buy" onclick="addToCart('Termos 20k')">Añadir a Cesta</button>
-</div>
-</div>
-</section>
-
-<section id="combos" class="product-section">
-<div class="btn-back" onclick="showHome()">← Volver al Inicio</div>
-<h2 style="color: var(--gold);">Combos de Rendimiento Máximo</h2>
-<div class="products-grid">
-<div class="product-card">
-<span class="combo-badge">PROMO ADROOS</span>
-<img src="logo-adroos.jpg" onclick="window.open('https://wa.me/573242606513?text=Hola!%20Me%20interesa%20el%20Combo%20Masa%20Muscular', '_blank')"> 
-<h3>Combo Masa: Proteína + Creatina</h3>
-<button class="btn-buy" onclick="addToCart('Combo Masa: Proteína + Creatina')">Añadir a Cesta</button>
-</div>
-</div>
-</section>
-
-<div class="faq-section" id="faq">
-<h2 class="section-title">Dudas Frecuentes</h2>
-<details><summary>¿Tomando creatina aumentaré grasa corporal?</summary><p>No ganarás grasa. La creatina mejora la hidratación y el tono muscular.</p></details>
-<details><summary>¿La proteína engorda?</summary><p>No, el peso depende del balance calórico total.</p></details>
-<details><summary>¿Puedo mezclar la proteína con la creatina?</summary><p>Sí, puedes mezclarlas sin problema. Es una excelente combinación post-entrenamiento.</p></details>
-<details><summary>¿Por qué tomar Magnesio antes de dormir?</summary><p>El Magnesium ayuda a relajar el sistema nervioso y los músculos. Mejora la calidad del sueño profundo y la recuperación.</p></details>
-</div>
-
-<div style="margin: 60px 0; display: flex; flex-direction: column; gap: 15px; align-items: center;">
-<a href="https://adroos.lovable.app" target="_blank" style="background:#000; color:#fff; padding:15px 30px; border-radius:10px; text-decoration:none; font-weight:900; width:100%; max-width:350px; border:2px solid #d4af37; text-align: center;">🚀 ASESORÍA RÁPIDA (Web App)</a>
-
-<a href="https://guianutricionaladroos.lovable.app/" target="_blank" style="background: var(--premium-grad); color:#000; padding:15px 30px; border-radius:10px; text-decoration:none; font-weight:900; width:100%; max-width:350px; border:none; text-align: center; box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);">🥗 GUÍA NUTRICIONAL ADROOS</a>
-
-<a href="https://entrenamientoadroos.lovable.app" target="_blank" style="background:#000; color:#fff; padding:15px 30px; border-radius:10px; text-decoration:none; font-weight:900; width:100%; max-width:350px; border:2px solid #d4af37; text-align: center;">💪🏻🏋🏻 PROGRAMA DE ENTRENAMIENTO ADROOS </a>
-
-</div>
-</div>
-
-<a href="https://wa.me/573242606513?text=Hola%20ADROOS%20👋%2C%20necesito%20asesoría%20personalizada." class="whatsapp-float" target="_blank">
-<img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" width="35" alt="WhatsApp">
-</a>
-
-    <script>
-        let cart = [];
-
-        function addToCart(productName) {
-            const index = cart.findIndex(item => item.name === productName);
-            if (index > -1) {
-                cart[index].qty += 1;
-            } else {
-    <script>
-        let cart = [];
-        const productDetails = {
-            "ON Creatine 60 Serv": {
-                description: "Creatina monohidratada para fuerza y potencia diaria.",
-                use: "1 porción al día con agua, ideal post-entreno.",
-                benefits: ["Mejora el rendimiento", "Apoya la recuperación", "Incrementa fuerza"],
-                whatsapp: "https://wa.me/p/30114224388225062/573242606513"
-            },
-            "ON Creatine 120 Serv": {
-                description: "Formato extendido para ciclos largos de entrenamiento.",
-                use: "1 porción al día con agua, preferible post-entreno.",
-                benefits: ["Mayor resistencia", "Hidratación muscular", "Mejor desempeño"],
-                whatsapp: "https://wa.me/p/24573418475599253/573242606513"
-            },
-            "Healthy Sports 100 Serv": {
-                description: "Creatina rendidora para uso continuo.",
-                use: "1 porción al día, con agua o jugo.",
-                benefits: ["Fuerza sostenida", "Recuperación rápida", "Rendimiento diario"],
-                whatsapp: "https://wa.me/p/10068590003226336/573242606513"
-            },
-            "Healthy Sports 50 Serv": {
-                description: "Creatina práctica para planes cortos.",
-                use: "1 porción al día, ideal post-entreno.",
-                benefits: ["Aumenta potencia", "Mejora rendimiento", "Soporte de fuerza"],
-                whatsapp: "https://wa.me/p/24408065855463940/573242606513"
-            },
-            "IMN 133 Serv": {
-                description: "Creatina de larga duración para continuidad.",
-                use: "1 porción al día con agua.",
-                benefits: ["Energía muscular", "Fuerza constante", "Mayor volumen"],
-                whatsapp: "https://wa.me/p/24400451672872301/573242606513"
-            },
-            "IMN 50 Serv": {
-                description: "Creatina compacta para rutinas intensas.",
-                use: "1 porción al día, después de entrenar.",
-                benefits: ["Potencia inmediata", "Mejor recuperación", "Rendimiento total"],
-                whatsapp: "https://wa.me/p/24052428174393614/573242606513"
-            },
-            "Iron Nutrition 100 Serv": {
-                description: "Creatina pura para fuerza y explosividad.",
-                use: "1 porción al día con agua o bebida.",
-                benefits: ["Explosividad", "Fuerza muscular", "Apoyo al rendimiento"],
-                whatsapp: "https://wa.me/p/30181896938122185/573242606513"
-            },
-            "Dymatize 88 Serv": {
-                description: "Creatina confiable para rendimiento constante.",
-                use: "1 porción al día, preferiblemente post-entreno.",
-                benefits: ["Potencia", "Resistencia", "Recuperación"],
-                whatsapp: "https://wa.me/p/24230499279887716/573242606513"
-            },
-            "Platinum MuscleTech": {
-                description: "Creatina premium para metas exigentes.",
-                use: "1 porción diaria con agua, post-entreno.",
-                benefits: ["Fuerza", "Rendimiento", "Recuperación muscular"],
-                whatsapp: "https://wa.me/p/24329943086611680/573242606513"
-            },
-            "Bi-Pro Classic 2 Lbs": {
-                description: "Proteína whey para recuperación y masa magra.",
-                use: "1 scoop post-entreno o entre comidas.",
-                benefits: ["Recuperación", "Aporte proteico", "Músculo magro"],
-                whatsapp: "https://wa.me/p/30852624011002730/573242606513"
-            },
-            "Bi-Pro Classic 3 Lbs": {
-                description: "Proteína whey con mayor rendimiento por envase.",
-                use: "1 scoop post-entreno o entre comidas.",
-                benefits: ["Recuperación", "Aporte proteico", "Músculo magro"],
-                whatsapp: "https://wa.me/p/24328728220082582/573242606513"
-            },
-            "Bi-Pro Ripped": {
-                description: "Proteína enfocada en definición y control calórico.",
-                use: "1 scoop post-entreno o como snack proteico.",
-                benefits: ["Definición", "Recuperación", "Apoyo metabólico"],
-                whatsapp: "https://wa.me/p/9983544765026553/573242606513"
-            },
-            "ProScience Best Protein": {
-                description: "Proteína balanceada para uso diario.",
-                use: "1 scoop post-entreno o en desayunos.",
-                benefits: ["Recuperación", "Sabor agradable", "Aporte diario"],
-                whatsapp: "https://wa.me/p/32987260517586889/573242606513"
-            },
-            "ON Whey Gold 2 Lbs": {
-                description: "Whey premium para recuperación rápida.",
-                use: "1 scoop post-entreno o entre comidas.",
-                benefits: ["Alta calidad", "Fácil digestión", "Recuperación"],
-                whatsapp: "https://wa.me/p/23905475465783063/573242606513"
-            },
-            "ON Whey Gold 5 Lbs": {
-                description: "Whey premium en formato familiar.",
-                use: "1 scoop post-entreno o entre comidas.",
-                benefits: ["Alta calidad", "Aporte constante", "Recuperación"],
-                whatsapp: "https://wa.me/p/24261128060148910/573242606513"
-            },
-            "MuscleTech NitroTech 2 Lbs": {
-                description: "Proteína avanzada para crecimiento muscular.",
-                use: "1 scoop post-entreno.",
-                benefits: ["Recuperación", "Fuerza", "Desarrollo muscular"],
-                whatsapp: "https://wa.me/p/24463007063285491/573242606513"
-            },
-            "MuscleTech NitroTech 4 Lbs": {
-                description: "Formato extendido de proteína avanzada.",
-                use: "1 scoop post-entreno o entre comidas.",
-                benefits: ["Recuperación", "Fuerza", "Desarrollo muscular"],
-                whatsapp: "https://wa.me/p/24494955860088777/573242606513"
-            },
-            "Vitanas Whey Elite 5 Lbs": {
-                description: "Whey concentrada para rutina diaria.",
-                use: "1 scoop post-entreno.",
-                benefits: ["Recuperación", "Proteína diaria", "Rendimiento"],
-                whatsapp: "https://wa.me/p/25430473939942439/573242606513"
-            },
-            "Vitanas Whey Elite 10 Lbs": {
-                description: "Formato XL para consumo continuo.",
-                use: "1 scoop post-entreno o entre comidas.",
-                benefits: ["Aporte constante", "Recuperación", "Masa magra"],
-                whatsapp: "https://wa.me/p/25563321256653728/573242606513"
-            },
-            "Bi-Pro Mass": {
-                description: "Hipercalórico para volumen y calorías extra.",
-                use: "1-2 porciones al día entre comidas.",
-                benefits: ["Subida de masa", "Energía", "Calorías extra"],
-                whatsapp: "https://wa.me/p/23870086602620203/573242606513"
-            },
-            "ProScience Smart Gainer": {
-                description: "Ganador de peso con balance de nutrientes.",
-                use: "1-2 porciones al día, entre comidas.",
-                benefits: ["Aumento de peso", "Energía", "Recuperación"],
-                whatsapp: "https://wa.me/p/9905458082896352/573242606513"
-            },
-            "Super Magnesium HA": {
-                description: "Magnesio para relajación y recuperación.",
-                use: "1 cápsula en la noche con agua.",
-                benefits: ["Relajación", "Recuperación muscular", "Sueño de calidad"],
-                whatsapp: "https://wa.me/p/30726142463650955/573242606513"
-            },
-            "Colágeno Hidrolizado": {
-                description: "Soporte de piel, articulaciones y tejidos.",
-                use: "1 porción diaria con agua o jugo.",
-                benefits: ["Cuidado articular", "Piel y cabello", "Elasticidad"],
-                whatsapp: "https://wa.me/p/30830197233238022/573242606513"
-            },
-            "Vitamina IMN": {
-                description: "Refuerzo nutricional diario.",
-                use: "1 cápsula al día con comida.",
-                benefits: ["Apoyo inmunológico", "Vitalidad", "Energía diaria"],
-                whatsapp: "https://wa.me/p/24027863493499374/573242606513"
-            },
-            "Multivitamínico Completo": {
-                description: "Complejo de vitaminas y minerales esenciales.",
-                use: "1 cápsula al día con comida.",
-                benefits: ["Bienestar general", "Energía", "Defensas"],
-                whatsapp: "https://wa.me/p/24190992310539250/573242606513"
-            },
-            "Nootrópico (Enfoque)": {
-                description: "Apoyo para concentración y rendimiento mental.",
-                use: "1 cápsula al día en la mañana.",
-                benefits: ["Enfoque", "Claridad mental", "Productividad"],
-                whatsapp: "https://wa.me/p/24285597814386029/573242606513"
-            },
-            "NAC 100 Serv": {
-                description: "Antioxidante para soporte diario.",
-                use: "1 porción al día con agua.",
-                benefits: ["Soporte antioxidante", "Bienestar general", "Cuidado celular"],
-                whatsapp: "https://wa.me/p/25177261168636022/573242606513"
-            },
-            "Liv.52 (Hígado)": {
-                description: "Soporte natural para la salud hepática.",
-                use: "1 cápsula al día con comida.",
-                benefits: ["Cuidado hepático", "Bienestar digestivo", "Soporte general"],
-                whatsapp: "https://wa.me/p/25901962499395504/573242606513"
-            },
-            "Biotina Cabello/Piel": {
-                description: "Biotina para cabello, piel y uñas.",
-                use: "1 cápsula al día con agua.",
-                benefits: ["Cabello fuerte", "Piel saludable", "Uñas resistentes"],
-                whatsapp: "https://wa.me/p/25653175470978904/573242606513"
-            },
-            "Cáscara Sagrada": {
-                description: "Soporte digestivo de origen natural.",
-                use: "1 cápsula en la noche con agua.",
-                benefits: ["Bienestar digestivo", "Rutina regular", "Soporte natural"],
-                whatsapp: "https://wa.me/p/25611944968470565/573242606513"
-            },
-            "Melatonina (Sueño)": {
-                description: "Apoyo para conciliar el sueño.",
-                use: "1 cápsula 30-60 min antes de dormir.",
-                benefits: ["Mejor descanso", "Sueño profundo", "Relajación"],
-                whatsapp: "https://wa.me/p/26321323314122208/573242606513"
-            },
-            "Calcio + Vitamina D": {
-                description: "Soporte óseo con vitamina D.",
-                use: "1 cápsula al día con comida.",
-                benefits: ["Huesos fuertes", "Absorción de calcio", "Soporte diario"],
-                whatsapp: "https://wa.me/p/33871378905810991/573242606513"
-            },
-            "Citrato de Potasio": {
-                description: "Mineral esencial para equilibrio corporal.",
-                use: "1 cápsula al día con agua.",
-                benefits: ["Balance mineral", "Hidratación", "Bienestar muscular"],
-                whatsapp: "https://wa.me/p/26307386022196190/573242606513"
-            },
-            "Wellflex (Articulaciones)": {
-                description: "Soporte para articulaciones activas.",
-                use: "1 cápsula al día con comida.",
-                benefits: ["Movilidad", "Cuidado articular", "Bienestar"],
-                whatsapp: "https://wa.me/p/25426883876961068/573242606513"
-            },
-            "Vitamina C": {
-                description: "Vitamina antioxidante para uso diario.",
-                use: "1 cápsula al día con comida.",
-                benefits: ["Defensas", "Energía", "Protección antioxidante"],
-                whatsapp: "https://wa.me/p/25290632443912081/573242606513"
-            },
-            "Vitamina E": {
-                description: "Vitamina antioxidante para bienestar celular.",
-                use: "1 cápsula al día con comida.",
-                benefits: ["Protección antioxidante", "Piel saludable", "Bienestar"],
-                whatsapp: "https://wa.me/p/25442935501993623/573242606513"
-            },
-            "Ashwagandha": {
-                description: "Adaptógeno para equilibrio y calma.",
-                use: "1 cápsula al día, preferible en la noche.",
-                benefits: ["Relajación", "Equilibrio", "Bienestar diario"],
-                whatsapp: "https://wa.me/p/25543397098654956/573242606513"
-            },
-            "Cartílago de Tiburón": {
-                description: "Suplemento para soporte articular tradicional.",
-                use: "1 cápsula al día con agua.",
-                benefits: ["Cuidado articular", "Bienestar", "Soporte diario"],
-                whatsapp: "https://wa.me/573242606513"
-            },
-            "Esqueleto Deportivo Adidas": {
-                description: "Camisilla ligera y fresca para entrenar.",
-                use: "Uso diario en gimnasio o aire libre.",
-                benefits: ["Comodidad", "Transpirabilidad", "Libertad de movimiento"],
-                whatsapp: "https://wa.me/p/33207499735561483/573242606513"
-            },
-            "Esqueleto Deportivo Nike": {
-                description: "Camisilla deportiva cómoda y versátil.",
-                use: "Uso diario en entrenamiento o casual.",
-                benefits: ["Frescura", "Comodidad", "Estilo deportivo"],
-                whatsapp: "https://wa.me/p/33207499735561483/573242606513"
-            },
-            "Pantaloneta Running ''Cortas''": {
-                description: "Pantaloneta corta ideal para running.",
-                use: "Uso deportivo para carrera o gimnasio.",
-                benefits: ["Ligereza", "Secado rápido", "Movilidad"],
-                whatsapp: "https://wa.me/p/25783256487976410/573242606513"
-            },
-            "Pantaloneta Running ''Corta''": {
-                description: "Pantaloneta corta para entrenamiento intenso.",
-                use: "Uso deportivo para running o gym.",
-                benefits: ["Comodidad", "Transpirabilidad", "Movilidad"],
-                whatsapp: "https://wa.me/p/25783256487976410/573242606513"
-            },
-            "Camiseta Selección Colombia": {
-                description: "Camiseta deportiva con estilo selección.",
-                use: "Uso casual o deportivo.",
-                benefits: ["Comodidad", "Estilo", "Tela ligera"],
-                whatsapp: "https://wa.me/p/25596448220023377/573242606513"
-            },
-            "Short Deportivo Adidas": {
-                description: "Short cómodo para entrenamiento diario.",
-                use: "Uso deportivo o casual.",
-                benefits: ["Comodidad", "Movilidad", "Frescura"],
-                whatsapp: "https://wa.me/573242606513"
-            },
-            "Short Deportivo Nike": {
-                description: "Short ligero para entrenamientos.",
-                use: "Uso deportivo o casual.",
-                benefits: ["Comodidad", "Movilidad", "Frescura"],
-                whatsapp: "https://wa.me/573242606513"
-            },
-            "Camisetas Dry-Fit": {
-                description: "Camiseta transpirable para entrenar.",
-                use: "Uso deportivo diario.",
-                benefits: ["Secado rápido", "Comodidad", "Estilo"],
-                whatsapp: "https://wa.me/p/25279770708360587/573242606513"
-            },
-            "Licra Deportiva Mujer": {
-                description: "Licra cómoda y de ajuste seguro.",
-                use: "Uso deportivo diario.",
-                benefits: ["Elasticidad", "Comodidad", "Soporte"],
-                whatsapp: "https://wa.me/573242606513"
-            },
-            "Termos 20k": {
-                description: "Termo resistente para tu hidratación.",
-                use: "Ideal para gimnasio y movilidad.",
-                benefits: ["Conserva temperatura", "Práctico", "Duradero"],
-                whatsapp: "https://wa.me/573242606513"
-            },
-            "Combo Masa: Proteína + Creatina": {
-                description: "Combo ideal para fuerza y volumen.",
-                use: "Proteína post-entreno y creatina diaria.",
-                benefits: ["Ganar masa", "Fuerza", "Recuperación completa"],
-                whatsapp: "https://wa.me/573242606513?text=Hola!%20Me%20interesa%20el%20Combo%20Masa%20Muscular"
-            }
-        };
-        const defaultDetails = {
-            description: "Consulta disponibilidad y asesoría personalizada.",
-            use: "Sigue las indicaciones del empaque o consulta con nuestro equipo.",
-            benefits: ["Asesoría personalizada", "Compra segura", "Envíos rápidos"],
-            whatsapp: "https://wa.me/573242606513"
-        };
-
-        function getProductDetails(name) {
-            if (!name) return defaultDetails;
-            return productDetails[name] ? { ...defaultDetails, ...productDetails[name] } : { ...defaultDetails, description: defaultDetails.description };
-        }
-
-        function addToCart(productName) {
-            const index = cart.findIndex(item => item.name === productName);
-            if (index > -1) {
-                cart[index].qty += 1;
-            } else {
-cart.push({ name: productName, qty: 1 });
-}
-updateCartUI();
-const cartIcon = document.querySelector('.cart-float');
-cartIcon.style.transform = 'scale(1.3)';
-            setTimeout(() => cartIcon.style.transform = 'scale(1)', 300);
-        }
-
-        function updateCartUI() {
-            const count = cart.reduce((acc, item) => acc + item.qty, 0);
-            document.getElementById('cart-count').innerText = count;
-            const list = document.getElementById('cart-items-list');
-            if (cart.length === 0) {
-            setTimeout(() => cartIcon.style.transform = 'scale(1)', 300);
-        }
-
-        function toggleProductModal(show) {
-            const modal = document.getElementById('product-modal');
-            modal.style.display = show ? 'flex' : 'none';
-        }
-
-        function openProduct(productName) {
-            const details = getProductDetails(productName);
-            document.getElementById('product-modal-title').innerText = productName;
-            document.getElementById('product-modal-description').innerText = details.description;
-            document.getElementById('product-modal-use').innerText = details.use;
-            const benefitsList = document.getElementById('product-modal-benefits');
-            benefitsList.innerHTML = "";
-            details.benefits.forEach(benefit => {
-                const li = document.createElement('li');
-                li.innerText = benefit;
-                benefitsList.appendChild(li);
-            });
-            const cartButton = document.getElementById('product-modal-cart');
-            cartButton.onclick = () => addToCart(productName);
-            const whatsappButton = document.getElementById('product-modal-whatsapp');
-            whatsappButton.href = details.whatsapp;
-            toggleProductModal(true);
-        }
-
-        function updateCartUI() {
-            const count = cart.reduce((acc, item) => acc + item.qty, 0);
-            document.getElementById('cart-count').innerText = count;
-            const list = document.getElementById('cart-items-list');
-            if (cart.length === 0) {
-list.innerHTML = '<p style="color: #888; text-align: center; padding: 20px;">Tu cesta está vacía...</p>';
-return;
-}
-list.innerHTML = cart.map((item, i) => `
-               <div class="cart-item">
-                   <span><b>${item.qty}x</b> ${item.name}</span>
-                   <button class="remove-item" onclick="removeFromCart(${i})">Borrar</button>
-               </div>
-           `).join('');
+    document.querySelectorAll('.product-card').forEach(card => {
+        card.style.display = (type === 'all' || card.classList.contains(type)) ? 'block' : 'none';
+    });
 }
 
-function removeFromCart(index) {
-cart.splice(index, 1);
-updateCartUI();
+function addToCart(name) {
+    const item = cart.find(p => p.name === name);
+    item ? item.qty++ : cart.push({ name, qty:1 });
+    updateCartUI();
 }
 
-function toggleCart() {
-const modal = document.getElementById('cart-modal');
-modal.style.display = (modal.style.display === 'flex') ? 'none' : 'flex';
+function updateCartUI() {
+    const list = document.getElementById('cart-items-list');
+    const count = document.getElementById('cart-count');
+    list.innerHTML = '';
+    let total = 0;
+    cart.forEach((item,i)=>{
+        total += item.qty;
+        list.innerHTML += `<div class="cart-item"><span>${item.name} x${item.qty}</span><button class="remove-item" onclick="removeItem(${i})">X</button></div>`;
+    });
+    count.textContent = total;
 }
 
-function sendOrder() {
-if (cart.length === 0) return alert("Cesta vacía");
-let message = "Hola ADROOS 👋, quiero realizar este pedido:\n\n";
-cart.forEach(item => message += `✅ ${item.qty}x ${item.name}\n`);
-const url = `https://wa.me/573242606513?text=${encodeURIComponent(message)}`;
-window.open(url, '_blank');
+function removeItem(i){ cart.splice(i,1); updateCartUI(); }
+function toggleCart(){ document.getElementById('cart-modal').style.display = document.getElementById('cart-modal').style.display==='flex'?'none':'flex'; }
+
+function sendOrder(){
+    let msg='Hola, quiero pedir:%0A';
+    cart.forEach(i=> msg+=`• ${i.name} x${i.qty}%0A`);
+    window.open('https://wa.me/573242606513?text='+msg,'_blank');
 }
 
-function showCategory(id) {
-document.getElementById('category-selector').style.display = 'none';
-document.querySelectorAll('.product-section').forEach(sec => sec.style.display = 'none');
-document.getElementById(id).style.display = 'block';
-if(document.getElementById('faq')) document.getElementById('faq').style.display = 'block';
-window.scrollTo({top: 0, behavior: 'smooth'});
+function openProduct(name){
+    const p = productDetails[name];
+    document.getElementById('product-modal-title').textContent = name;
+    document.getElementById('product-modal-description').textContent = p.description;
+    document.getElementById('product-modal-use').textContent = p.use;
+    const ul = document.getElementById('product-modal-benefits'); ul.innerHTML='';
+    p.benefits.forEach(b=> ul.innerHTML+=`<li>${b}</li>`);
+    document.getElementById('product-modal-whatsapp').href = p.whatsapp;
+    document.getElementById('product-modal-cart').onclick = ()=>addToCart(name);
+    document.getElementById('product-modal').style.display='flex';
 }
 
-function showHome() {
-document.querySelectorAll('.product-section').forEach(sec => sec.style.display = 'none');
-document.getElementById('category-selector').style.display = 'block';
-document.getElementById('productSearch').value = "";
-document.querySelectorAll('.product-card').forEach(c => c.style.display = 'flex');
-}
-
-function searchProducts() {
-let input = document.getElementById('productSearch').value.toLowerCase();
-let sections = document.querySelectorAll('.product-section');
-let selector = document.getElementById('category-selector');
-
-if (input.length > 0) {
-selector.style.display = 'none';
-sections.forEach(section => {
-let cards = section.getElementsByClassName('product-card');
-let hasResults = false;
-for (let card of cards) {
-let title = card.querySelector('h3').innerText.toLowerCase();
-if (title.includes(input)) {
-card.style.display = "flex";
-hasResults = true;
-} else {
-card.style.display = "none";
-}
-}
-section.style.display = hasResults ? 'block' : 'none';
-});
-} else {
-showHome();
-}
-}
-
-        function filterItems(className, type) {
-            let items = document.querySelectorAll('.' + className);
-            document.querySelectorAll('.btn-filter').forEach(btn => btn.classList.remove('active'));
-            event.target.classList.add('active');
-            items.forEach(item => {
-                item.style.display = (type === 'all' || item.classList.contains(type)) ? 'flex' : 'none';
-            });
-        }
-    </script>
-        function filterItems(className, type) {
-            let items = document.querySelectorAll('.' + className);
-            document.querySelectorAll('.btn-filter').forEach(btn => btn.classList.remove('active'));
-            event.target.classList.add('active');
-            items.forEach(item => {
-                item.style.display = (type === 'all' || item.classList.contains(type)) ? 'flex' : 'none';
-            });
-        }
-
-        document.querySelectorAll('.product-card').forEach(card => {
-            const title = card.querySelector('h3');
-            if (!title) return;
-            const productName = title.innerText.trim();
-            const details = getProductDetails(productName);
-            if (details.description && !card.querySelector('.product-description')) {
-                const desc = document.createElement('p');
-                desc.className = 'product-description';
-                desc.innerText = details.description;
-                title.insertAdjacentElement('afterend', desc);
-            }
-            if (!card.querySelector('.btn-details')) {
-                const button = document.createElement('button');
-                button.className = 'btn-details';
-                button.type = 'button';
-                button.innerText = 'Ver detalles';
-                button.addEventListener('click', () => openProduct(productName));
-                const buyButton = card.querySelector('.btn-buy');
-                if (buyButton) {
-                    buyButton.insertAdjacentElement('beforebegin', button);
-                } else {
-                    card.appendChild(button);
-                }
-            }
-        });
-    </script>
-
-<footer style="text-align: center;">
-<p>Síguenos en <a href="https://www.instagram.com/adro.ss" target="_blank" style="color:var(--gold); font-weight:bold; text-decoration:none;">@adro.ss</a></p>
-<p style="font-size: 0.7rem; margin-top: 15px; opacity: 0.6;">&copy; 2024 ADROOS STORE - Elite Sport Supplements</p>
-</footer>
+function toggleProductModal(close){ document.getElementById('product-modal').style.display = close?'none':'flex'; }
+</script>
 
 </body>
 </html>
