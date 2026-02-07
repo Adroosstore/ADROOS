@@ -51,6 +51,9 @@
         .product-card { background: #fff; padding: 15px; border-radius: 15px; border: 1px solid #eee; color: var(--dark); transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); display: flex; flex-direction: column; position: relative; }
         .product-card:hover { border-color: var(--gold); transform: translateY(-12px); box-shadow: 0 15px 30px rgba(212, 175, 55, 0.2); }
         .product-card img { width: 100%; border-radius: 10px; aspect-ratio: 1/1; object-fit: contain; margin-bottom: 12px; cursor: pointer; }
+        .product-description { font-size: 0.85rem; color: #555; margin: 6px 0 12px; min-height: 44px; }
+        .btn-details { background: #fff; color: var(--dark); border: 1px solid var(--gold); padding: 8px; border-radius: 8px; font-weight: 700; margin-top: 10px; cursor: pointer; width: 100%; transition: 0.3s; }
+        .btn-details:hover { background: var(--gold); color: #fff; }
         
         .combo-badge { background: var(--premium-grad); color: #000; font-weight: 800; font-size: 0.7rem; padding: 4px 10px; border-radius: 5px; margin-bottom: 8px; align-self: center; }
         .btn-buy { background: var(--whatsapp); color: white; padding: 10px; border-radius: 8px; font-weight: bold; margin-top: auto; border: none; cursor: pointer; width: 100%; transition: 0.3s; }
@@ -68,6 +71,19 @@
         .remove-item { background: rgba(255, 0, 0, 0.1); color: #ff4444; border: 1px solid #ff4444; padding: 5px 12px; border-radius: 8px; cursor: pointer; font-size: 0.75rem; }
         .btn-send-cart { background: var(--premium-grad); color: #000; width: 100%; padding: 18px; border-radius: 12px; border: none; font-weight: 900; font-size: 1.1rem; margin-top: 25px; cursor: pointer; box-shadow: 0 5px 15px rgba(212,175,55,0.3); }
         .close-cart { position: absolute; top: 15px; right: 20px; font-size: 2rem; cursor: pointer; color: var(--gold); }
+
+        #product-modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); backdrop-filter: blur(8px); z-index: 220; align-items: center; justify-content: center; padding: 20px; }
+        .product-modal-content { background: #fff; width: 100%; max-width: 560px; border-radius: 24px; padding: 28px; position: relative; max-height: 85vh; overflow-y: auto; box-shadow: 0 15px 40px rgba(0,0,0,0.3); }
+        .product-modal-content h2 { font-size: 1.6rem; margin-bottom: 10px; color: var(--dark); }
+        .modal-description { font-size: 0.95rem; color: #555; margin-bottom: 18px; }
+        .modal-block { background: #f8f8f8; padding: 14px; border-radius: 12px; margin-bottom: 12px; text-align: left; }
+        .modal-block h4 { margin-bottom: 6px; color: #8a6d10; font-size: 0.95rem; text-transform: uppercase; letter-spacing: 1px; }
+        .modal-block ul { padding-left: 18px; margin: 0; color: #444; }
+        .modal-actions { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 20px; }
+        .btn-modal { flex: 1; min-width: 180px; border: none; border-radius: 10px; padding: 12px; font-weight: 800; cursor: pointer; }
+        .btn-modal.whatsapp { background: var(--whatsapp); color: #fff; text-decoration: none; display: inline-flex; align-items: center; justify-content: center; }
+        .btn-modal.cart { background: var(--premium-grad); color: #000; }
+        .close-product { position: absolute; top: 12px; right: 18px; font-size: 2rem; cursor: pointer; color: var(--dark); background: none; border: none; }
 
         .faq-section { max-width: 800px; margin: 50px auto; text-align: left; }
         details { background: #f9f9f9; padding: 15px; border-radius: 10px; margin-bottom: 10px; cursor: pointer; border: 1px solid #eee; }
@@ -101,6 +117,26 @@
                 <p style="color: #888; text-align: center; padding: 20px;">Tu cesta está vacía...</p>
             </div>
             <button class="btn-send-cart" onclick="sendOrder()">PEDIR POR WHATSAPP</button>
+        </div>
+    </div>
+
+    <div id="product-modal">
+        <div class="product-modal-content">
+            <button class="close-product" onclick="toggleProductModal(false)">×</button>
+            <h2 id="product-modal-title">Producto</h2>
+            <p id="product-modal-description" class="modal-description"></p>
+            <div class="modal-block">
+                <h4>Modo de uso</h4>
+                <p id="product-modal-use"></p>
+            </div>
+            <div class="modal-block">
+                <h4>Servicios / Beneficios</h4>
+                <ul id="product-modal-benefits"></ul>
+            </div>
+            <div class="modal-actions">
+                <button class="btn-modal cart" id="product-modal-cart">Añadir a Cesta</button>
+                <a class="btn-modal whatsapp" id="product-modal-whatsapp" href="#" target="_blank">Abrir en WhatsApp</a>
+            </div>
         </div>
     </div>
 
@@ -471,6 +507,313 @@
 
     <script>
         let cart = [];
+        const productDetails = {
+            "ON Creatine 60 Serv": {
+                description: "Creatina monohidratada para fuerza y potencia diaria.",
+                use: "1 porción al día con agua, ideal post-entreno.",
+                benefits: ["Mejora el rendimiento", "Apoya la recuperación", "Incrementa fuerza"],
+                whatsapp: "https://wa.me/p/30114224388225062/573242606513"
+            },
+            "ON Creatine 120 Serv": {
+                description: "Formato extendido para ciclos largos de entrenamiento.",
+                use: "1 porción al día con agua, preferible post-entreno.",
+                benefits: ["Mayor resistencia", "Hidratación muscular", "Mejor desempeño"],
+                whatsapp: "https://wa.me/p/24573418475599253/573242606513"
+            },
+            "Healthy Sports 100 Serv": {
+                description: "Creatina rendidora para uso continuo.",
+                use: "1 porción al día, con agua o jugo.",
+                benefits: ["Fuerza sostenida", "Recuperación rápida", "Rendimiento diario"],
+                whatsapp: "https://wa.me/p/10068590003226336/573242606513"
+            },
+            "Healthy Sports 50 Serv": {
+                description: "Creatina práctica para planes cortos.",
+                use: "1 porción al día, ideal post-entreno.",
+                benefits: ["Aumenta potencia", "Mejora rendimiento", "Soporte de fuerza"],
+                whatsapp: "https://wa.me/p/24408065855463940/573242606513"
+            },
+            "IMN 133 Serv": {
+                description: "Creatina de larga duración para continuidad.",
+                use: "1 porción al día con agua.",
+                benefits: ["Energía muscular", "Fuerza constante", "Mayor volumen"],
+                whatsapp: "https://wa.me/p/24400451672872301/573242606513"
+            },
+            "IMN 50 Serv": {
+                description: "Creatina compacta para rutinas intensas.",
+                use: "1 porción al día, después de entrenar.",
+                benefits: ["Potencia inmediata", "Mejor recuperación", "Rendimiento total"],
+                whatsapp: "https://wa.me/p/24052428174393614/573242606513"
+            },
+            "Iron Nutrition 100 Serv": {
+                description: "Creatina pura para fuerza y explosividad.",
+                use: "1 porción al día con agua o bebida.",
+                benefits: ["Explosividad", "Fuerza muscular", "Apoyo al rendimiento"],
+                whatsapp: "https://wa.me/p/30181896938122185/573242606513"
+            },
+            "Dymatize 88 Serv": {
+                description: "Creatina confiable para rendimiento constante.",
+                use: "1 porción al día, preferiblemente post-entreno.",
+                benefits: ["Potencia", "Resistencia", "Recuperación"],
+                whatsapp: "https://wa.me/p/24230499279887716/573242606513"
+            },
+            "Platinum MuscleTech": {
+                description: "Creatina premium para metas exigentes.",
+                use: "1 porción diaria con agua, post-entreno.",
+                benefits: ["Fuerza", "Rendimiento", "Recuperación muscular"],
+                whatsapp: "https://wa.me/p/24329943086611680/573242606513"
+            },
+            "Bi-Pro Classic 2 Lbs": {
+                description: "Proteína whey para recuperación y masa magra.",
+                use: "1 scoop post-entreno o entre comidas.",
+                benefits: ["Recuperación", "Aporte proteico", "Músculo magro"],
+                whatsapp: "https://wa.me/p/30852624011002730/573242606513"
+            },
+            "Bi-Pro Classic 3 Lbs": {
+                description: "Proteína whey con mayor rendimiento por envase.",
+                use: "1 scoop post-entreno o entre comidas.",
+                benefits: ["Recuperación", "Aporte proteico", "Músculo magro"],
+                whatsapp: "https://wa.me/p/24328728220082582/573242606513"
+            },
+            "Bi-Pro Ripped": {
+                description: "Proteína enfocada en definición y control calórico.",
+                use: "1 scoop post-entreno o como snack proteico.",
+                benefits: ["Definición", "Recuperación", "Apoyo metabólico"],
+                whatsapp: "https://wa.me/p/9983544765026553/573242606513"
+            },
+            "ProScience Best Protein": {
+                description: "Proteína balanceada para uso diario.",
+                use: "1 scoop post-entreno o en desayunos.",
+                benefits: ["Recuperación", "Sabor agradable", "Aporte diario"],
+                whatsapp: "https://wa.me/p/32987260517586889/573242606513"
+            },
+            "ON Whey Gold 2 Lbs": {
+                description: "Whey premium para recuperación rápida.",
+                use: "1 scoop post-entreno o entre comidas.",
+                benefits: ["Alta calidad", "Fácil digestión", "Recuperación"],
+                whatsapp: "https://wa.me/p/23905475465783063/573242606513"
+            },
+            "ON Whey Gold 5 Lbs": {
+                description: "Whey premium en formato familiar.",
+                use: "1 scoop post-entreno o entre comidas.",
+                benefits: ["Alta calidad", "Aporte constante", "Recuperación"],
+                whatsapp: "https://wa.me/p/24261128060148910/573242606513"
+            },
+            "MuscleTech NitroTech 2 Lbs": {
+                description: "Proteína avanzada para crecimiento muscular.",
+                use: "1 scoop post-entreno.",
+                benefits: ["Recuperación", "Fuerza", "Desarrollo muscular"],
+                whatsapp: "https://wa.me/p/24463007063285491/573242606513"
+            },
+            "MuscleTech NitroTech 4 Lbs": {
+                description: "Formato extendido de proteína avanzada.",
+                use: "1 scoop post-entreno o entre comidas.",
+                benefits: ["Recuperación", "Fuerza", "Desarrollo muscular"],
+                whatsapp: "https://wa.me/p/24494955860088777/573242606513"
+            },
+            "Vitanas Whey Elite 5 Lbs": {
+                description: "Whey concentrada para rutina diaria.",
+                use: "1 scoop post-entreno.",
+                benefits: ["Recuperación", "Proteína diaria", "Rendimiento"],
+                whatsapp: "https://wa.me/p/25430473939942439/573242606513"
+            },
+            "Vitanas Whey Elite 10 Lbs": {
+                description: "Formato XL para consumo continuo.",
+                use: "1 scoop post-entreno o entre comidas.",
+                benefits: ["Aporte constante", "Recuperación", "Masa magra"],
+                whatsapp: "https://wa.me/p/25563321256653728/573242606513"
+            },
+            "Bi-Pro Mass": {
+                description: "Hipercalórico para volumen y calorías extra.",
+                use: "1-2 porciones al día entre comidas.",
+                benefits: ["Subida de masa", "Energía", "Calorías extra"],
+                whatsapp: "https://wa.me/p/23870086602620203/573242606513"
+            },
+            "ProScience Smart Gainer": {
+                description: "Ganador de peso con balance de nutrientes.",
+                use: "1-2 porciones al día, entre comidas.",
+                benefits: ["Aumento de peso", "Energía", "Recuperación"],
+                whatsapp: "https://wa.me/p/9905458082896352/573242606513"
+            },
+            "Super Magnesium HA": {
+                description: "Magnesio para relajación y recuperación.",
+                use: "1 cápsula en la noche con agua.",
+                benefits: ["Relajación", "Recuperación muscular", "Sueño de calidad"],
+                whatsapp: "https://wa.me/p/30726142463650955/573242606513"
+            },
+            "Colágeno Hidrolizado": {
+                description: "Soporte de piel, articulaciones y tejidos.",
+                use: "1 porción diaria con agua o jugo.",
+                benefits: ["Cuidado articular", "Piel y cabello", "Elasticidad"],
+                whatsapp: "https://wa.me/p/30830197233238022/573242606513"
+            },
+            "Vitamina IMN": {
+                description: "Refuerzo nutricional diario.",
+                use: "1 cápsula al día con comida.",
+                benefits: ["Apoyo inmunológico", "Vitalidad", "Energía diaria"],
+                whatsapp: "https://wa.me/p/24027863493499374/573242606513"
+            },
+            "Multivitamínico Completo": {
+                description: "Complejo de vitaminas y minerales esenciales.",
+                use: "1 cápsula al día con comida.",
+                benefits: ["Bienestar general", "Energía", "Defensas"],
+                whatsapp: "https://wa.me/p/24190992310539250/573242606513"
+            },
+            "Nootrópico (Enfoque)": {
+                description: "Apoyo para concentración y rendimiento mental.",
+                use: "1 cápsula al día en la mañana.",
+                benefits: ["Enfoque", "Claridad mental", "Productividad"],
+                whatsapp: "https://wa.me/p/24285597814386029/573242606513"
+            },
+            "NAC 100 Serv": {
+                description: "Antioxidante para soporte diario.",
+                use: "1 porción al día con agua.",
+                benefits: ["Soporte antioxidante", "Bienestar general", "Cuidado celular"],
+                whatsapp: "https://wa.me/p/25177261168636022/573242606513"
+            },
+            "Liv.52 (Hígado)": {
+                description: "Soporte natural para la salud hepática.",
+                use: "1 cápsula al día con comida.",
+                benefits: ["Cuidado hepático", "Bienestar digestivo", "Soporte general"],
+                whatsapp: "https://wa.me/p/25901962499395504/573242606513"
+            },
+            "Biotina Cabello/Piel": {
+                description: "Biotina para cabello, piel y uñas.",
+                use: "1 cápsula al día con agua.",
+                benefits: ["Cabello fuerte", "Piel saludable", "Uñas resistentes"],
+                whatsapp: "https://wa.me/p/25653175470978904/573242606513"
+            },
+            "Cáscara Sagrada": {
+                description: "Soporte digestivo de origen natural.",
+                use: "1 cápsula en la noche con agua.",
+                benefits: ["Bienestar digestivo", "Rutina regular", "Soporte natural"],
+                whatsapp: "https://wa.me/p/25611944968470565/573242606513"
+            },
+            "Melatonina (Sueño)": {
+                description: "Apoyo para conciliar el sueño.",
+                use: "1 cápsula 30-60 min antes de dormir.",
+                benefits: ["Mejor descanso", "Sueño profundo", "Relajación"],
+                whatsapp: "https://wa.me/p/26321323314122208/573242606513"
+            },
+            "Calcio + Vitamina D": {
+                description: "Soporte óseo con vitamina D.",
+                use: "1 cápsula al día con comida.",
+                benefits: ["Huesos fuertes", "Absorción de calcio", "Soporte diario"],
+                whatsapp: "https://wa.me/p/33871378905810991/573242606513"
+            },
+            "Citrato de Potasio": {
+                description: "Mineral esencial para equilibrio corporal.",
+                use: "1 cápsula al día con agua.",
+                benefits: ["Balance mineral", "Hidratación", "Bienestar muscular"],
+                whatsapp: "https://wa.me/p/26307386022196190/573242606513"
+            },
+            "Wellflex (Articulaciones)": {
+                description: "Soporte para articulaciones activas.",
+                use: "1 cápsula al día con comida.",
+                benefits: ["Movilidad", "Cuidado articular", "Bienestar"],
+                whatsapp: "https://wa.me/p/25426883876961068/573242606513"
+            },
+            "Vitamina C": {
+                description: "Vitamina antioxidante para uso diario.",
+                use: "1 cápsula al día con comida.",
+                benefits: ["Defensas", "Energía", "Protección antioxidante"],
+                whatsapp: "https://wa.me/p/25290632443912081/573242606513"
+            },
+            "Vitamina E": {
+                description: "Vitamina antioxidante para bienestar celular.",
+                use: "1 cápsula al día con comida.",
+                benefits: ["Protección antioxidante", "Piel saludable", "Bienestar"],
+                whatsapp: "https://wa.me/p/25442935501993623/573242606513"
+            },
+            "Ashwagandha": {
+                description: "Adaptógeno para equilibrio y calma.",
+                use: "1 cápsula al día, preferible en la noche.",
+                benefits: ["Relajación", "Equilibrio", "Bienestar diario"],
+                whatsapp: "https://wa.me/p/25543397098654956/573242606513"
+            },
+            "Cartílago de Tiburón": {
+                description: "Suplemento para soporte articular tradicional.",
+                use: "1 cápsula al día con agua.",
+                benefits: ["Cuidado articular", "Bienestar", "Soporte diario"],
+                whatsapp: "https://wa.me/573242606513"
+            },
+            "Esqueleto Deportivo Adidas": {
+                description: "Camisilla ligera y fresca para entrenar.",
+                use: "Uso diario en gimnasio o aire libre.",
+                benefits: ["Comodidad", "Transpirabilidad", "Libertad de movimiento"],
+                whatsapp: "https://wa.me/p/33207499735561483/573242606513"
+            },
+            "Esqueleto Deportivo Nike": {
+                description: "Camisilla deportiva cómoda y versátil.",
+                use: "Uso diario en entrenamiento o casual.",
+                benefits: ["Frescura", "Comodidad", "Estilo deportivo"],
+                whatsapp: "https://wa.me/p/33207499735561483/573242606513"
+            },
+            "Pantaloneta Running ''Cortas''": {
+                description: "Pantaloneta corta ideal para running.",
+                use: "Uso deportivo para carrera o gimnasio.",
+                benefits: ["Ligereza", "Secado rápido", "Movilidad"],
+                whatsapp: "https://wa.me/p/25783256487976410/573242606513"
+            },
+            "Pantaloneta Running ''Corta''": {
+                description: "Pantaloneta corta para entrenamiento intenso.",
+                use: "Uso deportivo para running o gym.",
+                benefits: ["Comodidad", "Transpirabilidad", "Movilidad"],
+                whatsapp: "https://wa.me/p/25783256487976410/573242606513"
+            },
+            "Camiseta Selección Colombia": {
+                description: "Camiseta deportiva con estilo selección.",
+                use: "Uso casual o deportivo.",
+                benefits: ["Comodidad", "Estilo", "Tela ligera"],
+                whatsapp: "https://wa.me/p/25596448220023377/573242606513"
+            },
+            "Short Deportivo Adidas": {
+                description: "Short cómodo para entrenamiento diario.",
+                use: "Uso deportivo o casual.",
+                benefits: ["Comodidad", "Movilidad", "Frescura"],
+                whatsapp: "https://wa.me/573242606513"
+            },
+            "Short Deportivo Nike": {
+                description: "Short ligero para entrenamientos.",
+                use: "Uso deportivo o casual.",
+                benefits: ["Comodidad", "Movilidad", "Frescura"],
+                whatsapp: "https://wa.me/573242606513"
+            },
+            "Camisetas Dry-Fit": {
+                description: "Camiseta transpirable para entrenar.",
+                use: "Uso deportivo diario.",
+                benefits: ["Secado rápido", "Comodidad", "Estilo"],
+                whatsapp: "https://wa.me/p/25279770708360587/573242606513"
+            },
+            "Licra Deportiva Mujer": {
+                description: "Licra cómoda y de ajuste seguro.",
+                use: "Uso deportivo diario.",
+                benefits: ["Elasticidad", "Comodidad", "Soporte"],
+                whatsapp: "https://wa.me/573242606513"
+            },
+            "Termos 20k": {
+                description: "Termo resistente para tu hidratación.",
+                use: "Ideal para gimnasio y movilidad.",
+                benefits: ["Conserva temperatura", "Práctico", "Duradero"],
+                whatsapp: "https://wa.me/573242606513"
+            },
+            "Combo Masa: Proteína + Creatina": {
+                description: "Combo ideal para fuerza y volumen.",
+                use: "Proteína post-entreno y creatina diaria.",
+                benefits: ["Ganar masa", "Fuerza", "Recuperación completa"],
+                whatsapp: "https://wa.me/573242606513?text=Hola!%20Me%20interesa%20el%20Combo%20Masa%20Muscular"
+            }
+        };
+        const defaultDetails = {
+            description: "Consulta disponibilidad y asesoría personalizada.",
+            use: "Sigue las indicaciones del empaque o consulta con nuestro equipo.",
+            benefits: ["Asesoría personalizada", "Compra segura", "Envíos rápidos"],
+            whatsapp: "https://wa.me/573242606513"
+        };
+
+        function getProductDetails(name) {
+            if (!name) return defaultDetails;
+            return productDetails[name] ? { ...defaultDetails, ...productDetails[name] } : { ...defaultDetails, description: defaultDetails.description };
+        }
 
         function addToCart(productName) {
             const index = cart.findIndex(item => item.name === productName);
@@ -483,6 +826,30 @@
             const cartIcon = document.querySelector('.cart-float');
             cartIcon.style.transform = 'scale(1.3)';
             setTimeout(() => cartIcon.style.transform = 'scale(1)', 300);
+        }
+
+        function toggleProductModal(show) {
+            const modal = document.getElementById('product-modal');
+            modal.style.display = show ? 'flex' : 'none';
+        }
+
+        function openProduct(productName) {
+            const details = getProductDetails(productName);
+            document.getElementById('product-modal-title').innerText = productName;
+            document.getElementById('product-modal-description').innerText = details.description;
+            document.getElementById('product-modal-use').innerText = details.use;
+            const benefitsList = document.getElementById('product-modal-benefits');
+            benefitsList.innerHTML = "";
+            details.benefits.forEach(benefit => {
+                const li = document.createElement('li');
+                li.innerText = benefit;
+                benefitsList.appendChild(li);
+            });
+            const cartButton = document.getElementById('product-modal-cart');
+            cartButton.onclick = () => addToCart(productName);
+            const whatsappButton = document.getElementById('product-modal-whatsapp');
+            whatsappButton.href = details.whatsapp;
+            toggleProductModal(true);
         }
 
         function updateCartUI() {
@@ -568,6 +935,32 @@
                 item.style.display = (type === 'all' || item.classList.contains(type)) ? 'flex' : 'none';
             });
         }
+
+        document.querySelectorAll('.product-card').forEach(card => {
+            const title = card.querySelector('h3');
+            if (!title) return;
+            const productName = title.innerText.trim();
+            const details = getProductDetails(productName);
+            if (details.description && !card.querySelector('.product-description')) {
+                const desc = document.createElement('p');
+                desc.className = 'product-description';
+                desc.innerText = details.description;
+                title.insertAdjacentElement('afterend', desc);
+            }
+            if (!card.querySelector('.btn-details')) {
+                const button = document.createElement('button');
+                button.className = 'btn-details';
+                button.type = 'button';
+                button.innerText = 'Ver detalles';
+                button.addEventListener('click', () => openProduct(productName));
+                const buyButton = card.querySelector('.btn-buy');
+                if (buyButton) {
+                    buyButton.insertAdjacentElement('beforebegin', button);
+                } else {
+                    card.appendChild(button);
+                }
+            }
+        });
     </script>
 
     <footer style="text-align: center;">
