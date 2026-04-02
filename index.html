@@ -1105,6 +1105,265 @@
         .back-top.visible { opacity: 1; transform: translateY(0); }
         .back-top:hover { background: var(--gold); border-color: var(--gold); }
 
+        /* ── ABOUT SECTION ── */
+        .about-section {
+            padding: 100px 20px;
+            background: var(--white);
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .about-inner {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 70px;
+            align-items: center;
+        }
+
+        @media (max-width: 768px) {
+            .about-inner { grid-template-columns: 1fr; gap: 40px; }
+            .about-img-col { order: -1; }
+        }
+
+        .about-img-col { position: relative; }
+
+        .about-img-wrap {
+            position: relative;
+            border-radius: 24px;
+            overflow: hidden;
+        }
+
+        .about-photo {
+            width: 100%;
+            aspect-ratio: 4/5;
+            object-fit: cover;
+            display: block;
+            border-radius: 24px;
+            border: 1px solid var(--surface-2);
+        }
+
+        .about-img-deco {
+            position: absolute;
+            inset: -8px;
+            border: 2px solid var(--gold-border);
+            border-radius: 28px;
+            z-index: -1;
+        }
+
+        .about-stats {
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            background: var(--black);
+            border-radius: 18px;
+            padding: 20px 24px;
+            margin-top: 20px;
+        }
+
+        .about-stat { text-align: center; }
+        .stat-num {
+            display: block;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.6rem;
+            color: var(--gold-bright);
+            letter-spacing: 2px;
+            line-height: 1;
+        }
+        .stat-label {
+            font-size: 0.68rem;
+            color: rgba(255,255,255,0.4);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .about-stat-divider {
+            width: 1px;
+            height: 36px;
+            background: rgba(255,255,255,0.08);
+        }
+
+        /* Name story block */
+        .about-name-story {
+            background: var(--surface);
+            border: 1px solid var(--surface-2);
+            border-left: 3px solid var(--gold);
+            border-radius: 12px;
+            padding: 16px 20px;
+            margin: 20px 0 28px;
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 4px;
+        }
+
+        .name-letter {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.5rem;
+            letter-spacing: 1px;
+            color: var(--text);
+        }
+        .gold-letter { color: var(--gold-bright); font-size: 1.8rem; }
+        .name-amp { color: var(--gold); font-size: 1rem; margin: 0 10px; }
+        .name-sub {
+            width: 100%;
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            margin-top: 6px;
+            font-style: italic;
+        }
+
+        .brand-letters {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.5rem;
+            letter-spacing: 8px;
+            color: var(--gold-bright);
+        }
+
+        .about-p {
+            color: var(--text-muted);
+            font-size: 0.92rem;
+            line-height: 1.8;
+            margin-bottom: 16px;
+        }
+
+        .about-p strong { color: var(--text); font-weight: 700; }
+
+        .about-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--black);
+            color: #fff;
+            padding: 14px 28px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.88rem;
+            margin-top: 10px;
+            transition: 0.3s;
+            letter-spacing: 0.5px;
+        }
+        .about-cta span { color: var(--gold-bright); transition: transform 0.3s; }
+        .about-cta:hover { background: var(--gold); color: #000; }
+        .about-cta:hover span { color: #000; transform: translateX(4px); }
+
+        /* ── TESTIMONIALS ── */
+        .social-section {
+            padding: 80px 20px;
+            background: var(--surface);
+            border-top: 1px solid var(--surface-2);
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 20px;
+            max-width: 1200px;
+            margin: 40px auto 0;
+        }
+
+        .testimonial-card {
+            background: var(--white);
+            border-radius: 20px;
+            border: 1px solid var(--surface-2);
+            overflow: hidden;
+            transition: 0.3s;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-6px);
+            border-color: var(--gold-border);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.08), var(--shadow-gold);
+        }
+
+        .t-img-wrap {
+            position: relative;
+            height: 200px;
+            overflow: hidden;
+            background: var(--surface);
+        }
+
+        .t-img-wrap img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .testimonial-card:hover .t-img-wrap img { transform: scale(1.05); }
+
+        .t-city-badge {
+            position: absolute;
+            bottom: 12px;
+            left: 12px;
+            background: var(--black);
+            color: var(--gold-bright);
+            font-size: 0.7rem;
+            font-weight: 700;
+            padding: 5px 12px;
+            border-radius: 20px;
+            letter-spacing: 0.5px;
+        }
+
+        .t-body { padding: 20px; }
+
+        .t-stars {
+            color: var(--gold-bright);
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+            letter-spacing: 2px;
+        }
+
+        .t-text {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            line-height: 1.7;
+            margin-bottom: 12px;
+            font-style: italic;
+        }
+
+        .t-name {
+            font-size: 0.78rem;
+            font-weight: 700;
+            color: var(--text);
+            letter-spacing: 0.5px;
+        }
+
+        /* Shipment strip */
+        .shipment-strip {
+            max-width: 1200px;
+            margin: 60px auto 0;
+            text-align: center;
+        }
+
+        .shipment-photos {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            margin-top: 20px;
+        }
+
+        @media (max-width: 600px) {
+            .shipment-photos { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        .ship-photo {
+            border-radius: 16px;
+            overflow: hidden;
+            aspect-ratio: 1/1;
+            border: 1px solid var(--surface-2);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+        }
+
+        .ship-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .ship-photo:hover img { transform: scale(1.06); }
+
         /* ── GUIDE SECTION (replaces FAQ) ── */
         .guide-section {
             padding: 80px 0;
@@ -1683,6 +1942,127 @@
         </div>
     </section>
 
+    </section>
+
+    <!-- ════════════ SOBRE ADROOS ════════════ -->
+    <section class="about-section">
+        <div class="about-inner">
+            <div class="about-img-col">
+                <div class="about-img-wrap">
+                    <img src="foto-fundador.jpg" alt="Fundador ADROOS" class="about-photo">
+                    <div class="about-img-deco"></div>
+                </div>
+                <div class="about-stats">
+                    <div class="about-stat">
+                        <span class="stat-num">2024</span>
+                        <span class="stat-label">Fundada</span>
+                    </div>
+                    <div class="about-stat-divider"></div>
+                    <div class="about-stat">
+                        <span class="stat-num">+100</span>
+                        <span class="stat-label">Clientes satisfechos</span>
+                    </div>
+                    <div class="about-stat-divider"></div>
+                    <div class="about-stat">
+                        <span class="stat-num">Nacional</span>
+                        <span class="stat-label">Cobertura</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="about-text-col">
+                <p class="section-label" style="text-align:left;">Quiénes somos</p>
+                <h2 class="section-title" style="text-align:left; font-size:clamp(1.8rem,5vw,3rem);">DETRÁS DE ADROOS</h2>
+
+                <div class="about-name-story">
+                    <div class="brand-letters">A · D · R · O · O · S</div>
+                    <p class="name-sub">"Más que una marca. Una filosofía de vida."</p>
+                </div>
+
+                <p class="about-p">ADROOS nació en 2024 de la pasión por el bienestar y el rendimiento físico. Somos un equipo comprometido con ayudarte a alcanzar tus metas, liderado por un estudiante de medicina con formación especializada en suplementación deportiva y salud integral.</p>
+
+                <p class="about-p">Nuestra base científica nos distingue. Trabajamos de la mano con profesionales en nutrición y medicina para asegurarnos de que cada recomendación tenga un respaldo real. <strong>No vendemos productos — entregamos criterio.</strong></p>
+
+                <p class="about-p">La gran mayoría de nuestros productos son <strong>importados directamente desde las marcas líderes del mundo</strong>, distribuidos sin intermediarios hasta ti. Eso garantiza autenticidad, trazabilidad y los mejores precios del mercado.</p>
+
+                <p class="about-p">Cada cliente que llega a ADROOS recibe algo que ninguna tienda online puede dar: una asesoría real, personalizada y honesta. No nos interesa que compres una sola vez — <strong>nos interesa que logres tus resultados.</strong></p>
+
+                <a href="https://wa.me/573242606513?text=Hola!%20Quiero%20conocer%20más%20sobre%20ADROOS" target="_blank" class="about-cta">
+                    Habla con nuestro equipo <span>→</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ════════════ TESTIMONIOS ════════════ -->
+    <section class="social-section">
+        <p class="section-label">Clientes reales</p>
+        <h2 class="section-title">ELLOS YA CONFÍAN EN ADROOS</h2>
+        <p class="section-sub">Desde Manizales hasta todo el país — esto dicen nuestros clientes</p>
+
+        <div class="testimonials-grid">
+
+            <div class="testimonial-card">
+                <div class="t-img-wrap">
+                    <img src="testimonio1.jpg" alt="Cliente Medellín">
+                    <div class="t-city-badge">📍 Medellín</div>
+                </div>
+                <div class="t-body">
+                    <div class="t-stars">★★★★★</div>
+                    <p class="t-text">"Increíble servicio. Me asesoraron perfectamente y el producto llegó súper bien empacado. 100% recomendado."</p>
+                    <span class="t-name">— Cliente verificado</span>
+                </div>
+            </div>
+
+            <div class="testimonial-card">
+                <div class="t-img-wrap">
+                    <img src="testimonio2.jpg" alt="Cliente Cali">
+                    <div class="t-city-badge">📍 Cali</div>
+                </div>
+                <div class="t-body">
+                    <div class="t-stars">★★★★★</div>
+                    <p class="t-text">"La asesoría fue clave. No sabía qué suplemento tomar y me explicaron todo con detalle. Ya voy por mi segunda compra."</p>
+                    <span class="t-name">— Cliente verificado</span>
+                </div>
+            </div>
+
+            <div class="testimonial-card">
+                <div class="t-img-wrap">
+                    <img src="testimonio3.jpg" alt="Cliente Bogotá">
+                    <div class="t-city-badge">📍 Bogotá</div>
+                </div>
+                <div class="t-body">
+                    <div class="t-stars">★★★★★</div>
+                    <p class="t-text">"Rápido, confiable y con productos originales. El empaque llegó perfecto y el precio mucho mejor que en otras tiendas."</p>
+                    <span class="t-name">— Cliente verificado</span>
+                </div>
+            </div>
+
+            <div class="testimonial-card">
+                <div class="t-img-wrap">
+                    <img src="testimonio4.jpg" alt="Cliente Manzanares">
+                    <div class="t-city-badge">📍 Manzanares</div>
+                </div>
+                <div class="t-body">
+                    <div class="t-stars">★★★★★</div>
+                    <p class="t-text">"Lo que más me gustó fue la honestidad. Me dijeron exactamente qué tomar para mis objetivos sin intentar venderme más de lo necesario."</p>
+                    <span class="t-name">— Cliente verificado</span>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="shipment-strip">
+            <p class="section-label" style="margin-bottom:16px;">Así llegan tus pedidos</p>
+            <div class="shipment-photos">
+                <div class="ship-photo"><img src="envio1.jpg" alt="Envío ADROOS"></div>
+                <div class="ship-photo"><img src="envio2.jpg" alt="Envío ADROOS"></div>
+                <div class="ship-photo"><img src="envio3.jpg" alt="Envío ADROOS"></div>
+                <div class="ship-photo"><img src="envio4.jpg" alt="Envío ADROOS"></div>
+            </div>
+        </div>
+    </section>
+
     <!-- WhatsApp -->
     <a href="https://wa.me/573242606513?text=Hola%20ADROOS%20👋%2C%20necesito%20asesoría%20personalizada." class="whatsapp-float" target="_blank">
         <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" width="30" alt="WhatsApp">
@@ -1711,7 +2091,7 @@
             <div class="divider-line"></div>
         </div>
 
-        <p class="footer-copy">© 2024 ADROOS STORE — Elite Sport Supplements · Todos los derechos reservados</p>
+        <p class="footer-copy">© 2025 ADROOS STORE — Elite Sport Supplements · Todos los derechos reservados</p>
     </footer>
 
     <script>
