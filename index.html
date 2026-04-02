@@ -959,18 +959,255 @@
             margin-top: 24px;
         }
 
+        /* ── ANNOUNCEMENT BAR ── */
+        .announcement-bar {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            background: var(--black);
+            color: var(--gold-bright);
+            text-align: center;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            padding: 10px 20px;
+            z-index: 300;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            border-bottom: 1px solid rgba(184,148,42,0.2);
+        }
+
+        .bar-text { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; justify-content: center; }
+        .bar-pill {
+            background: var(--gold);
+            color: #000;
+            font-size: 0.6rem;
+            font-weight: 900;
+            letter-spacing: 1px;
+            padding: 2px 8px;
+            border-radius: 20px;
+        }
+        .bar-close {
+            position: absolute;
+            right: 16px;
+            background: none;
+            border: none;
+            color: rgba(255,255,255,0.4);
+            font-size: 1.1rem;
+            cursor: pointer;
+            line-height: 1;
+            transition: 0.2s;
+        }
+        .bar-close:hover { color: #fff; }
+
+        /* ── TRUST BADGES ── */
+        .trust-section {
+            background: var(--surface);
+            border-top: 1px solid var(--surface-2);
+            border-bottom: 1px solid var(--surface-2);
+            padding: 24px 20px;
+        }
+        .trust-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+        }
+        @media (min-width: 640px) { .trust-grid { grid-template-columns: repeat(4, 1fr); } }
+        .trust-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .trust-icon {
+            width: 40px; height: 40px;
+            background: var(--black);
+            border-radius: 10px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.1rem;
+            flex-shrink: 0;
+        }
+        .trust-item h4 { font-size: 0.82rem; font-weight: 700; color: var(--text); }
+        .trust-item p { font-size: 0.72rem; color: var(--text-muted); }
+
+        /* ── PRODUCT BADGES ── */
+        .badge {
+            position: absolute;
+            top: 10px; right: 10px;
+            font-size: 0.58rem;
+            font-weight: 800;
+            letter-spacing: 0.5px;
+            padding: 4px 8px;
+            border-radius: 6px;
+            z-index: 3;
+            text-transform: uppercase;
+        }
+        .badge-hot { background: #ff4444; color: #fff; }
+        .badge-new { background: #2563eb; color: #fff; }
+        .badge-sale { background: var(--premium-grad); color: #000; }
+
+        /* ── FLY TO CART ANIMATION ── */
+        .fly-item {
+            position: fixed;
+            width: 18px; height: 18px;
+            background: var(--gold-bright);
+            border-radius: 50%;
+            z-index: 9999;
+            pointer-events: none;
+            transition: none;
+        }
+
+        /* ── TOAST NOTIFICATION ── */
+        .toast {
+            position: fixed;
+            bottom: 100px;
+            right: 24px;
+            background: var(--black);
+            color: #fff;
+            padding: 14px 20px;
+            border-radius: 14px;
+            border-left: 3px solid var(--gold-bright);
+            font-size: 0.85rem;
+            font-weight: 500;
+            z-index: 500;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            transform: translateX(120px);
+            opacity: 0;
+            transition: all 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            max-width: 280px;
+        }
+        .toast.show { transform: translateX(0); opacity: 1; }
+        .toast-icon { font-size: 1.1rem; flex-shrink: 0; }
+
+        /* ── BACK TO TOP ── */
+        .back-top {
+            position: fixed;
+            bottom: 100px;
+            left: 24px;
+            width: 44px; height: 44px;
+            background: var(--surface);
+            border: 1px solid var(--surface-2);
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1rem;
+            cursor: pointer;
+            z-index: 100;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        }
+        .back-top.visible { opacity: 1; transform: translateY(0); }
+        .back-top:hover { background: var(--gold); border-color: var(--gold); }
+
+        /* ── GUIDE SECTION (replaces FAQ) ── */
+        .guide-section {
+            padding: 80px 0;
+            background: var(--black);
+            margin-top: 80px;
+        }
+        .guide-section .section-title { color: #fff; }
+        .guide-section .section-label { color: var(--gold-bright); }
+        .guide-section .section-sub { color: rgba(255,255,255,0.4); }
+
+        .guide-tabs {
+            display: flex;
+            gap: 8px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin: 30px 0 40px;
+        }
+        .guide-tab {
+            padding: 10px 24px;
+            border-radius: 50px;
+            border: 1px solid rgba(184,148,42,0.25);
+            background: transparent;
+            color: rgba(255,255,255,0.5);
+            font-family: 'Outfit', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s;
+            letter-spacing: 0.5px;
+        }
+        .guide-tab:hover { border-color: var(--gold); color: var(--gold); }
+        .guide-tab.active { background: var(--gold); color: #000; border-color: var(--gold); }
+
+        .guide-panel { display: none; animation: fadeUp 0.4s ease; }
+        .guide-panel.active { display: block; }
+
+        .guide-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 16px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        .guide-card {
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(184,148,42,0.12);
+            border-radius: 20px;
+            padding: 28px 24px;
+            transition: 0.3s;
+        }
+        .guide-card:hover { border-color: rgba(184,148,42,0.35); background: rgba(255,255,255,0.06); }
+        .guide-card-icon { font-size: 2rem; margin-bottom: 14px; display: block; }
+        .guide-card h4 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.2rem;
+            letter-spacing: 2px;
+            color: var(--gold-bright);
+            margin-bottom: 10px;
+        }
+        .guide-card p { color: rgba(255,255,255,0.5); font-size: 0.85rem; line-height: 1.7; margin-bottom: 16px; }
+        .guide-products {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+        .guide-tag {
+            background: rgba(184,148,42,0.1);
+            border: 1px solid rgba(184,148,42,0.2);
+            color: var(--gold-bright);
+            font-size: 0.7rem;
+            font-weight: 600;
+            padding: 4px 10px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .guide-tag:hover { background: var(--gold); color: #000; }
+
         /* ── UTILITY ── */
         .hidden { display: none !important; }
 
         @media (max-width: 600px) {
+            .announcement-bar { font-size: 0.68rem; letter-spacing: 1px; padding: 8px 40px 8px 20px; }
             .brand-name { font-size: 4.5rem; letter-spacing: 8px; }
             .tool-card { flex: 0 0 300px; }
             .carousel-track { padding: 0 calc(50vw - 150px); }
             .products-grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); }
+            .trust-grid { grid-template-columns: repeat(2, 1fr); }
+            .back-top { display: none; }
         }
     </style>
 </head>
 <body>
+
+    <!-- ════════════ ANNOUNCEMENT BAR ════════════ -->
+    <div class="announcement-bar" id="announcementBar">
+        <div class="bar-text">
+            <span class="bar-pill">🎉 PROMO</span>
+            <span>Envío GRATIS en compras mayores a $300.000 · WhatsApp: 324 260 6513</span>
+        </div>
+        <button class="bar-close" onclick="document.getElementById('announcementBar').style.display='none'">×</button>
+    </div>
 
     <!-- ════════════ HEADER ════════════ -->
     <header>
@@ -1064,6 +1301,37 @@
         </div>
     </section>
 
+    <!-- ════════════ TRUST BADGES ════════════ -->
+    <div class="trust-section">
+        <div class="trust-grid">
+            <div class="trust-item">
+                <div class="trust-icon">🚚</div>
+                <div><h4>Envío Gratis</h4><p>En compras +$300.000</p></div>
+            </div>
+            <div class="trust-item">
+                <div class="trust-icon">✅</div>
+                <div><h4>100% Original</h4><p>Productos certificados</p></div>
+            </div>
+            <div class="trust-item">
+                <div class="trust-icon">💬</div>
+                <div><h4>Asesoría Personal</h4><p>Por WhatsApp gratis</p></div>
+            </div>
+            <div class="trust-item">
+                <div class="trust-icon">⚡</div>
+                <div><h4>Entrega Rápida</h4><p>Manizales y alrededores</p></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast notification -->
+    <div class="toast" id="toast">
+        <span class="toast-icon">🛒</span>
+        <span id="toast-msg">Producto añadido</span>
+    </div>
+
+    <!-- Back to top -->
+    <button class="back-top" id="backTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
     <!-- ════════════ MAIN ════════════ -->
     <div class="main-container">
 
@@ -1117,15 +1385,15 @@
                 </div>
             </div>
             <div class="products-grid">
-                <div class="product-card"><div class="product-img-wrap"><img src="ON60.jpg" onclick="window.open('https://wa.me/p/30114224388225062/573242606513','_blank')"><div class="img-overlay">👁</div></div><h3>ON Creatine 60 Serv</h3><button class="btn-buy" onclick="addToCart('ON Creatine 60 Serv')">+ Añadir a Cesta</button></div>
-                <div class="product-card"><div class="product-img-wrap"><img src="ON120.jpg" onclick="window.open('https://wa.me/p/24573418475599253/573242606513','_blank')"><div class="img-overlay">👁</div></div><h3>ON Creatine 120 Serv</h3><button class="btn-buy" onclick="addToCart('ON Creatine 120 Serv')">+ Añadir a Cesta</button></div>
-                <div class="product-card"><div class="product-img-wrap"><img src="HS.jpg" onclick="window.open('https://wa.me/p/10068590003226336/573242606513','_blank')"><div class="img-overlay">👁</div></div><h3>Healthy Sports 100 Serv</h3><button class="btn-buy" onclick="addToCart('Healthy Sports 100 Serv')">+ Añadir a Cesta</button></div>
-                <div class="product-card"><div class="product-img-wrap"><img src="HS80.jpg" onclick="window.open('https://wa.me/p/24408065855463940/573242606513','_blank')"><div class="img-overlay">👁</div></div><h3>Healthy Sports 50 Serv</h3><button class="btn-buy" onclick="addToCart('Healthy Sports 50 Serv')">+ Añadir a Cesta</button></div>
-                <div class="product-card"><div class="product-img-wrap"><img src="IMN133.jpg" onclick="window.open('https://wa.me/p/24400451672872301/573242606513','_blank')"><div class="img-overlay">👁</div></div><h3>IMN 133 Serv</h3><button class="btn-buy" onclick="addToCart('IMN 133 Serv')">+ Añadir a Cesta</button></div>
-                <div class="product-card"><div class="product-img-wrap"><img src="IMN50.jpg" onclick="window.open('https://wa.me/p/24052428174393614/573242606513','_blank')"><div class="img-overlay">👁</div></div><h3>IMN 50 Serv</h3><button class="btn-buy" onclick="addToCart('IMN 50 Serv')">+ Añadir a Cesta</button></div>
-                <div class="product-card"><div class="product-img-wrap"><img src="IN80.jpg" onclick="window.open('https://wa.me/p/30181896938122185/573242606513','_blank')"><div class="img-overlay">👁</div></div><h3>Iron Nutrition 100 Serv</h3><button class="btn-buy" onclick="addToCart('Iron Nutrition 100 Serv')">+ Añadir a Cesta</button></div>
-                <div class="product-card"><div class="product-img-wrap"><img src="Dimatize88.jpg" onclick="window.open('https://wa.me/p/24230499279887716/573242606513','_blank')"><div class="img-overlay">👁</div></div><h3>Dymatize 88 Serv</h3><button class="btn-buy" onclick="addToCart('Dymatize 88 Serv')">+ Añadir a Cesta</button></div>
-                <div class="product-card"><div class="product-img-wrap"><img src="platinum.jpg" onclick="window.open('https://wa.me/p/24329943086611680/573242606513','_blank')"><div class="img-overlay">👁</div></div><h3>Platinum MuscleTech</h3><button class="btn-buy" onclick="addToCart('Platinum MuscleTech')">+ Añadir a Cesta</button></div>
+                <div class="product-card"><div class="product-img-wrap"><span class="badge badge-hot">⭐ Más vendido</span><img src="ON60.jpg" onclick="window.open('https://wa.me/p/30114224388225062/573242606513','_blank')"><div class="img-overlay">👁</div></div><h3>ON Creatine 60 Serv</h3><button class="btn-buy" onclick="addToCart('ON Creatine 60 Serv', this)">+ Añadir a Cesta</button></div>
+                <div class="product-card"><div class="product-img-wrap"><img src="ON120.jpg" onclick="window.open('https://wa.me/p/24573418475599253/573242606513','_blank')"><div class="img-overlay">👁</div></div><h3>ON Creatine 120 Serv</h3><button class="btn-buy" onclick="addToCart('ON Creatine 120 Serv', this)">+ Añadir a Cesta</button></div>
+                <div class="product-card"><div class="product-img-wrap"><img src="HS.jpg" onclick="window.open('https://wa.me/p/10068590003226336/573242606513','_blank')"><div class="img-overlay">👁</div></div><h3>Healthy Sports 100 Serv</h3><button class="btn-buy" onclick="addToCart('Healthy Sports 100 Serv', this)">+ Añadir a Cesta</button></div>
+                <div class="product-card"><div class="product-img-wrap"><span class="badge badge-sale">🔥 Oferta</span><img src="HS80.jpg" onclick="window.open('https://wa.me/p/24408065855463940/573242606513','_blank')"><div class="img-overlay">👁</div></div><h3>Healthy Sports 50 Serv</h3><button class="btn-buy" onclick="addToCart('Healthy Sports 50 Serv', this)">+ Añadir a Cesta</button></div>
+                <div class="product-card"><div class="product-img-wrap"><img src="IMN133.jpg" onclick="window.open('https://wa.me/p/24400451672872301/573242606513','_blank')"><div class="img-overlay">👁</div></div><h3>IMN 133 Serv</h3><button class="btn-buy" onclick="addToCart('IMN 133 Serv', this)">+ Añadir a Cesta</button></div>
+                <div class="product-card"><div class="product-img-wrap"><img src="IMN50.jpg" onclick="window.open('https://wa.me/p/24052428174393614/573242606513','_blank')"><div class="img-overlay">👁</div></div><h3>IMN 50 Serv</h3><button class="btn-buy" onclick="addToCart('IMN 50 Serv', this)">+ Añadir a Cesta</button></div>
+                <div class="product-card"><div class="product-img-wrap"><img src="IN80.jpg" onclick="window.open('https://wa.me/p/30181896938122185/573242606513','_blank')"><div class="img-overlay">👁</div></div><h3>Iron Nutrition 100 Serv</h3><button class="btn-buy" onclick="addToCart('Iron Nutrition 100 Serv', this)">+ Añadir a Cesta</button></div>
+                <div class="product-card"><div class="product-img-wrap"><img src="Dimatize88.jpg" onclick="window.open('https://wa.me/p/24230499279887716/573242606513','_blank')"><div class="img-overlay">👁</div></div><h3>Dymatize 88 Serv</h3><button class="btn-buy" onclick="addToCart('Dymatize 88 Serv', this)">+ Añadir a Cesta</button></div>
+                <div class="product-card"><div class="product-img-wrap"><img src="platinum.jpg" onclick="window.open('https://wa.me/p/24329943086611680/573242606513','_blank')"><div class="img-overlay">👁</div></div><h3>Platinum MuscleTech</h3><button class="btn-buy" onclick="addToCart('Platinum MuscleTech', this)">+ Añadir a Cesta</button></div>
             </div>
         </section>
 
@@ -1144,18 +1412,18 @@
                 <button onclick="filterItems('protein-item','hipo',this)" class="btn-filter">Hipocalóricas</button>
             </div>
             <div class="products-grid">
-                <div class="product-card protein-item hipo"><div class="product-img-wrap"><img src="Pbipro120.jpg" onclick="window.open('https://wa.me/p/30852624011002730/573242606513','_blank')"><div class="img-overlay">👁</div></div><h3>Bi-Pro Classic 2 Lbs</h3><button class="btn-buy" onclick="addToCart('Bi-Pro Classic 2 Lbs')">+ Añadir a Cesta</button></div>
-                <div class="product-card protein-item hipo"><div class="product-img-wrap"><img src="Pbipro130.jpg" onclick="window.open('https://wa.me/p/24328728220082582/573242606513','_blank')"><div class="img-overlay">👁</div></div><h3>Bi-Pro Classic 3 Lbs</h3><button class="btn-buy" onclick="addToCart('Bi-Pro Classic 3 Lbs')">+ Añadir a Cesta</button></div>
-                <div class="product-card protein-item hipo"><div class="product-img-wrap"><img src="Pripped.jpg" onclick="window.open('https://wa.me/p/9983544765026553/573242606513','_blank')"><div class="img-overlay">👁</div></div><h3>Bi-Pro Ripped</h3><button class="btn-buy" onclick="addToCart('Bi-Pro Ripped')">+ Añadir a Cesta</button></div>
-                <div class="product-card protein-item hipo"><div class="product-img-wrap"><img src="Pbest2lbs.jpg" onclick="window.open('https://wa.me/p/32987260517586889/573242606513','_blank')"><div class="img-overlay">👁</div></div><h3>ProScience Best Protein</h3><button class="btn-buy" onclick="addToCart('ProScience Best Protein')">+ Añadir a Cesta</button></div>
-                <div class="product-card protein-item hipo"><div class="product-img-wrap"><img src="Pon2lbs.jpg" onclick="window.open('https://wa.me/p/23905475465783063/573242606513','_blank')"><div class="img-overlay">👁</div></div><h3>ON Whey Gold 2 Lbs</h3><button class="btn-buy" onclick="addToCart('ON Whey Gold 2 Lbs')">+ Añadir a Cesta</button></div>
-                <div class="product-card protein-item hipo"><div class="product-img-wrap"><img src="Pon5lbs.jpg" onclick="window.open('https://wa.me/p/24261128060148910/573242606513','_blank')"><div class="img-overlay">👁</div></div><h3>ON Whey Gold 5 Lbs</h3><button class="btn-buy" onclick="addToCart('ON Whey Gold 5 Lbs')">+ Añadir a Cesta</button></div>
-                <div class="product-card protein-item hipo"><div class="product-img-wrap"><img src="Pm2lbs.jpg" onclick="window.open('https://wa.me/p/24463007063285491/573242606513','_blank')"><div class="img-overlay">👁</div></div><h3>MuscleTech NitroTech 2 Lbs</h3><button class="btn-buy" onclick="addToCart('MuscleTech NitroTech 2 Lbs')">+ Añadir a Cesta</button></div>
-                <div class="product-card protein-item hipo"><div class="product-img-wrap"><img src="Pm4lbs.jpg" onclick="window.open('https://wa.me/p/24494955860088777/573242606513','_blank')"><div class="img-overlay">👁</div></div><h3>MuscleTech NitroTech 4 Lbs</h3><button class="btn-buy" onclick="addToCart('MuscleTech NitroTech 4 Lbs')">+ Añadir a Cesta</button></div>
-                <div class="product-card protein-item hipo"><div class="product-img-wrap"><img src="Pvit5lbs.jpg" onclick="window.open('https://wa.me/p/25430473939942439/573242606513','_blank')"><div class="img-overlay">👁</div></div><h3>Vitanas Whey Elite 5 Lbs</h3><button class="btn-buy" onclick="addToCart('Vitanas Whey Elite 5 Lbs')">+ Añadir a Cesta</button></div>
-                <div class="product-card protein-item hipo"><div class="product-img-wrap"><img src="Pvit10lbs.jpg" onclick="window.open('https://wa.me/p/25563321256653728/573242606513','_blank')"><div class="img-overlay">👁</div></div><h3>Vitanas Whey Elite 10 Lbs</h3><button class="btn-buy" onclick="addToCart('Vitanas Whey Elite 10 Lbs')">+ Añadir a Cesta</button></div>
-                <div class="product-card protein-item hiper"><div class="product-img-wrap"><img src="Pmass3lbs.jpg" onclick="window.open('https://wa.me/p/23870086602620203/573242606513','_blank')"><div class="img-overlay">👁</div></div><h3>Bi-Pro Mass</h3><button class="btn-buy" onclick="addToCart('Bi-Pro Mass')">+ Añadir a Cesta</button></div>
-                <div class="product-card protein-item hiper"><div class="product-img-wrap"><img src="Psmart.jpg" onclick="window.open('https://wa.me/p/9905458082896352/573242606513','_blank')"><div class="img-overlay">👁</div></div><h3>ProScience Smart Gainer</h3><button class="btn-buy" onclick="addToCart('ProScience Smart Gainer')">+ Añadir a Cesta</button></div>
+                <div class="product-card protein-item hipo"><div class="product-img-wrap"><span class="badge badge-hot">⭐ Más vendido</span><img src="Pbipro120.jpg" onclick="window.open('https://wa.me/p/30852624011002730/573242606513','_blank')"><div class="img-overlay">👁</div></div><h3>Bi-Pro Classic 2 Lbs</h3><button class="btn-buy" onclick="addToCart('Bi-Pro Classic 2 Lbs', this)">+ Añadir a Cesta</button></div>
+                <div class="product-card protein-item hipo"><div class="product-img-wrap"><img src="Pbipro130.jpg" onclick="window.open('https://wa.me/p/24328728220082582/573242606513','_blank')"><div class="img-overlay">👁</div></div><h3>Bi-Pro Classic 3 Lbs</h3><button class="btn-buy" onclick="addToCart('Bi-Pro Classic 3 Lbs', this)">+ Añadir a Cesta</button></div>
+                <div class="product-card protein-item hipo"><div class="product-img-wrap"><img src="Pripped.jpg" onclick="window.open('https://wa.me/p/9983544765026553/573242606513','_blank')"><div class="img-overlay">👁</div></div><h3>Bi-Pro Ripped</h3><button class="btn-buy" onclick="addToCart('Bi-Pro Ripped', this)">+ Añadir a Cesta</button></div>
+                <div class="product-card protein-item hipo"><div class="product-img-wrap"><img src="Pbest2lbs.jpg" onclick="window.open('https://wa.me/p/32987260517586889/573242606513','_blank')"><div class="img-overlay">👁</div></div><h3>ProScience Best Protein</h3><button class="btn-buy" onclick="addToCart('ProScience Best Protein', this)">+ Añadir a Cesta</button></div>
+                <div class="product-card protein-item hipo"><div class="product-img-wrap"><span class="badge badge-hot">⭐ Más vendido</span><img src="Pon2lbs.jpg" onclick="window.open('https://wa.me/p/23905475465783063/573242606513','_blank')"><div class="img-overlay">👁</div></div><h3>ON Whey Gold 2 Lbs</h3><button class="btn-buy" onclick="addToCart('ON Whey Gold 2 Lbs', this)">+ Añadir a Cesta</button></div>
+                <div class="product-card protein-item hipo"><div class="product-img-wrap"><img src="Pon5lbs.jpg" onclick="window.open('https://wa.me/p/24261128060148910/573242606513','_blank')"><div class="img-overlay">👁</div></div><h3>ON Whey Gold 5 Lbs</h3><button class="btn-buy" onclick="addToCart('ON Whey Gold 5 Lbs', this)">+ Añadir a Cesta</button></div>
+                <div class="product-card protein-item hipo"><div class="product-img-wrap"><img src="Pm2lbs.jpg" onclick="window.open('https://wa.me/p/24463007063285491/573242606513','_blank')"><div class="img-overlay">👁</div></div><h3>MuscleTech NitroTech 2 Lbs</h3><button class="btn-buy" onclick="addToCart('MuscleTech NitroTech 2 Lbs', this)">+ Añadir a Cesta</button></div>
+                <div class="product-card protein-item hipo"><div class="product-img-wrap"><img src="Pm4lbs.jpg" onclick="window.open('https://wa.me/p/24494955860088777/573242606513','_blank')"><div class="img-overlay">👁</div></div><h3>MuscleTech NitroTech 4 Lbs</h3><button class="btn-buy" onclick="addToCart('MuscleTech NitroTech 4 Lbs', this)">+ Añadir a Cesta</button></div>
+                <div class="product-card protein-item hipo"><div class="product-img-wrap"><span class="badge badge-new">🆕 Nuevo</span><img src="Pvit5lbs.jpg" onclick="window.open('https://wa.me/p/25430473939942439/573242606513','_blank')"><div class="img-overlay">👁</div></div><h3>Vitanas Whey Elite 5 Lbs</h3><button class="btn-buy" onclick="addToCart('Vitanas Whey Elite 5 Lbs', this)">+ Añadir a Cesta</button></div>
+                <div class="product-card protein-item hipo"><div class="product-img-wrap"><img src="Pvit10lbs.jpg" onclick="window.open('https://wa.me/p/25563321256653728/573242606513','_blank')"><div class="img-overlay">👁</div></div><h3>Vitanas Whey Elite 10 Lbs</h3><button class="btn-buy" onclick="addToCart('Vitanas Whey Elite 10 Lbs', this)">+ Añadir a Cesta</button></div>
+                <div class="product-card protein-item hiper"><div class="product-img-wrap"><img src="Pmass3lbs.jpg" onclick="window.open('https://wa.me/p/23870086602620203/573242606513','_blank')"><div class="img-overlay">👁</div></div><h3>Bi-Pro Mass</h3><button class="btn-buy" onclick="addToCart('Bi-Pro Mass', this)">+ Añadir a Cesta</button></div>
+                <div class="product-card protein-item hiper"><div class="product-img-wrap"><img src="Psmart.jpg" onclick="window.open('https://wa.me/p/9905458082896352/573242606513','_blank')"><div class="img-overlay">👁</div></div><h3>ProScience Smart Gainer</h3><button class="btn-buy" onclick="addToCart('ProScience Smart Gainer', this)">+ Añadir a Cesta</button></div>
             </div>
         </section>
 
@@ -1169,22 +1437,22 @@
                 </div>
             </div>
             <div class="products-grid">
-                <div class="product-card"><div class="product-img-wrap"><img src="MagnesioHA.jpg" onclick="window.open('https://wa.me/p/30726142463650955/573242606513','_blank')"><div class="img-overlay">👁</div></div><h3>Super Magnesium HA</h3><button class="btn-buy" onclick="addToCart('Super Magnesium HA')">+ Añadir a Cesta</button></div>
-                <div class="product-card"><div class="product-img-wrap"><img src="ColagenoNA.jpg" onclick="window.open('https://wa.me/p/30830197233238022/573242606513','_blank')"><div class="img-overlay">👁</div></div><h3>Colágeno Hidrolizado</h3><button class="btn-buy" onclick="addToCart('Colágeno Hidrolizado')">+ Añadir a Cesta</button></div>
-                <div class="product-card"><div class="product-img-wrap"><img src="VitaminaIMN.jpg" onclick="window.open('https://wa.me/p/24027863493499374/573242606513','_blank')"><div class="img-overlay">👁</div></div><h3>Vitamina IMN</h3><button class="btn-buy" onclick="addToCart('Vitamina IMN')">+ Añadir a Cesta</button></div>
-                <div class="product-card"><div class="product-img-wrap"><img src="Multivitaminicom.jpg" onclick="window.open('https://wa.me/p/24190992310539250/573242606513','_blank')"><div class="img-overlay">👁</div></div><h3>Multivitamínico Completo</h3><button class="btn-buy" onclick="addToCart('Multivitamínico Completo')">+ Añadir a Cesta</button></div>
-                <div class="product-card"><div class="product-img-wrap"><img src="Nootropico.jpg" onclick="window.open('https://wa.me/p/24285597814386029/573242606513','_blank')"><div class="img-overlay">👁</div></div><h3>Nootrópico (Enfoque)</h3><button class="btn-buy" onclick="addToCart('Nootrópico (Enfoque)')">+ Añadir a Cesta</button></div>
-                <div class="product-card"><div class="product-img-wrap"><img src="Nac100.jpg" onclick="window.open('https://wa.me/p/25177261168636022/573242606513','_blank')"><div class="img-overlay">👁</div></div><h3>NAC 100 Serv</h3><button class="btn-buy" onclick="addToCart('NAC 100 Serv')">+ Añadir a Cesta</button></div>
-                <div class="product-card"><div class="product-img-wrap"><img src="Liv.52.jpg" onclick="window.open('https://wa.me/p/25901962499395504/573242606513','_blank')"><div class="img-overlay">👁</div></div><h3>Liv.52 (Hígado)</h3><button class="btn-buy" onclick="addToCart('Liv.52 (Hígado)')">+ Añadir a Cesta</button></div>
-                <div class="product-card"><div class="product-img-wrap"><img src="Biotin.jpg" onclick="window.open('https://wa.me/p/25653175470978904/573242606513','_blank')"><div class="img-overlay">👁</div></div><h3>Biotina Cabello/Piel</h3><button class="btn-buy" onclick="addToCart('Biotina Cabello/Piel')">+ Añadir a Cesta</button></div>
-                <div class="product-card"><div class="product-img-wrap"><img src="Cascara.jpg" onclick="window.open('https://wa.me/p/25611944968470565/573242606513','_blank')"><div class="img-overlay">👁</div></div><h3>Cáscara Sagrada</h3><button class="btn-buy" onclick="addToCart('Cáscara Sagrada')">+ Añadir a Cesta</button></div>
-                <div class="product-card"><div class="product-img-wrap"><img src="Melatonina.jpg" onclick="window.open('https://wa.me/p/26321323314122208/573242606513','_blank')"><div class="img-overlay">👁</div></div><h3>Melatonina (Sueño)</h3><button class="btn-buy" onclick="addToCart('Melatonina (Sueño)')">+ Añadir a Cesta</button></div>
-                <div class="product-card"><div class="product-img-wrap"><img src="Calcio.jpg" onclick="window.open('https://wa.me/p/33871378905810991/573242606513','_blank')"><div class="img-overlay">👁</div></div><h3>Calcio + Vitamina D</h3><button class="btn-buy" onclick="addToCart('Calcio + Vitamina D')">+ Añadir a Cesta</button></div>
-                <div class="product-card"><div class="product-img-wrap"><img src="Potasio.jpg" onclick="window.open('https://wa.me/p/26307386022196190/573242606513','_blank')"><div class="img-overlay">👁</div></div><h3>Citrato de Potasio</h3><button class="btn-buy" onclick="addToCart('Citrato de Potasio')">+ Añadir a Cesta</button></div>
-                <div class="product-card"><div class="product-img-wrap"><img src="Wellflex.jpg" onclick="window.open('https://wa.me/p/25426883876961068/573242606513','_blank')"><div class="img-overlay">👁</div></div><h3>Wellflex (Articulaciones)</h3><button class="btn-buy" onclick="addToCart('Wellflex (Articulaciones)')">+ Añadir a Cesta</button></div>
-                <div class="product-card"><div class="product-img-wrap"><img src="Vitc.jpg" onclick="window.open('https://wa.me/p/25290632443912081/573242606513','_blank')"><div class="img-overlay">👁</div></div><h3>Vitamina C</h3><button class="btn-buy" onclick="addToCart('Vitamina C')">+ Añadir a Cesta</button></div>
-                <div class="product-card"><div class="product-img-wrap"><img src="Vite.jpg" onclick="window.open('https://wa.me/p/25442935501993623/573242606513','_blank')"><div class="img-overlay">👁</div></div><h3>Vitamina E</h3><button class="btn-buy" onclick="addToCart('Vitamina E')">+ Añadir a Cesta</button></div>
-                <div class="product-card"><div class="product-img-wrap"><img src="Ashva60serv.jpg" onclick="window.open('https://wa.me/p/25543397098654956/573242606513','_blank')"><div class="img-overlay">👁</div></div><h3>Ashwagandha</h3><button class="btn-buy" onclick="addToCart('Ashwagandha')">+ Añadir a Cesta</button></div>
+                <div class="product-card"><div class="product-img-wrap"><img src="MagnesioHA.jpg" onclick="window.open('https://wa.me/p/30726142463650955/573242606513','_blank')"><div class="img-overlay">👁</div></div><h3>Super Magnesium HA</h3><button class="btn-buy" onclick="addToCart('Super Magnesium HA', this)">+ Añadir a Cesta</button></div>
+                <div class="product-card"><div class="product-img-wrap"><img src="ColagenoNA.jpg" onclick="window.open('https://wa.me/p/30830197233238022/573242606513','_blank')"><div class="img-overlay">👁</div></div><h3>Colágeno Hidrolizado</h3><button class="btn-buy" onclick="addToCart('Colágeno Hidrolizado', this)">+ Añadir a Cesta</button></div>
+                <div class="product-card"><div class="product-img-wrap"><img src="VitaminaIMN.jpg" onclick="window.open('https://wa.me/p/24027863493499374/573242606513','_blank')"><div class="img-overlay">👁</div></div><h3>Vitamina IMN</h3><button class="btn-buy" onclick="addToCart('Vitamina IMN', this)">+ Añadir a Cesta</button></div>
+                <div class="product-card"><div class="product-img-wrap"><img src="Multivitaminicom.jpg" onclick="window.open('https://wa.me/p/24190992310539250/573242606513','_blank')"><div class="img-overlay">👁</div></div><h3>Multivitamínico Completo</h3><button class="btn-buy" onclick="addToCart('Multivitamínico Completo', this)">+ Añadir a Cesta</button></div>
+                <div class="product-card"><div class="product-img-wrap"><img src="Nootropico.jpg" onclick="window.open('https://wa.me/p/24285597814386029/573242606513','_blank')"><div class="img-overlay">👁</div></div><h3>Nootrópico (Enfoque)</h3><button class="btn-buy" onclick="addToCart('Nootrópico (Enfoque)', this)">+ Añadir a Cesta</button></div>
+                <div class="product-card"><div class="product-img-wrap"><span class="badge badge-new">🆕 Nuevo</span><img src="Nac100.jpg" onclick="window.open('https://wa.me/p/25177261168636022/573242606513','_blank')"><div class="img-overlay">👁</div></div><h3>NAC 100 Serv</h3><button class="btn-buy" onclick="addToCart('NAC 100 Serv', this)">+ Añadir a Cesta</button></div>
+                <div class="product-card"><div class="product-img-wrap"><img src="Liv.52.jpg" onclick="window.open('https://wa.me/p/25901962499395504/573242606513','_blank')"><div class="img-overlay">👁</div></div><h3>Liv.52 (Hígado)</h3><button class="btn-buy" onclick="addToCart('Liv.52 (Hígado)', this)">+ Añadir a Cesta</button></div>
+                <div class="product-card"><div class="product-img-wrap"><img src="Biotin.jpg" onclick="window.open('https://wa.me/p/25653175470978904/573242606513','_blank')"><div class="img-overlay">👁</div></div><h3>Biotina Cabello/Piel</h3><button class="btn-buy" onclick="addToCart('Biotina Cabello/Piel', this)">+ Añadir a Cesta</button></div>
+                <div class="product-card"><div class="product-img-wrap"><img src="Cascara.jpg" onclick="window.open('https://wa.me/p/25611944968470565/573242606513','_blank')"><div class="img-overlay">👁</div></div><h3>Cáscara Sagrada</h3><button class="btn-buy" onclick="addToCart('Cáscara Sagrada', this)">+ Añadir a Cesta</button></div>
+                <div class="product-card"><div class="product-img-wrap"><img src="Melatonina.jpg" onclick="window.open('https://wa.me/p/26321323314122208/573242606513','_blank')"><div class="img-overlay">👁</div></div><h3>Melatonina (Sueño)</h3><button class="btn-buy" onclick="addToCart('Melatonina (Sueño)', this)">+ Añadir a Cesta</button></div>
+                <div class="product-card"><div class="product-img-wrap"><img src="Calcio.jpg" onclick="window.open('https://wa.me/p/33871378905810991/573242606513','_blank')"><div class="img-overlay">👁</div></div><h3>Calcio + Vitamina D</h3><button class="btn-buy" onclick="addToCart('Calcio + Vitamina D', this)">+ Añadir a Cesta</button></div>
+                <div class="product-card"><div class="product-img-wrap"><img src="Potasio.jpg" onclick="window.open('https://wa.me/p/26307386022196190/573242606513','_blank')"><div class="img-overlay">👁</div></div><h3>Citrato de Potasio</h3><button class="btn-buy" onclick="addToCart('Citrato de Potasio', this)">+ Añadir a Cesta</button></div>
+                <div class="product-card"><div class="product-img-wrap"><img src="Wellflex.jpg" onclick="window.open('https://wa.me/p/25426883876961068/573242606513','_blank')"><div class="img-overlay">👁</div></div><h3>Wellflex (Articulaciones)</h3><button class="btn-buy" onclick="addToCart('Wellflex (Articulaciones)', this)">+ Añadir a Cesta</button></div>
+                <div class="product-card"><div class="product-img-wrap"><img src="Vitc.jpg" onclick="window.open('https://wa.me/p/25290632443912081/573242606513','_blank')"><div class="img-overlay">👁</div></div><h3>Vitamina C</h3><button class="btn-buy" onclick="addToCart('Vitamina C', this)">+ Añadir a Cesta</button></div>
+                <div class="product-card"><div class="product-img-wrap"><img src="Vite.jpg" onclick="window.open('https://wa.me/p/25442935501993623/573242606513','_blank')"><div class="img-overlay">👁</div></div><h3>Vitamina E</h3><button class="btn-buy" onclick="addToCart('Vitamina E', this)">+ Añadir a Cesta</button></div>
+                <div class="product-card"><div class="product-img-wrap"><span class="badge badge-hot">⭐ Más vendido</span><img src="Ashva60serv.jpg" onclick="window.open('https://wa.me/p/25543397098654956/573242606513','_blank')"><div class="img-overlay">👁</div></div><h3>Ashwagandha</h3><button class="btn-buy" onclick="addToCart('Ashwagandha', this)">+ Añadir a Cesta</button></div>
                 <div class="product-card"><div class="product-img-wrap"><img src="CartilagoTiburon.jpg"><div class="img-overlay">⛔</div></div><h3>Cartílago de Tiburón</h3><button class="btn-buy agotado" disabled>AGOTADO</button></div>
             </div>
         </section>
@@ -1204,18 +1472,18 @@
                 <button onclick="filterItems('clothing-item','mujer',this)" class="btn-filter">Mujer</button>
             </div>
             <div class="products-grid">
-                <div class="product-card clothing-item hombre"><div class="product-img-wrap"><img src="Camisillas1.jpg" onclick="window.open('https://wa.me/p/33207499735561483/573242606513','_blank')"><div class="img-overlay">👁</div></div><h3>Esqueleto Deportivo Adidas</h3><button class="btn-buy" onclick="addToCart('Esqueleto Adidas')">+ Añadir a Cesta</button></div>
-                <div class="product-card clothing-item hombre"><div class="product-img-wrap"><img src="Camisillas2.jpg" onclick="window.open('https://wa.me/p/33207499735561483/573242606513','_blank')"><div class="img-overlay">👁</div></div><h3>Esqueleto Deportivo Nike</h3><button class="btn-buy" onclick="addToCart('Esqueleto Nike')">+ Añadir a Cesta</button></div>
-                <div class="product-card clothing-item hombre"><div class="product-img-wrap"><img src="PCR.jpg" onclick="window.open('https://wa.me/p/25783256487976410/573242606513','_blank')"><div class="img-overlay">👁</div></div><h3>Pantaloneta Running — Azul</h3><button class="btn-buy" onclick="addToCart('Pantaloneta Running Azul')">+ Añadir a Cesta</button></div>
-                <div class="product-card clothing-item hombre"><div class="product-img-wrap"><img src="PCR1.jpg" onclick="window.open('https://wa.me/p/25783256487976410/573242606513','_blank')"><div class="img-overlay">👁</div></div><h3>Pantaloneta Running — Verde</h3><button class="btn-buy" onclick="addToCart('Pantaloneta Running Verde')">+ Añadir a Cesta</button></div>
-                <div class="product-card clothing-item hombre"><div class="product-img-wrap"><img src="PCR2.jpg" onclick="window.open('https://wa.me/p/25783256487976410/573242606513','_blank')"><div class="img-overlay">👁</div></div><h3>Pantaloneta Running — Negra</h3><button class="btn-buy" onclick="addToCart('Pantaloneta Running Negra')">+ Añadir a Cesta</button></div>
-                <div class="product-card clothing-item hombre"><div class="product-img-wrap"><img src="PCR3.jpg" onclick="window.open('https://wa.me/p/25783256487976410/573242606513','_blank')"><div class="img-overlay">👁</div></div><h3>Pantaloneta Running — Gris</h3><button class="btn-buy" onclick="addToCart('Pantaloneta Running Gris')">+ Añadir a Cesta</button></div>
-                <div class="product-card clothing-item hombre"><div class="product-img-wrap"><img src="Seleccion.jpg" onclick="window.open('https://wa.me/p/25596448220023377/573242606513','_blank')"><div class="img-overlay">👁</div></div><h3>Camiseta Selección Colombia</h3><button class="btn-buy" onclick="addToCart('Camiseta Selección Colombia')">+ Añadir a Cesta</button></div>
-                <div class="product-card clothing-item hombre"><div class="product-img-wrap"><img src="Shorts1.jpg" onclick="window.open('https://wa.me/573242606513','_blank')"><div class="img-overlay">👁</div></div><h3>Short Deportivo Adidas</h3><button class="btn-buy" onclick="addToCart('Short Adidas')">+ Añadir a Cesta</button></div>
-                <div class="product-card clothing-item hombre"><div class="product-img-wrap"><img src="Shorts2.jpg" onclick="window.open('https://wa.me/573242606513','_blank')"><div class="img-overlay">👁</div></div><h3>Short Deportivo Nike</h3><button class="btn-buy" onclick="addToCart('Short Nike')">+ Añadir a Cesta</button></div>
-                <div class="product-card clothing-item hombre"><div class="product-img-wrap"><img src="Camisetas1.jpg" onclick="window.open('https://wa.me/p/25279770708360587/573242606513','_blank')"><div class="img-overlay">👁</div></div><h3>Camiseta Dry-Fit Blanca</h3><button class="btn-buy" onclick="addToCart('Camiseta Dry-Fit Blanca')">+ Añadir a Cesta</button></div>
-                <div class="product-card clothing-item hombre"><div class="product-img-wrap"><img src="Camiseta2.jpg" onclick="window.open('https://wa.me/p/25279770708360587/573242606513','_blank')"><div class="img-overlay">👁</div></div><h3>Camiseta Dry-Fit Negra</h3><button class="btn-buy" onclick="addToCart('Camiseta Dry-Fit Negra')">+ Añadir a Cesta</button></div>
-                <div class="product-card clothing-item mujer"><div class="product-img-wrap"><img src="LicraPro.jpg" onclick="window.open('https://wa.me/573242606513','_blank')"><div class="img-overlay">👁</div></div><h3>Licra Deportiva Mujer</h3><button class="btn-buy" onclick="addToCart('Licra Deportiva Mujer')">+ Añadir a Cesta</button></div>
+                <div class="product-card clothing-item hombre"><div class="product-img-wrap"><img src="Camisillas1.jpg" onclick="window.open('https://wa.me/p/33207499735561483/573242606513','_blank')"><div class="img-overlay">👁</div></div><h3>Esqueleto Deportivo Adidas</h3><button class="btn-buy" onclick="addToCart('Esqueleto Adidas', this)">+ Añadir a Cesta</button></div>
+                <div class="product-card clothing-item hombre"><div class="product-img-wrap"><img src="Camisillas2.jpg" onclick="window.open('https://wa.me/p/33207499735561483/573242606513','_blank')"><div class="img-overlay">👁</div></div><h3>Esqueleto Deportivo Nike</h3><button class="btn-buy" onclick="addToCart('Esqueleto Nike', this)">+ Añadir a Cesta</button></div>
+                <div class="product-card clothing-item hombre"><div class="product-img-wrap"><img src="PCR.jpg" onclick="window.open('https://wa.me/p/25783256487976410/573242606513','_blank')"><div class="img-overlay">👁</div></div><h3>Pantaloneta Running — Azul</h3><button class="btn-buy" onclick="addToCart('Pantaloneta Running Azul', this)">+ Añadir a Cesta</button></div>
+                <div class="product-card clothing-item hombre"><div class="product-img-wrap"><img src="PCR1.jpg" onclick="window.open('https://wa.me/p/25783256487976410/573242606513','_blank')"><div class="img-overlay">👁</div></div><h3>Pantaloneta Running — Verde</h3><button class="btn-buy" onclick="addToCart('Pantaloneta Running Verde', this)">+ Añadir a Cesta</button></div>
+                <div class="product-card clothing-item hombre"><div class="product-img-wrap"><img src="PCR2.jpg" onclick="window.open('https://wa.me/p/25783256487976410/573242606513','_blank')"><div class="img-overlay">👁</div></div><h3>Pantaloneta Running — Negra</h3><button class="btn-buy" onclick="addToCart('Pantaloneta Running Negra', this)">+ Añadir a Cesta</button></div>
+                <div class="product-card clothing-item hombre"><div class="product-img-wrap"><img src="PCR3.jpg" onclick="window.open('https://wa.me/p/25783256487976410/573242606513','_blank')"><div class="img-overlay">👁</div></div><h3>Pantaloneta Running — Gris</h3><button class="btn-buy" onclick="addToCart('Pantaloneta Running Gris', this)">+ Añadir a Cesta</button></div>
+                <div class="product-card clothing-item hombre"><div class="product-img-wrap"><img src="Seleccion.jpg" onclick="window.open('https://wa.me/p/25596448220023377/573242606513','_blank')"><div class="img-overlay">👁</div></div><h3>Camiseta Selección Colombia</h3><button class="btn-buy" onclick="addToCart('Camiseta Selección Colombia', this)">+ Añadir a Cesta</button></div>
+                <div class="product-card clothing-item hombre"><div class="product-img-wrap"><img src="Shorts1.jpg" onclick="window.open('https://wa.me/573242606513','_blank')"><div class="img-overlay">👁</div></div><h3>Short Deportivo Adidas</h3><button class="btn-buy" onclick="addToCart('Short Adidas', this)">+ Añadir a Cesta</button></div>
+                <div class="product-card clothing-item hombre"><div class="product-img-wrap"><img src="Shorts2.jpg" onclick="window.open('https://wa.me/573242606513','_blank')"><div class="img-overlay">👁</div></div><h3>Short Deportivo Nike</h3><button class="btn-buy" onclick="addToCart('Short Nike', this)">+ Añadir a Cesta</button></div>
+                <div class="product-card clothing-item hombre"><div class="product-img-wrap"><img src="Camisetas1.jpg" onclick="window.open('https://wa.me/p/25279770708360587/573242606513','_blank')"><div class="img-overlay">👁</div></div><h3>Camiseta Dry-Fit Blanca</h3><button class="btn-buy" onclick="addToCart('Camiseta Dry-Fit Blanca', this)">+ Añadir a Cesta</button></div>
+                <div class="product-card clothing-item hombre"><div class="product-img-wrap"><img src="Camiseta2.jpg" onclick="window.open('https://wa.me/p/25279770708360587/573242606513','_blank')"><div class="img-overlay">👁</div></div><h3>Camiseta Dry-Fit Negra</h3><button class="btn-buy" onclick="addToCart('Camiseta Dry-Fit Negra', this)">+ Añadir a Cesta</button></div>
+                <div class="product-card clothing-item mujer"><div class="product-img-wrap"><img src="LicraPro.jpg" onclick="window.open('https://wa.me/573242606513','_blank')"><div class="img-overlay">👁</div></div><h3>Licra Deportiva Mujer</h3><button class="btn-buy" onclick="addToCart('Licra Deportiva Mujer', this)">+ Añadir a Cesta</button></div>
             </div>
         </section>
 
@@ -1229,7 +1497,7 @@
                 </div>
             </div>
             <div class="products-grid">
-                <div class="product-card"><div class="product-img-wrap"><img src="Termos20.jpg" onclick="window.open('https://wa.me/573242606513','_blank')"><div class="img-overlay">👁</div></div><h3>Termos 20k</h3><button class="btn-buy" onclick="addToCart('Termos 20k')">+ Añadir a Cesta</button></div>
+                <div class="product-card"><div class="product-img-wrap"><img src="Termos20.jpg" onclick="window.open('https://wa.me/573242606513','_blank')"><div class="img-overlay">👁</div></div><h3>Termos 20k</h3><button class="btn-buy" onclick="addToCart('Termos 20k', this)">+ Añadir a Cesta</button></div>
             </div>
         </section>
 
@@ -1250,7 +1518,7 @@
                         <div class="img-overlay">👁</div>
                     </div>
                     <h3>Combo Masa: Proteína + Creatina</h3>
-                    <button class="btn-buy" onclick="addToCart('Combo Masa: Proteína + Creatina')">+ Añadir a Cesta</button>
+                    <button class="btn-buy" onclick="addToCart('Combo Masa: Proteína + Creatina', this)">+ Añadir a Cesta</button>
                 </div>
             </div>
         </section>
@@ -1273,6 +1541,147 @@
         </div>
 
     </div><!-- /main-container -->
+
+    <!-- ════════════ GUÍA DE SUPLEMENTOS ════════════ -->
+    <section class="guide-section">
+        <p class="section-label">Según tu objetivo</p>
+        <h2 class="section-title">¿QUÉ DEBERÍAS TOMAR?</h2>
+        <p class="section-sub">Selecciona tu meta y te mostramos qué suplementos son ideales para ti</p>
+
+        <div class="guide-tabs">
+            <button class="guide-tab active" onclick="switchGuide('masa', this)">💪 Ganar Masa</button>
+            <button class="guide-tab" onclick="switchGuide('definicion', this)">🔥 Definición</button>
+            <button class="guide-tab" onclick="switchGuide('salud', this)">🌿 Salud General</button>
+            <button class="guide-tab" onclick="switchGuide('rendimiento', this)">⚡ Rendimiento</button>
+        </div>
+
+        <div id="guide-masa" class="guide-panel active">
+            <div class="guide-cards">
+                <div class="guide-card">
+                    <span class="guide-card-icon">🥤</span>
+                    <h4>Proteína Hipercalórica</h4>
+                    <p>Base fundamental para el crecimiento muscular. Aporta calorías y proteínas de alta calidad para la recuperación y síntesis muscular.</p>
+                    <div class="guide-products">
+                        <span class="guide-tag" onclick="showCategory('proteinas')">Bi-Pro Mass</span>
+                        <span class="guide-tag" onclick="showCategory('proteinas')">Smart Gainer</span>
+                    </div>
+                </div>
+                <div class="guide-card">
+                    <span class="guide-card-icon">⚡</span>
+                    <h4>Creatina</h4>
+                    <p>Mejora la fuerza, la potencia y el volumen muscular. Es el suplemento más estudiado y efectivo para ganar masa.</p>
+                    <div class="guide-products">
+                        <span class="guide-tag" onclick="showCategory('creatinas')">ON Creatine</span>
+                        <span class="guide-tag" onclick="showCategory('creatinas')">Dymatize</span>
+                    </div>
+                </div>
+                <div class="guide-card">
+                    <span class="guide-card-icon">😴</span>
+                    <h4>Recuperación Nocturna</h4>
+                    <p>El crecimiento ocurre mientras duermes. El magnesio y la melatonina optimizan tu descanso y la recuperación muscular.</p>
+                    <div class="guide-products">
+                        <span class="guide-tag" onclick="showCategory('salud')">Magnesium HA</span>
+                        <span class="guide-tag" onclick="showCategory('salud')">Melatonina</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="guide-definicion" class="guide-panel">
+            <div class="guide-cards">
+                <div class="guide-card">
+                    <span class="guide-card-icon">🥩</span>
+                    <h4>Proteína Hipocalórica</h4>
+                    <p>Mantén tu masa muscular mientras reduces grasa. Alta en proteína, baja en carbohidratos y grasas.</p>
+                    <div class="guide-products">
+                        <span class="guide-tag" onclick="showCategory('proteinas')">Bi-Pro Ripped</span>
+                        <span class="guide-tag" onclick="showCategory('proteinas')">ON Whey Gold</span>
+                    </div>
+                </div>
+                <div class="guide-card">
+                    <span class="guide-card-icon">🧠</span>
+                    <h4>Enfoque y Energía</h4>
+                    <p>Mantén tu concentración y energía en el déficit calórico. Entrena fuerte sin estimulantes agresivos.</p>
+                    <div class="guide-products">
+                        <span class="guide-tag" onclick="showCategory('salud')">Nootrópico</span>
+                        <span class="guide-tag" onclick="showCategory('salud')">Vitamina C</span>
+                    </div>
+                </div>
+                <div class="guide-card">
+                    <span class="guide-card-icon">🦴</span>
+                    <h4>Protección Articular</h4>
+                    <p>En fase de definición el entrenamiento es intenso. Protege tus articulaciones y tejido conectivo.</p>
+                    <div class="guide-products">
+                        <span class="guide-tag" onclick="showCategory('salud')">Colágeno</span>
+                        <span class="guide-tag" onclick="showCategory('salud')">Wellflex</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="guide-salud" class="guide-panel">
+            <div class="guide-cards">
+                <div class="guide-card">
+                    <span class="guide-card-icon">🌿</span>
+                    <h4>Adaptógenos</h4>
+                    <p>Reduce el cortisol, mejora la respuesta al estrés y equilibra tus hormonas de forma natural.</p>
+                    <div class="guide-products">
+                        <span class="guide-tag" onclick="showCategory('salud')">Ashwagandha</span>
+                        <span class="guide-tag" onclick="showCategory('salud')">NAC 100</span>
+                    </div>
+                </div>
+                <div class="guide-card">
+                    <span class="guide-card-icon">💊</span>
+                    <h4>Vitaminas & Minerales</h4>
+                    <p>Cubre los micronutrientes esenciales que el cuerpo necesita para funcionar y rendir al máximo.</p>
+                    <div class="guide-products">
+                        <span class="guide-tag" onclick="showCategory('salud')">Multivitamínico</span>
+                        <span class="guide-tag" onclick="showCategory('salud')">Vitamina D</span>
+                    </div>
+                </div>
+                <div class="guide-card">
+                    <span class="guide-card-icon">💇</span>
+                    <h4>Piel, Cabello & Uñas</h4>
+                    <p>Suplementos que mejoran la apariencia desde adentro: colágeno, biotina y antioxidantes clave.</p>
+                    <div class="guide-products">
+                        <span class="guide-tag" onclick="showCategory('salud')">Biotina</span>
+                        <span class="guide-tag" onclick="showCategory('salud')">Colágeno</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="guide-rendimiento" class="guide-panel">
+            <div class="guide-cards">
+                <div class="guide-card">
+                    <span class="guide-card-icon">⚡</span>
+                    <h4>Fuerza Explosiva</h4>
+                    <p>Maximiza tu potencia en cada sesión. La creatina es el estándar de oro para el rendimiento deportivo.</p>
+                    <div class="guide-products">
+                        <span class="guide-tag" onclick="showCategory('creatinas')">Platinum MuscleTech</span>
+                        <span class="guide-tag" onclick="showCategory('creatinas')">IMN 133</span>
+                    </div>
+                </div>
+                <div class="guide-card">
+                    <span class="guide-card-icon">🔄</span>
+                    <h4>Recuperación Acelerada</h4>
+                    <p>Vuelve al entreno más rápido. La proteína de alta calidad y el magnesio acortan el tiempo de recuperación.</p>
+                    <div class="guide-products">
+                        <span class="guide-tag" onclick="showCategory('proteinas')">NitroTech</span>
+                        <span class="guide-tag" onclick="showCategory('salud')">Magnesium HA</span>
+                    </div>
+                </div>
+                <div class="guide-card">
+                    <span class="guide-card-icon">🧘</span>
+                    <h4>Combo Completo</h4>
+                    <p>Proteína + creatina es la combinación más efectiva y probada para mejorar el rendimiento general.</p>
+                    <div class="guide-products">
+                        <span class="guide-tag" onclick="showCategory('combos')">Ver Combos Elite</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <!-- WhatsApp -->
     <a href="https://wa.me/573242606513?text=Hola%20ADROOS%20👋%2C%20necesito%20asesoría%20personalizada." class="whatsapp-float" target="_blank">
@@ -1306,22 +1715,77 @@
     </footer>
 
     <script>
+        /* ── ANNOUNCEMENT BAR OFFSET ── */
+        function offsetForBar() {
+            const bar = document.getElementById('announcementBar');
+            if (bar && bar.style.display !== 'none') {
+                document.querySelector('header').style.paddingTop = (bar.offsetHeight + 40) + 'px';
+            }
+        }
+        offsetForBar();
+
+        /* ── TOAST ── */
+        let toastTimer;
+        function showToast(msg) {
+            const t = document.getElementById('toast');
+            document.getElementById('toast-msg').textContent = msg;
+            t.classList.add('show');
+            clearTimeout(toastTimer);
+            toastTimer = setTimeout(() => t.classList.remove('show'), 2800);
+        }
+
+        /* ── FLY TO CART ANIMATION ── */
+        function flyToCart(btn) {
+            const cartEl = document.querySelector('.cart-float');
+            const btnRect = btn.getBoundingClientRect();
+            const cartRect = cartEl.getBoundingClientRect();
+
+            const fly = document.createElement('div');
+            fly.classList.add('fly-item');
+            fly.style.cssText = `left:${btnRect.left + btnRect.width/2 - 9}px; top:${btnRect.top + btnRect.height/2 - 9}px; position:fixed;`;
+            document.body.appendChild(fly);
+
+            // Use rAF for smooth animation
+            requestAnimationFrame(() => {
+                fly.style.transition = 'all 0.65s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+                fly.style.left = (cartRect.left + cartRect.width/2 - 9) + 'px';
+                fly.style.top  = (cartRect.top  + cartRect.height/2 - 9) + 'px';
+                fly.style.opacity = '0';
+                fly.style.transform = 'scale(0.3)';
+            });
+
+            setTimeout(() => {
+                fly.remove();
+                cartEl.style.transform = 'scale(1.3)';
+                setTimeout(() => cartEl.style.transform = '', 300);
+            }, 650);
+        }
+
         /* ── CART ── */
         let cart = [];
 
-        function addToCart(name) {
+        function addToCart(name, btn) {
             const i = cart.findIndex(x => x.name === name);
             if (i > -1) cart[i].qty += 1;
             else cart.push({ name, qty: 1 });
             updateCartUI();
-            const btn = event.target;
+
+            // Fly animation
+            flyToCart(btn);
+
+            // Button feedback
+            const orig = btn.textContent;
             btn.textContent = '✓ Añadido';
             btn.style.background = 'var(--gold)';
             btn.style.color = '#000';
-            setTimeout(() => { btn.textContent = '+ Añadir a Cesta'; btn.style.background = ''; btn.style.color = ''; }, 1500);
-            const cf = document.querySelector('.cart-float');
-            cf.style.transform = 'scale(1.25)';
-            setTimeout(() => cf.style.transform = '', 300);
+            setTimeout(() => {
+                btn.textContent = orig;
+                btn.style.background = '';
+                btn.style.color = '';
+            }, 1500);
+
+            // Toast
+            showToast(`${name} añadido al pedido`);
         }
 
         function updateCartUI() {
@@ -1329,7 +1793,7 @@
             document.getElementById('cart-count').innerText = count;
             const list = document.getElementById('cart-items-list');
             if (!cart.length) {
-                list.innerHTML = '<p style="color:#555;text-align:center;padding:30px 0;font-size:0.9rem;">Tu cesta está vacía...</p>';
+                list.innerHTML = '<p style="color:#888;text-align:center;padding:30px 0;font-size:0.9rem;">Tu cesta está vacía...</p>';
                 return;
             }
             list.innerHTML = cart.map((x, i) => `
@@ -1348,7 +1812,7 @@
         }
 
         function sendOrder() {
-            if (!cart.length) return alert('Tu cesta está vacía');
+            if (!cart.length) return showToast('Tu cesta está vacía 😅');
             let msg = 'Hola ADROOS 👋, quiero realizar este pedido:\n\n';
             cart.forEach(x => msg += `✅ ${x.qty}x ${x.name}\n`);
             window.open(`https://wa.me/573242606513?text=${encodeURIComponent(msg)}`, '_blank');
@@ -1359,16 +1823,15 @@
             document.getElementById('category-selector').style.display = 'none';
             document.querySelectorAll('.product-section').forEach(s => s.style.display = 'none');
             document.getElementById(id).style.display = 'block';
-            document.getElementById('faq').style.display = 'block';
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
         function showHome() {
             document.querySelectorAll('.product-section').forEach(s => s.style.display = 'none');
             document.getElementById('category-selector').style.display = 'block';
-            document.getElementById('faq').style.display = 'none';
             document.getElementById('productSearch').value = '';
             document.querySelectorAll('.product-card').forEach(c => c.style.display = 'flex');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
         /* ── SEARCH ── */
@@ -1387,7 +1850,6 @@
                     });
                     sec.style.display = found ? 'block' : 'none';
                 });
-                document.getElementById('faq').style.display = 'none';
             } else {
                 showHome();
             }
@@ -1402,6 +1864,14 @@
             });
         }
 
+        /* ── GUIDE TABS ── */
+        function switchGuide(id, el) {
+            document.querySelectorAll('.guide-tab').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.guide-panel').forEach(p => p.classList.remove('active'));
+            el.classList.add('active');
+            document.getElementById('guide-' + id).classList.add('active');
+        }
+
         /* ── CAROUSEL ── */
         let currentSlide = 0;
         const totalSlides = 3;
@@ -1411,22 +1881,16 @@
             const cards = track.querySelectorAll('.tool-card');
             const cardW = cards[0].offsetWidth + 24;
             track.style.transform = `translateX(-${currentSlide * cardW}px)`;
-            cards.forEach((c, i) => {
-                c.classList.toggle('active-card', i === currentSlide);
-            });
-            document.querySelectorAll('.dot').forEach((d, i) => {
-                d.classList.toggle('active', i === currentSlide);
-            });
+            cards.forEach((c, i) => c.classList.toggle('active-card', i === currentSlide));
+            document.querySelectorAll('.dot').forEach((d, i) => d.classList.toggle('active', i === currentSlide));
         }
 
         function goToSlide(n) { currentSlide = n; updateCarousel(); }
         function nextSlide() { currentSlide = (currentSlide + 1) % totalSlides; updateCarousel(); }
         function prevSlide() { currentSlide = (currentSlide - 1 + totalSlides) % totalSlides; updateCarousel(); }
 
-        // Auto-advance
         setInterval(nextSlide, 5000);
 
-        // Touch support
         let touchStartX = 0;
         document.querySelector('.carousel-track-wrap').addEventListener('touchstart', e => touchStartX = e.touches[0].clientX);
         document.querySelector('.carousel-track-wrap').addEventListener('touchend', e => {
@@ -1434,7 +1898,13 @@
             if (Math.abs(diff) > 50) diff > 0 ? nextSlide() : prevSlide();
         });
 
-        // Init
+        /* ── BACK TO TOP ── */
+        window.addEventListener('scroll', () => {
+            const btn = document.getElementById('backTop');
+            btn.classList.toggle('visible', window.scrollY > 400);
+        });
+
+        /* ── INIT ── */
         window.addEventListener('load', () => {
             const hash = window.location.hash.replace('#', '');
             if (hash && document.getElementById(hash)) showCategory(hash);
