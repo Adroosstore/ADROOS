@@ -1808,12 +1808,21 @@
                 <p>Rutinas estructuradas y progresivas para todos los niveles. Entrena con método y alcanza tu máximo potencial físico.</p>
                 <span class="tool-btn">Empezar <span class="arrow">→</span></span>
             </a>
+            <a href="https://aprendeconadroos.lovable.app/" target="_blank" class="tool-card">
+                <span class="tool-number">04</span>
+                <span class="tool-icon">🧬</span>
+                <span class="tool-badge">EDUCACIÓN & CIENCIA</span>
+                <h3>CONOCE TU SUPLEMENTACIÓN</h3>
+                <p>Ciencia aplicada al rendimiento. Aprende cómo funcionan los suplementos, qué dice la evidencia y cómo sacarles el máximo provecho desde una perspectiva médica real.</p>
+                <span class="tool-btn">Entrar al Lab <span class="arrow">→</span></span>
+            </a>
         </div>
     </div>
     <div class="carousel-dots">
         <div class="dot active" onclick="goToSlide(0)"></div>
         <div class="dot" onclick="goToSlide(1)"></div>
         <div class="dot" onclick="goToSlide(2)"></div>
+        <div class="dot" onclick="goToSlide(3)"></div>
     </div>
     <div class="carousel-btns">
         <button class="carousel-btn" onclick="prevSlide()">←</button>
@@ -2776,7 +2785,7 @@ function switchGuide(id, el) {
 
 /* ── CAROUSEL ── */
 let currentSlide = 0;
-const totalSlides = 3;
+const totalSlides = 4;
 
 function updateCarousel() {
     const track = document.getElementById('carouselTrack');
