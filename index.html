@@ -1816,6 +1816,14 @@
                 <p>Ciencia aplicada al rendimiento. Aprende cómo funcionan los suplementos, qué dice la evidencia y cómo sacarles el máximo provecho desde una perspectiva médica real.</p>
                 <span class="tool-btn">Entrar al Lab <span class="arrow">→</span></span>
             </a>
+            <a href="https://recetasadroos.lovable.app/" target="_blank" class="tool-card">
+                <span class="tool-number">05</span>
+                <span class="tool-icon">🍳</span>
+                <span class="tool-badge">NUTRICIÓN & COCINA</span>
+                <h3>Recetas ADROOS</h3>
+                <p>Cocina inteligente para potenciar tus resultados. Recetas diseñadas para complementar tu suplementación y ayudarte a comer rico mientras alcanzas tus metas.</p>
+                <span class="tool-btn">Ver Recetas <span class="arrow">→</span></span>
+            </a>
         </div>
     </div>
     <div class="carousel-dots">
@@ -1823,6 +1831,7 @@
         <div class="dot" onclick="goToSlide(1)"></div>
         <div class="dot" onclick="goToSlide(2)"></div>
         <div class="dot" onclick="goToSlide(3)"></div>
+        <div class="dot" onclick="goToSlide(4)"></div>
     </div>
     <div class="carousel-btns">
         <button class="carousel-btn" onclick="prevSlide()">←</button>
@@ -2783,9 +2792,9 @@ function switchGuide(id, el) {
     document.getElementById('guide-' + id).classList.add('active');
 }
 
-/* ── CAROUSEL ── */
+/* ── CAROUSEL INFINITO ── */
 let currentSlide = 0;
-const totalSlides = 4;
+const totalSlides = 5;
 
 function updateCarousel() {
     const track = document.getElementById('carouselTrack');
@@ -2793,21 +2802,63 @@ function updateCarousel() {
     const cardW = cards[0].offsetWidth + 24;
     track.style.transform = `translateX(-${currentSlide * cardW}px)`;
     cards.forEach((c, i) => c.classList.toggle('active-card', i === currentSlide));
-    document.querySelectorAll('.dot').forEach((d, i) => d.classList.toggle('active', i === currentSlide));
+    document.querySelectorAll('.dot').forEach((d, i) => {
+        d.classList.toggle('active', i === (currentSlide % totalSlides));
+    });
 }
 
 function goToSlide(n) { currentSlide = n; updateCarousel(); }
-function nextSlide() { currentSlide = (currentSlide + 1) % totalSlides; updateCarousel(); }
-function prevSlide() { currentSlide = (currentSlide - 1 + totalSlides) % totalSlides; updateCarousel(); }
 
-setInterval(nextSlide, 5000);
+function nextSlide() {
+    const track = document.getElementById('carouselTrack');
+    const cards = track.querySelectorAll('.tool-card');
+    const cardW = cards[0].offsetWidth + 24;
 
-let touchStartX = 0;
-document.querySelector('.carousel-track-wrap').addEventListener('touchstart', e => touchStartX = e.touches[0].clientX);
-document.querySelector('.carousel-track-wrap').addEventListener('touchend', e => {
-    const diff = touchStartX - e.changedTouches[0].clientX;
-    if (Math.abs(diff) > 50) diff > 0 ? nextSlide() : prevSlide();
-});
+    currentSlide++;
+
+    // Si llegamos al final, animamos hacia adelante y luego saltamos sin animación
+    if (currentSlide >= totalSlides) {
+        track.style.transition = 'transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+        track.style.transform = `translateX(-${currentSlide * cardW}px)`;
+        cards.forEach((c, i) => c.classList.toggle('active-card', i === currentSlide % totalSlides));
+        document.querySelectorAll('.dot').forEach((d, i) => d.classList.toggle('active', i === 0));
+
+        setTimeout(() => {
+            track.style.transition = 'none';
+            currentSlide = 0;
+            track.style.transform = `translateX(0px)`;
+            cards.forEach((c, i) => c.classList.toggle('active-card', i === 0));
+        }, 520);
+        return;
+    }
+
+    updateCarousel();
+}
+
+function prevSlide() {
+    const track = document.getElementById('carouselTrack');
+    const cards = track.querySelectorAll('.tool-card');
+    const cardW = cards[0].offsetWidth + 24;
+
+    if (currentSlide <= 0) {
+        // Salta sin animación al final y luego anima hacia atrás
+        track.style.transition = 'none';
+        currentSlide = totalSlides;
+        track.style.transform = `translateX(-${currentSlide * cardW}px)`;
+
+        setTimeout(() => {
+            track.style.transition = 'transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+            currentSlide = totalSlides - 1;
+            track.style.transform = `translateX(-${currentSlide * cardW}px)`;
+            cards.forEach((c, i) => c.classList.toggle('active-card', i === currentSlide));
+            document.querySelectorAll('.dot').forEach((d, i) => d.classList.toggle('active', i === currentSlide));
+        }, 20);
+        return;
+    }
+
+    currentSlide--;
+    updateCarousel();
+}
 
 /* ── BACK TO TOP ── */
 window.addEventListener('scroll', () => {
