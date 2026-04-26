@@ -2860,6 +2860,29 @@ function prevSlide() {
     updateCarousel();
 }
 
+/* ── AUTOPLAY ── */
+let autoSlide = setInterval(nextSlide, 5000);
+
+/* ── TOUCH SWIPE ── */
+let touchStartX = 0;
+let touchStartY = 0;
+const carouselWrap = document.querySelector('.carousel-track-wrap');
+
+carouselWrap.addEventListener('touchstart', e => {
+    touchStartX = e.touches[0].clientX;
+    touchStartY = e.touches[0].clientY;
+}, { passive: true });
+
+carouselWrap.addEventListener('touchend', e => {
+    const diffX = touchStartX - e.changedTouches[0].clientX;
+    const diffY = touchStartY - e.changedTouches[0].clientY;
+    if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > 40) {
+        clearInterval(autoSlide);
+        diffX > 0 ? nextSlide() : prevSlide();
+        autoSlide = setInterval(nextSlide, 5000);
+    }
+}, { passive: true });
+
 /* ── BACK TO TOP ── */
 window.addEventListener('scroll', () => {
     const btn = document.getElementById('backTop');
@@ -2871,6 +2894,12 @@ window.addEventListener('load', () => {
     const hash = window.location.hash.replace('#', '');
     if (hash && document.getElementById(hash)) showCategory(hash);
     updateCarousel();
+    document.querySelectorAll('.carousel-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            clearInterval(autoSlide);
+            autoSlide = setInterval(nextSlide, 5000);
+        });
+    });
 });
 
 window.addEventListener('resize', updateCarousel);
