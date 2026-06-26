@@ -63,77 +63,6 @@
     "https://wa.me/573242606513"
   ]
 }
-<style>
-/* ── Precio en tarjeta ── */
-.product-price {
-    display: flex;
-    align-items: baseline;
-    gap: 6px;
-    margin-top: -4px;
-}
- 
-.price-amount {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 1.15rem;
-    letter-spacing: 1px;
-    color: var(--gold);
-    line-height: 1;
-}
- 
-.price-note {
-    font-size: 0.65rem;
-    color: var(--text-muted);
-    font-weight: 500;
-    letter-spacing: 0.2px;
-}
- 
-/* ── Precio en modal ── */
-.modal-price-wrap {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin-bottom: 20px;
-    padding: 14px 18px;
-    background: var(--surface);
-    border: 1px solid var(--gold-border);
-    border-radius: 14px;
-}
- 
-.modal-price-amount {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 1.7rem;
-    letter-spacing: 2px;
-    color: var(--gold);
-    line-height: 1;
-}
- 
-.modal-price-sub {
-    font-size: 0.72rem;
-    color: var(--text-muted);
-    line-height: 1.4;
-}
- 
-.modal-price-sub strong {
-    display: block;
-    color: var(--text);
-    font-size: 0.75rem;
-    margin-bottom: 1px;
-}
- 
-.modal-discount-badge {
-    margin-left: auto;
-    background: rgba(37,211,102,0.1);
-    border: 1px solid rgba(37,211,102,0.3);
-    color: #1ebe5a;
-    font-size: 0.65rem;
-    font-weight: 800;
-    letter-spacing: 0.5px;
-    padding: 4px 10px;
-    border-radius: 20px;
-    white-space: nowrap;
-}
-</style>
-
 </script>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
 
@@ -1835,7 +1764,77 @@
         .cat-tab-btn.active { color: var(--gold); border-bottom-color: var(--gold); font-weight: 700; }
 
         /* Quita el botón "← Categorías" de las secciones de productos cuando estamos en modo tab */
-        .tab-mode .btn-back { display: none; }  
+        .tab-mode .btn-back { display: none; }
+
+        <style>
+/* ── Precio en tarjeta ── */
+.product-price {
+    display: flex;
+    align-items: baseline;
+    gap: 6px;
+    margin-top: -4px;
+}
+ 
+.price-amount {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.15rem;
+    letter-spacing: 1px;
+    color: var(--gold);
+    line-height: 1;
+}
+ 
+.price-note {
+    font-size: 0.65rem;
+    color: var(--text-muted);
+    font-weight: 500;
+    letter-spacing: 0.2px;
+}
+ 
+/* ── Precio en modal ── */
+.modal-price-wrap {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+    padding: 14px 18px;
+    background: var(--surface);
+    border: 1px solid var(--gold-border);
+    border-radius: 14px;
+}
+ 
+.modal-price-amount {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.7rem;
+    letter-spacing: 2px;
+    color: var(--gold);
+    line-height: 1;
+}
+ 
+.modal-price-sub {
+    font-size: 0.72rem;
+    color: var(--text-muted);
+    line-height: 1.4;
+}
+ 
+.modal-price-sub strong {
+    display: block;
+    color: var(--text);
+    font-size: 0.75rem;
+    margin-bottom: 1px;
+}
+ 
+.modal-discount-badge {
+    margin-left: auto;
+    background: rgba(37,211,102,0.1);
+    border: 1px solid rgba(37,211,102,0.3);
+    color: #1ebe5a;
+    font-size: 0.65rem;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+    padding: 4px 10px;
+    border-radius: 20px;
+    white-space: nowrap;
+}
     </style>
 </head>
 <body>
@@ -2675,7 +2674,7 @@
 </footer>
 
 <script>
-const PRICES = {
+    const PRICES = {
     // ── CREATINAS ─────────────────────────────
     'IMN 133 Serv':                  119000,
     'IMN 50 Serv':                   null,    // sin precio público por ahora
@@ -2795,10 +2794,7 @@ document.addEventListener('DOMContentLoaded', () => {
         injectModalPrice(card.dataset.name);
     };
 });
-</script>
 
-<!--
--->
 /* ── ANNOUNCEMENT BAR OFFSET ── */
 function offsetForBar() {
     const bar = document.getElementById('announcementBar');
