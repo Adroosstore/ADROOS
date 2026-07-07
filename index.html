@@ -2635,9 +2635,9 @@
                 <div class="about-img-deco"></div>
             </div>
             <div class="about-stats">
-                <div class="about-stat"><span class="stat-num">2024</span><span class="stat-label">Fundada</span></div>
-                <div class="about-stat-divider"></div>
-                <div class="about-stat"><span class="stat-num">+100</span><span class="stat-label">Clientes satisfechos</span></div>
+                <div class="about-stat"><span class="stat-num" data-target="2024" data-suffix="">2024</span><span class="stat-label">Fundada</span></div>
+<div class="about-stat-divider"></div>
+<div class="about-stat"><span class="stat-num" data-target="100" data-prefix="+">+100</span><span class="stat-label">Clientes satisfechos</span></div>
                 <div class="about-stat-divider"></div>
                 <div class="about-stat"><span class="stat-num">Nacional</span><span class="stat-label">Cobertura</span></div>
             </div>
@@ -3253,6 +3253,9 @@ window.addEventListener('load', () => {
     if (hash && document.getElementById(hash)) showCategory(hash);
     updateCarousel();
     initCategoryReveal();
+    initCategoryReveal();
+    initStatCounters();
+    
     document.querySelectorAll('.carousel-btn').forEach(btn => {
         btn.addEventListener('click', () => {
             clearInterval(autoSlide);
@@ -3260,7 +3263,37 @@ window.addEventListener('load', () => {
         });
     });
 });
+/* ── SCROLL REVEAL: CONTADORES ── */
+function initStatCounters() {
+    const stats = document.querySelectorAll('.stat-num[data-target]');
+    if (!stats.length) return;
 
+    const statObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const el = entry.target;
+                const target = parseInt(el.dataset.target, 10);
+                const prefix = el.dataset.prefix || '';
+                const suffix = el.dataset.suffix || '';
+                const duration = 1400;
+                const start = performance.now();
+
+                function tick(now) {
+                    const progress = Math.min((now - start) / duration, 1);
+                    const eased = 1 - Math.pow(1 - progress, 3);
+                    const value = Math.round(target * eased);
+                    el.textContent = prefix + value + suffix;
+                    if (progress < 1) requestAnimationFrame(tick);
+                    else el.textContent = prefix + target + suffix;
+                }
+                requestAnimationFrame(tick);
+                statObserver.unobserve(el);
+            }
+        });
+    }, { threshold: 0.5 });
+
+    stats.forEach(el => statObserver.observe(el));
+}
 window.addEventListener('resize', updateCarousel);
 </script>
 
