@@ -3130,13 +3130,23 @@ function searchProducts() {
         if (totalFound === 0) {
             noResults.style.display = 'block';
             countEl.style.display = 'none';
+            setTimeout(() => {
+                noResults.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }, 80);
         } else {
             noResults.style.display = 'none';
             countEl.style.display = 'block';
             countEl.textContent = `${totalFound} producto${totalFound === 1 ? '' : 's'} encontrado${totalFound === 1 ? '' : 's'}`;
             setTimeout(() => {
-                const target = document.getElementById('no-results-search');
-                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                let firstVisible = null;
+                sections.forEach(sec => {
+                    if (!firstVisible) {
+                        firstVisible = sec.querySelector('.product-card[style*="flex"]');
+                    }
+                });
+                if (firstVisible) {
+                    firstVisible.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
             }, 80);
         }
     } else {
