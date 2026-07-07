@@ -1891,6 +1891,7 @@
             <span class="search-icon">🔍</span>
             <input type="text" id="productSearch" placeholder="Buscar producto..." onkeyup="searchProducts()">
         </div>
+        <p id="search-results-count" style="display:none; color:rgba(255,255,255,0.4); font-size:0.75rem; letter-spacing:1px; margin-top:12px;"></p>
     </div>
     <div class="scroll-hint">Explorar</div>
 </header>
@@ -2050,6 +2051,14 @@
         <div class="divider-line"></div>
         <span class="divider-icon">✦</span>
         <div class="divider-line"></div>
+    </div>
+
+    <!-- NO RESULTS -->
+    <div id="no-results-search" style="display:none; text-align:center; padding:60px 20px;">
+        <p style="font-size:2.5rem; margin-bottom:16px;">🔍</p>
+        <h3 style="font-family:'Bebas Neue',sans-serif; font-size:1.6rem; letter-spacing:2px; color:var(--black); margin-bottom:10px;">No encontramos eso...</h3>
+        <p style="color:var(--text-muted); font-size:0.9rem; margin-bottom:24px;">Pero seguro te podemos ayudar. Pregúntanos directamente por WhatsApp.</p>
+        <a href="https://wa.me/573242606513?text=Hola%20ADROOS%20👋%2C%20estoy%20buscando%20un%20producto%20que%20no%20encontré%20en%20la%20página." target="_blank" class="about-cta" style="display:inline-flex;">📲 Preguntar por WhatsApp <span>→</span></a>
     </div>
 
     <!-- CATEGORIES -->
@@ -3093,22 +3102,46 @@ function showHome() {
 
 /* ── SEARCH ── */
 function searchProducts() {
-    const q = document.getElementById('productSearch').value.toLowerCase();
+    const q = document.getElementById('productSearch').value.toLowerCase().trim();
     const sections = document.querySelectorAll('.product-section');
     const selector = document.getElementById('category-selector');
+    const noResults = document.getElementById('no-results-search');
+    const countEl = document.getElementById('search-results-count');
+
     if (q.length > 0) {
         selector.style.display = 'none';
+        let totalFound = 0;
+
         sections.forEach(sec => {
             let found = false;
             sec.querySelectorAll('.product-card').forEach(c => {
-                const h3 = c.querySelector('h3');
-                const match = h3 && h3.innerText.toLowerCase().includes(q);
+                const name = c.dataset.name || '';
+                const desc = c.dataset.desc || '';
+                const tags = c.dataset.tags || '';
+                const cat  = c.dataset.cat || '';
+                const haystack = (name + ' ' + desc + ' ' + tags + ' ' + cat).toLowerCase();
+                const match = haystack.includes(q);
                 c.style.display = match ? 'flex' : 'none';
-                if (match) found = true;
+                if (match) { found = true; totalFound++; }
             });
             sec.style.display = found ? 'block' : 'none';
         });
+
+        if (totalFound === 0) {
+            noResults.style.display = 'block';
+            countEl.style.display = 'none';
+        } else {
+            noResults.style.display = 'none';
+            countEl.style.display = 'block';
+            countEl.textContent = `${totalFound} producto${totalFound === 1 ? '' : 's'} encontrado${totalFound === 1 ? '' : 's'}`;
+            setTimeout(() => {
+                const target = document.getElementById('no-results-search');
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }, 80);
+        }
     } else {
+        noResults.style.display = 'none';
+        countEl.style.display = 'none';
         showHome();
     }
 }
