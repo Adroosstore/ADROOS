@@ -1861,6 +1861,27 @@
     border-radius: 20px;
     white-space: nowrap;
 }
+
+.modal-thumbs {
+    display: flex;
+    gap: 8px;
+    margin-top: 16px;
+    justify-content: center;
+}
+.modal-thumb {
+    width: 56px; height: 56px;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 2px solid var(--surface-2);
+    cursor: pointer;
+    opacity: 0.6;
+    transition: 0.2s;
+    background: var(--off-white);
+}
+.modal-thumb img { width: 100%; height: 100%; object-fit: contain; padding: 4px; }
+.modal-thumb.active { border-color: var(--gold); opacity: 1; }
+.modal-thumb:hover { opacity: 1; 
+}
     </style>
 </head>
 <body>
@@ -1924,6 +1945,7 @@
         <div class="modal-img-side">
             <div class="modal-badge-wrap" id="modal-badges"></div>
             <img id="modal-img" src="" alt="">
+            <div class="modal-thumbs" id="modal-thumbs"></div>
         </div>
 
         <!-- Info -->
@@ -2534,25 +2556,19 @@
     <div class="products-grid">
 
         <!-- CAMISILLAS -->
-        <div class="product-card clothing-item importada" onclick="openModal(this)" data-name="Camisilla Importada Adidas" data-img="Camisillas1.jpg" data-cat="Ropa · Camisilla Importada" data-wa="https://wa.me/p/33207499735561483/573242606513" data-desc="Camisilla deportiva importada Adidas de alta transpirabilidad. Tejido DryCool que aleja el sudor de tu piel para mantenerte fresco durante el entrenamiento. Corte ergonómico para libertad de movimiento total." data-tags="Importada,Adidas,DryCool,Transpirable"><div class="product-img-wrap"><img src="Camisillas1.jpg" alt="Camisilla Importada Adidas"><div class="img-overlay"><span class="img-overlay-label">Ver detalle</span></div></div><div class="product-card-body"><h3>Camisilla Importada Adidas</h3><div class="card-actions"><button class="btn-detail" onclick="event.stopPropagation();openModal(this.closest('.product-card'))">Detalle</button><button class="btn-buy" onclick="event.stopPropagation();addToCart('Camisilla Importada Adidas',this)">+ Cesta</button></div></div></div>
-
-        <div class="product-card clothing-item importada" onclick="openModal(this)" data-name="Camisilla Importada Nike" data-img="Camisillas2.jpg" data-cat="Ropa · Camisilla Importada" data-wa="https://wa.me/p/33207499735561483/573242606513" data-desc="Camisilla deportiva importada Nike con tecnología Dri-FIT. Diseño clásico y funcional que combina rendimiento y estilo. Ligera y cómoda para cualquier actividad física." data-tags="Importada,Nike,Dri-FIT,Ligera"><div class="product-img-wrap"><img src="Camisillas2.jpg" alt="Camisilla Importada Nike"><div class="img-overlay"><span class="img-overlay-label">Ver detalle</span></div></div><div class="product-card-body"><h3>Camisilla Importada Nike</h3><div class="card-actions"><button class="btn-detail" onclick="event.stopPropagation();openModal(this.closest('.product-card'))">Detalle</button><button class="btn-buy" onclick="event.stopPropagation();addToCart('Camisilla Importada Nike',this)">+ Cesta</button></div></div></div>
+        <div class="product-card clothing-item importada" onclick="openModal(this)" data-name="Camisilla Importada" data-imgs="Camisillas1.jpg,Camisillas2.jpg" data-cat="Ropa · Camisilla Importada" data-wa="https://wa.me/p/33207499735561483/573242606513" data-desc="Camisilla deportiva importada Adidas de alta transpirabilidad. Tejido DryCool que aleja el sudor de tu piel para mantenerte fresco durante el entrenamiento. Corte ergonómico para libertad de movimiento total." data-tags="Importada,Adidas,DryCool,Transpirable"><div class="product-img-wrap"><img src="Camisillas1.jpg" alt="Camisilla Importada Adidas"><div class="img-overlay"><span class="img-overlay-label">Ver detalle</span></div></div><div class="product-card-body"><h3>Camisilla Importada Adidas</h3><div class="card-actions"><button class="btn-detail" onclick="event.stopPropagation();openModal(this.closest('.product-card'))">Detalle</button><button class="btn-buy" onclick="event.stopPropagation();addToCart('Camisilla Importada Adidas',this)">+ Cesta</button></div></div></div>
 
         <div class="product-card clothing-item nacional" onclick="openModal(this)" data-name="Camisilla Nacional" data-img="CamisillaNacional.jpg" data-cat="Ropa · Camisilla Nacional" data-wa="https://wa.me/573242606513?text=Hola%20ADROOS%20👋%2C%20me%20interesa%20la%20Camisilla%20Nacional" data-desc="Camisilla deportiva de fabricación nacional. Tela fresca y cómoda para entrenar, excelente relación calidad-precio. Ideal si buscas rendimiento sin pagar sobrecosto de importación." data-tags="Nacional,Buen precio,Cómoda,Transpirable"><div class="product-img-wrap"><img src="CamisillaNacional.jpg" alt="Camisilla Nacional"><div class="img-overlay"><span class="img-overlay-label">Ver detalle</span></div></div><div class="product-card-body"><h3>Camisilla Nacional</h3><div class="card-actions"><button class="btn-detail" onclick="event.stopPropagation();openModal(this.closest('.product-card'))">Detalle</button><button class="btn-buy" onclick="event.stopPropagation();addToCart('Camisilla Nacional',this)">+ Cesta</button></div></div></div>
 
         <!-- CAMISETAS -->
-        <div class="product-card clothing-item importada" onclick="openModal(this)" data-name="Camiseta Importada Blanca" data-img="Camisetas1.jpg" data-cat="Ropa · Camiseta Importada" data-wa="https://wa.me/p/25279770708360587/573242606513" data-desc="Camiseta Dry-Fit importada, color blanco, de alta transpirabilidad. Tejido técnico que mantiene la frescura durante el ejercicio. Corte atlético cómodo para cualquier actividad." data-tags="Importada,Dry-Fit,Blanca,Corte atlético"><div class="product-img-wrap"><img src="Camisetas1.jpg" alt="Camiseta Importada Blanca"><div class="img-overlay"><span class="img-overlay-label">Ver detalle</span></div></div><div class="product-card-body"><h3>Camiseta Importada Blanca</h3><div class="card-actions"><button class="btn-detail" onclick="event.stopPropagation();openModal(this.closest('.product-card'))">Detalle</button><button class="btn-buy" onclick="event.stopPropagation();addToCart('Camiseta Importada Blanca',this)">+ Cesta</button></div></div></div>
+        <div class="product-card clothing-item importada" onclick="openModal(this)" data-name="Camiseta Importada" data-img="Camisetas1.jpg" data-cat="Ropa · Camiseta Importada" data-wa="https://wa.me/p/25279770708360587/573242606513" data-desc="Camiseta Dry-Fit importada, color blanco, de alta transpirabilidad. Tejido técnico que mantiene la frescura durante el ejercicio. Corte atlético cómodo para cualquier actividad." data-tags="Importada,Dry-Fit,Blanca,Corte atlético"><div class="product-img-wrap"><img src="Camisetas1.jpg" alt="Camiseta Importada Blanca"><div class="img-overlay"><span class="img-overlay-label">Ver detalle</span></div></div><div class="product-card-body"><h3>Camiseta Importada Blanca</h3><div class="card-actions"><button class="btn-detail" onclick="event.stopPropagation();openModal(this.closest('.product-card'))">Detalle</button><button class="btn-buy" onclick="event.stopPropagation();addToCart('Camiseta Importada Blanca',this)">+ Cesta</button></div></div></div>
 
-        <div class="product-card clothing-item importada" onclick="openModal(this)" data-name="Camiseta Importada Negra" data-img="Camiseta2.jpg" data-cat="Ropa · Camiseta Importada" data-wa="https://wa.me/p/25279770708360587/573242606513" data-desc="Camiseta Dry-Fit importada en negro, el clásico indispensable. Misma tecnología transpirable en el color más atemporal. Ideal para combinar con cualquier prenda del catálogo." data-tags="Importada,Dry-Fit,Negra,Clásica"><div class="product-img-wrap"><img src="Camiseta2.jpg" alt="Camiseta Importada Negra"><div class="img-overlay"><span class="img-overlay-label">Ver detalle</span></div></div><div class="product-card-body"><h3>Camiseta Importada Negra</h3><div class="card-actions"><button class="btn-detail" onclick="event.stopPropagation();openModal(this.closest('.product-card'))">Detalle</button><button class="btn-buy" onclick="event.stopPropagation();addToCart('Camiseta Importada Negra',this)">+ Cesta</button></div></div></div>
-
-        <div class="product-card clothing-item nacional" onclick="openModal(this)" data-name="Camiseta Nacional Selección Colombia" data-img="Seleccion.jpg" data-cat="Ropa · Camiseta Nacional" data-wa="https://wa.me/p/25596448220023377/573242606513" data-desc="Camiseta de la Selección Colombia de fútbol, fabricación nacional. Tela transpirable de buena calidad. Perfecta para expresar tu orgullo colombiano dentro y fuera de la cancha." data-tags="Nacional,Selección Colombia,Fútbol,Transpirable"><div class="product-img-wrap"><img src="Seleccion.jpg" alt="Camiseta Selección Colombia"><div class="img-overlay"><span class="img-overlay-label">Ver detalle</span></div></div><div class="product-card-body"><h3>Camiseta Nacional Selección Colombia</h3><div class="card-actions"><button class="btn-detail" onclick="event.stopPropagation();openModal(this.closest('.product-card'))">Detalle</button><button class="btn-buy" onclick="event.stopPropagation();addToCart('Camiseta Nacional Selección Colombia',this)">+ Cesta</button></div></div></div>
+        <div class="product-card clothing-item nacional" onclick="openModal(this)" data-name="Camiseta Nacional" data-img="Seleccion.jpg" data-cat="Ropa · Camiseta Nacional" data-wa="https://wa.me/p/25596448220023377/573242606513" data-desc="Camiseta de la Selección Colombia de fútbol, fabricación nacional. Tela transpirable de buena calidad. Perfecta para expresar tu orgullo colombiano dentro y fuera de la cancha." data-tags="Nacional,Selección Colombia,Fútbol,Transpirable"><div class="product-img-wrap"><img src="Seleccion.jpg" alt="Camiseta Selección Colombia"><div class="img-overlay"><span class="img-overlay-label">Ver detalle</span></div></div><div class="product-card-body"><h3>Camiseta Nacional Selección Colombia</h3><div class="card-actions"><button class="btn-detail" onclick="event.stopPropagation();openModal(this.closest('.product-card'))">Detalle</button><button class="btn-buy" onclick="event.stopPropagation();addToCart('Camiseta Nacional Selección Colombia',this)">+ Cesta</button></div></div></div>
 
         <!-- PANTALONETAS -->
         <div class="product-card clothing-item importada" onclick="openModal(this)" data-name="Pantaloneta con Licra Importada" data-img="PCR.jpg" data-cat="Ropa · Pantaloneta Importada" data-wa="https://wa.me/p/25783256487976410/573242606513" data-desc="Pantaloneta running importada con licra interior. Tela ultraligera y transpirable, cintura elástica ajustable. Ideal para running, CrossFit o entrenamiento en el gym. Disponible en azul, verde, negro y gris — pregunta por WhatsApp el color que prefieras." data-tags="Importada,Con Licra,Ultraligera,Varios colores"><div class="product-img-wrap"><img src="PCR.jpg" alt="Pantaloneta con Licra Importada"><div class="img-overlay"><span class="img-overlay-label">Ver detalle</span></div></div><div class="product-card-body"><h3>Pantaloneta con Licra Importada</h3><div class="card-actions"><button class="btn-detail" onclick="event.stopPropagation();openModal(this.closest('.product-card'))">Detalle</button><button class="btn-buy" onclick="event.stopPropagation();addToCart('Pantaloneta con Licra Importada',this)">+ Cesta</button></div></div></div>
 
-        <div class="product-card clothing-item importada" onclick="openModal(this)" data-name="Pantaloneta sin Licra Importada Adidas" data-img="Shorts1.jpg" data-cat="Ropa · Pantaloneta Importada" data-wa="https://wa.me/573242606513" data-desc="Pantaloneta sin licra importada Adidas, tela de alto rendimiento. Ajuste cómodo y diseño que combina estilo con funcionalidad. Ideal para gimnasio, caminata o entrenamiento casual." data-tags="Importada,Sin Licra,Adidas,Cómoda"><div class="product-img-wrap"><img src="Shorts1.jpg" alt="Pantaloneta sin Licra Importada Adidas"><div class="img-overlay"><span class="img-overlay-label">Ver detalle</span></div></div><div class="product-card-body"><h3>Pantaloneta sin Licra Importada Adidas</h3><div class="card-actions"><button class="btn-detail" onclick="event.stopPropagation();openModal(this.closest('.product-card'))">Detalle</button><button class="btn-buy" onclick="event.stopPropagation();addToCart('Pantaloneta sin Licra Importada Adidas',this)">+ Cesta</button></div></div></div>
-
-        <div class="product-card clothing-item importada" onclick="openModal(this)" data-name="Pantaloneta sin Licra Importada Nike" data-img="Shorts2.jpg" data-cat="Ropa · Pantaloneta Importada" data-wa="https://wa.me/573242606513" data-desc="Pantaloneta sin licra importada Nike de corte moderno. Tecnología Dri-FIT para gestión óptima del sudor. Diseño versátil que funciona tanto para entrenar como para uso casual." data-tags="Importada,Sin Licra,Nike,Dri-FIT"><div class="product-img-wrap"><img src="Shorts2.jpg" alt="Pantaloneta sin Licra Importada Nike"><div class="img-overlay"><span class="img-overlay-label">Ver detalle</span></div></div><div class="product-card-body"><h3>Pantaloneta sin Licra Importada Nike</h3><div class="card-actions"><button class="btn-detail" onclick="event.stopPropagation();openModal(this.closest('.product-card'))">Detalle</button><button class="btn-buy" onclick="event.stopPropagation();addToCart('Pantaloneta sin Licra Importada Nike',this)">+ Cesta</button></div></div></div>
+        <div class="product-card clothing-item importada" onclick="openModal(this)" data-name="Pantaloneta sin Licra Importada" data-img="Shorts1.jpg" data-cat="Ropa · Pantaloneta Importada" data-wa="https://wa.me/573242606513" data-desc="Pantaloneta sin licra importada Adidas, tela de alto rendimiento. Ajuste cómodo y diseño que combina estilo con funcionalidad. Ideal para gimnasio, caminata o entrenamiento casual." data-tags="Importada,Sin Licra,Adidas,Cómoda"><div class="product-img-wrap"><img src="Shorts1.jpg" alt="Pantaloneta sin Licra Importada Adidas"><div class="img-overlay"><span class="img-overlay-label">Ver detalle</span></div></div><div class="product-card-body"><h3>Pantaloneta sin Licra Importada Adidas</h3><div class="card-actions"><button class="btn-detail" onclick="event.stopPropagation();openModal(this.closest('.product-card'))">Detalle</button><button class="btn-buy" onclick="event.stopPropagation();addToCart('Pantaloneta sin Licra Importada Adidas',this)">+ Cesta</button></div></div></div>
 
         <div class="product-card clothing-item nacional" onclick="openModal(this)" data-name="Pantaloneta con Licra Nacional" data-img="PantalonetaLicraNacional.jpg" data-cat="Ropa · Pantaloneta Nacional" data-wa="https://wa.me/573242606513?text=Hola%20ADROOS%20👋%2C%20me%20interesa%20la%20Pantaloneta%20con%20Licra%20Nacional" data-desc="Pantaloneta con licra de fabricación nacional. Tela cómoda y funcional a un precio accesible, ideal para entrenar todos los días sin preocuparte por el desgaste." data-tags="Nacional,Con Licra,Buen precio,Cómoda"><div class="product-img-wrap"><img src="PantalonetaLicraNacional.jpg" alt="Pantaloneta con Licra Nacional"><div class="img-overlay"><span class="img-overlay-label">Ver detalle</span></div></div><div class="product-card-body"><h3>Pantaloneta con Licra Nacional</h3><div class="card-actions"><button class="btn-detail" onclick="event.stopPropagation();openModal(this.closest('.product-card'))">Detalle</button><button class="btn-buy" onclick="event.stopPropagation();addToCart('Pantaloneta con Licra Nacional',this)">+ Cesta</button></div></div></div>
 
@@ -2995,6 +3011,23 @@ function openModal(card) {
     // Imagen
     document.getElementById('modal-img').src = d.img;
     document.getElementById('modal-img').alt = d.name;
+    // Galería de fotos
+    const thumbsEl = document.getElementById('modal-thumbs');
+    thumbsEl.innerHTML = '';
+    const imgs = d.imgs ? d.imgs.split(',').map(s => s.trim()) : [d.img];
+    if (imgs.length > 1) {
+        imgs.forEach((src, i) => {
+            const t = document.createElement('div');
+            t.className = 'modal-thumb' + (i === 0 ? ' active' : '');
+            t.innerHTML = `<img src="${src}">`;
+            t.onclick = () => {
+                document.getElementById('modal-img').src = src;
+                thumbsEl.querySelectorAll('.modal-thumb').forEach(x => x.classList.remove('active'));
+                t.classList.add('active');
+            };
+            thumbsEl.appendChild(t);
+        });
+    }
 
     // Categoría y título
     document.getElementById('modal-category').textContent = d.cat || 'ADROOS';
