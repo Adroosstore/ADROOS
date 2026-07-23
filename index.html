@@ -868,14 +868,14 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 32px;
+            padding: 16px;
             border-right: 1px solid var(--surface-2);
             min-height: 360px;
         }
 
         .modal-img-side img {
             width: 100%;
-            max-width: 320px;
+            max-width: 100%;
             aspect-ratio: 1/1;
             object-fit: contain;
             border-radius: 16px;
@@ -1944,7 +1944,7 @@
         <!-- Imagen -->
         <div class="modal-img-side">
             <div class="modal-badge-wrap" id="modal-badges"></div>
-            <img id="modal-img" src="" alt="">
+            <img id="modal-img" src="" alt="" style="cursor:zoom-in;" onclick="openImageZoom(this.src)">
             <div class="modal-thumbs" id="modal-thumbs"></div>
         </div>
 
@@ -3126,10 +3126,24 @@ function addFromModal() {
 }
 
 function closeModal() {
+    
     const modal = document.getElementById('product-modal');
     modal.classList.remove('open');
     document.body.style.overflow = '';
     currentModalProduct = null;
+
+function openImageZoom(src) {
+    const zoom = document.createElement('div');
+    zoom.id = 'image-zoom-overlay';
+    zoom.style.cssText = `
+        position:fixed; inset:0; background:rgba(0,0,0,0.9);
+        z-index:2000; display:flex; align-items:center; justify-content:center;
+        cursor:zoom-out; padding:20px;
+    `;
+    zoom.innerHTML = `<img src="${src}" style="max-width:95%; max-height:95%; object-fit:contain; border-radius:8px;">`;
+    zoom.onclick = () => zoom.remove();
+    document.body.appendChild(zoom);
+}
 }
 
 // Cerrar con clic fuera
