@@ -508,17 +508,10 @@
     overflow: hidden;
     height: 200px;
     cursor: pointer;
-    transition: all 0.4s ease, opacity 0.5s ease, transform 0.5s ease;
+    transition: all 0.4s ease;
     border: 1px solid var(--surface-2);
     background: var(--surface);
     box-shadow: 0 2px 12px rgba(0,0,0,0.06);
-    opacity: 0;
-    transform: translateY(24px);
-}
-
-.cat-card.visible {
-    opacity: 1;
-    transform: translateY(0);
 }
 
         .cat-card::after {
@@ -3385,8 +3378,6 @@ window.addEventListener('load', () => {
     const hash = window.location.hash.replace('#', '');
     if (hash && document.getElementById(hash)) showCategory(hash);
     updateCarousel();
-    initCategoryReveal();
-    initCategoryReveal();
     initStatCounters();
     
     document.querySelectorAll('.carousel-btn').forEach(btn => {
